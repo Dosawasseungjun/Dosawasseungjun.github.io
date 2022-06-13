@@ -2,6 +2,7 @@
 layout: posts
 categories: ["BOJ"]
 title:  "Prim Algorithm optimazation"
+comments: true
 ---
 
 백준 4386 별자리 만들기 문제풀이
