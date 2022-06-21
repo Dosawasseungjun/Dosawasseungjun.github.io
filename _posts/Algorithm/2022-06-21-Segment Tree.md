@@ -1,7 +1,7 @@
 ---
 layout: posts
 categories: ["BOJ"]
-title:  "Segment Tre - 구간갱신"
+title:  "Segment Tree - 구간갱신"
 ---
 
 lazy propagation없이 구간 갱신하기
@@ -23,7 +23,7 @@ lazy propagation없이 구간 갱신하기
 update(l, r, x)를 D[l] += x, D[r+1] -= x 를 해준다.
 printArray() A[0] = D[0]는 그냥 프린트하고 A[i] = A[i-1]+D[i]를 하고 프린트한다.
 update는 상수시간, 프린트는 여기서는 배열의 크기의 시간이 걸리고 점이면 상수시간에 해결 가능하다.    
-[구간 갱신 이용] <https://www.geeksforgeeks.org/difference-array-range-update-query-o1/>
+[구간 갱신 이용] <https://www.geeksforgeeks.org/difference-array-range-update-query-o1/>      
 위의 개념을 세그먼트 트리에 적용하는 것이다!!     
 
 ## 아이디어 얻기.  
