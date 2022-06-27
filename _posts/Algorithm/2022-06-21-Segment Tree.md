@@ -2,6 +2,7 @@
 layout: posts
 categories: ["BOJ"]
 title:  "Segment Tree - 구간갱신"
+tags : [Algorithm, 세그먼트트리]
 ---
 
 lazy propagation없이 구간 갱신하기
