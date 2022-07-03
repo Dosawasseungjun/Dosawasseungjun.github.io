@@ -2,6 +2,7 @@
 layout: posts
 categories: ["BOJ"]
 title:  "Disjoint Set"
+tags : [Disjoint Set]
 ---
 
 백준 4803 트리

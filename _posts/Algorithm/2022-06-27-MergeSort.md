@@ -2,6 +2,7 @@
 layout: posts
 categories: ["BOJ"]
 title:  "Merge Sort"
+tags: [Merge Sort]
 ---
 
 merge sort를 이용하여 inversion 개수세기
