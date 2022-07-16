@@ -22,7 +22,7 @@ tags : [DnC, 분할정복, 세그먼트트리]
 그렇다면 금광문제도 그 문제처럼 치환해야하고 그렇다면 좌표간의 관계. 즉 정렬이 필요하다.     
 하지만 좌표값이 최대 10억까지 가니까 이를 다 커버하기에는 메모리가 부족하다.     
 따라서 좌표 압축을 통해 처리해야한다.     
-좌표압축은 여러 블로그에 좋은 테크닉이 있어서 참고했다.      
+좌표압축은 여러 블로그에 좋은 테크닉이 있어서 참고했다.(좌표압축이라고 치면 많이 나온다)     
 
 ## 아이디어 얻기.  
 좌표 압축 까지 했다면 어떤식으로 자료들을 관리 할지 보자!      
@@ -99,7 +99,7 @@ vector<Data> tree;
 vector<int> xcoord;
 vector<int> ycoord;
 
-void compress(){
+void compress(){    //좌표 압축함
     sort(xcoord.begin(), xcoord.end());
     xcoord.erase(unique(xcoord.begin(), xcoord.end()), xcoord.end());
     sort(ycoord.begin(), ycoord.end());
