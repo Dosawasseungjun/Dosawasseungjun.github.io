@@ -2,7 +2,7 @@
 layout: posts
 categories: ["BOJ"]
 title:  "Segment Tree"
-tags : [Algorithm, 세그먼트트리]
+tags : [Segment Tree, 세그먼트트리]
 ---
 
 백준 11505 구간 곱 구하기 문제풀이
