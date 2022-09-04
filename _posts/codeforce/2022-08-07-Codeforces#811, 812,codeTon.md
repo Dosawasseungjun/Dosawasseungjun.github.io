@@ -126,22 +126,7 @@ A보다 쉬웠던 것 같다.
 그래서 reverse 해주니까 바로 AC
 
 ## 803 D. Color with Occurrences(upsolving)
-
- ```cpp
-int n, iq;
-cin >> n >> iq;
-for(int i=1;i<=n;i++) cin >> a[i];
-int Q= 0;
-for(int i=n;i>=1;i--){
-    if(a[i]<=Q) res[i] = 1;
-    else if(Q<iq){
-        Q++;
-        res[i] = 1;
-    }else res[i] = 0;
-}
-for(int i=1;i<=n;i++) cout << res[i];
-cout << '\n';
-```
+업솔빙도 실패함 담에 풀어보겠슴 ㅠㅋㅋ
 
 ## 811 E. Add modulo 10(2:05)
 D같은 문제는 항상 못풀었어서(코포에 많이나오는데도 못풂ㅋㅋ)      
