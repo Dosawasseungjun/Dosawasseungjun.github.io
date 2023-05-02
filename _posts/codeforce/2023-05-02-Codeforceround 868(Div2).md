@@ -3,6 +3,7 @@ layout: posts
 categories: ["Codeforces"]
 title:  "코드포스 - 새로 시작"
 tags : [upsolving, 코드포스]
+use_math : true
 ---
 
 # Codeforce round 868 (Div.2)
