@@ -1,3 +1,11 @@
+---
+layout: posts
+categories: ["Contest"]
+title:  "블루 달았다!"
+tags : [대회후기, 후기,Codeforces, blue, 코드포스]
+use_math : true
+---
+
 # 코드포스 블루 달성 후기
 
 ## 드디어 달성!!
