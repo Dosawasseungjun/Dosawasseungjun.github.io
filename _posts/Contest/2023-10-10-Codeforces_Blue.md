@@ -20,7 +20,7 @@ use_math : true
 
 # 점수의 등락 과정
 
-![본케 점수](/assets/image/cb2/.png)
+![본케 점수](/assets/image/cb/cb2.png)
 
 먼저 이건 내 본캐(dosaseung)의 점수이다. (아직 민트다..ㅎ)
 
@@ -36,9 +36,9 @@ use_math : true
 
 아래는 부캐의 점수 등락 추이다.
 
-![부케 점수](/assets/image/cb4/.png)
+![부케 점수](/assets/image/cb/cb4.png)
 
-![부케 점수2](/assets/image/cb1/.png)
+![부케 점수2](/assets/image/cb/cb1.png)
 
 결과는 10번만에 블루에 입성했다!!!
 
