@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["Contest"]
 title:  "블루 달았다!"
 tags : [대회후기, 후기,Codeforces, blue, 코드포스]

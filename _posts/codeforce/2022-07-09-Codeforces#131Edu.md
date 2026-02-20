@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["Codeforces"]
 title:  "코드포스 - 나는 바보다"
 tags : [upsolving, 코드포스]

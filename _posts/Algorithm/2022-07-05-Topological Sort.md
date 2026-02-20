@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["BOJ"]
 title:  "Topological Sort"
 tags : [DFS, 위상정렬]

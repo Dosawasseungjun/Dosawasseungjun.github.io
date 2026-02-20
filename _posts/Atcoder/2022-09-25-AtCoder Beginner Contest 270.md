@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["Atcoder"]
 title:  "앳코더 - 첫  앳코더"
 tags : [upsolving, 앳코더]

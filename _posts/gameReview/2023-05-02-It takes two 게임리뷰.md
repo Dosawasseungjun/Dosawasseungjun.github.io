@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["Game Review"]
 title:  "게임 리뷰 - It takes two"
 tags : [잇텟투, It takes two, 게임리뷰]

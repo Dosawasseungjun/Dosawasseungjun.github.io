@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["Codeforces"]
 title:  "코드포스 - 3솔의 벽 깼다!"
 tags : [upsolving, 코드포스]

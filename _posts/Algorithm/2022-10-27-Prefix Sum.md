@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["BOJ"]
 title:  "Prefix Sum 문제"
 tags : [PrefixSum, 누적합]

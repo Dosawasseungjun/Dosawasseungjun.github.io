@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["BOJ"]
 title:  "Merge Sort"
 tags: [Merge Sort]

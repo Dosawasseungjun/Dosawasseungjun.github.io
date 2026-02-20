@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["BOJ"]
 title:  "문자열 - 아호 코라식(Aho-Corasick)"
 tags : [아호 코라식, 문자열]

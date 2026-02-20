@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["BOJ"]
 title:  "Prim Algorithm optimazation"
 comments: true

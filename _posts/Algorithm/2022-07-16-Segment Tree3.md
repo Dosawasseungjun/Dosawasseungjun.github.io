@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["BOJ"]
 title:  "Segment Tree 응용"
 tags : [DnC, 분할정복, 세그먼트트리]

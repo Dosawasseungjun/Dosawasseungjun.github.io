@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["Codeforces"]
 title:  "코드포스 - 블루 좀 가자"
 tags : [upsolving, 코드포스]

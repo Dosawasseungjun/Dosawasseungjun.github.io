@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["Codeforces"]
 title:  "코드포스 - 다시 맘 잡기"
 tags : [upsolving, 코드포스]

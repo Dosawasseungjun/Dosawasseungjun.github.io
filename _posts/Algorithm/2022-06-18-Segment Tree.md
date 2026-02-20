@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["BOJ"]
 title:  "Segment Tree"
 tags : [Segment Tree, 세그먼트트리]

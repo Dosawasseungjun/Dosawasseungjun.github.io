@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["BOJ"]
 title:  "Segment Tree+KMP"
 tags : [세그먼트트리, KMP, 문자열]

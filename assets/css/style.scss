@@ -1,0 +1,67 @@
+---
+# Front Matter가 꼭 있어야 Jekyll이 처리합니다.
+---
+
+// @import "jekyll-theme-chirpy";
+
+/* 
+  🎨 SAP Dosakid Custom Theme - High Contrast Edition
+  Concept: SAP Deep Blue + Vivid Gold
+*/
+
+// 1. 라이트 모드 (Light Mode)
+:root {
+  /* 배경: 조금 더 진하고 차분한 SAP Deep Blue */
+  --sidebar-bg: #072c5e !important; 
+  
+  /* 글씨: 밝은 하늘색 (가독성 확보) */
+  --sidebar-muted-color: #a6c8ff !important; 
+  
+  /* 선택된 메뉴: 쨍한 개나리색 (확실한 포인트) & 굵게 */
+  --sidebar-active-color: #FFEA00 !important; 
+  
+  /* 링크 색상 */
+  --link-color: #0052D4 !important;
+  --btn-primary-bg: #0052D4 !important;
+}
+
+// 2. 다크 모드 (Dark Mode)
+[data-mode="dark"] {
+  /* 다크모드에서는 거의 검정에 가까운 남색 */
+  --sidebar-bg: #031b3d !important;
+  --sidebar-active-color: #FFD700 !important; /* 금색 */
+  
+  --link-color: #58a6ff !important;
+}
+
+/* 3. 사이드바 폰트 가독성 강화 */
+#sidebar .nav-link {
+    font-weight: 500 !important; /* 기본보다 약간 굵게 */
+}
+
+#sidebar .nav-item.active .nav-link {
+    font-weight: bold !important; /* 선택된 건 아주 굵게 */
+    text-shadow: 0 0 10px rgba(255, 234, 0, 0.3); /* 은은한 금빛 광채 */
+}
+
+/* 4. 블로그 제목 (타이틀) 폰트 */
+.site-title {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif !important; 
+  font-weight: bold !important;
+  letter-spacing: 1px !important;
+  color: #fff !important; /* 제목은 무조건 흰색 */
+  font-size: 1.25rem !important; /* ★ 폰트 크기 줄임 (기본 1.5rem -> 1.25rem) */
+}
+
+/* 5. 코드 블럭 스타일 */
+code {
+  color: #d63384 !important; 
+  background-color: rgba(11, 78, 158, 0.05) !important; 
+}
+
+/* 6. 인용구 스타일 */
+blockquote {
+  border-left: 5px solid #FFD700 !important;
+  background-color: rgba(255, 215, 0, 0.05) !important;
+  color: #555 !important;
+}

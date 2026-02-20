@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["BOJ"]
 title:  "D&C Optimization"
 tags : [dnc, 분할정복을 이용한 최적화]

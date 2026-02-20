@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["Contest"]
 title:  "ICPC sinchon 2023 여름 캠프 후기"
 tags : [대회후기, 후기]

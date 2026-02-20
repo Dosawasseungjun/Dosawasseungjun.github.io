@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: post
 categories: ["BOJ"]
 title:  "Divide & Conquer"
 tags : [DnC, 분할정복]
