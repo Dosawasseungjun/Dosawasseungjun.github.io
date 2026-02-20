@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>도사였다 블로그</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-20T10:56:21+09:00</updated>
+  <updated>2026-02-20T14:16:08+09:00</updated>
   <author>
     <name>Han Seungjun</name>
     <uri>http://localhost:4000/</uri>
@@ -34,7 +34,9 @@
 
   
     
-    <category term="BOJ" />
+    <category term="Problem Solving" />
+    
+    <category term="Algorithm" />
     
   
 
@@ -48,7 +50,7 @@
     <link href="http://localhost:4000/posts/docker-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/" rel="alternate" type="text/html" title="docker 이해해보기" />
     <published>2024-06-12T00:00:00+09:00</published>
   
-    <updated>2024-07-17T17:04:48+09:00</updated>
+    <updated>2024-06-12T00:00:00+09:00</updated>
   
     <id>http://localhost:4000/posts/docker-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/</id>
     <content type="text/html" src="http://localhost:4000/posts/docker-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/" />
@@ -58,7 +60,7 @@
 
   
     
-    <category term="CS" />
+    <category term="Computer Science" />
     
   
 
@@ -82,7 +84,9 @@
 
   
     
-    <category term="BOJ" />
+    <category term="Problem Solving" />
+    
+    <category term="Algorithm" />
     
   
 
@@ -106,7 +110,9 @@
 
   
     
-    <category term="BOJ" />
+    <category term="Problem Solving" />
+    
+    <category term="Algorithm" />
     
   
 
@@ -120,7 +126,7 @@
     <link href="http://localhost:4000/posts/Codeforces-Round-936(Div.2)/" rel="alternate" type="text/html" title="코드포스 - 다시 맘 잡기" />
     <published>2024-03-22T00:00:00+09:00</published>
   
-    <updated>2024-03-30T17:27:17+09:00</updated>
+    <updated>2024-03-22T00:00:00+09:00</updated>
   
     <id>http://localhost:4000/posts/Codeforces-Round-936(Div.2)/</id>
     <content type="text/html" src="http://localhost:4000/posts/Codeforces-Round-936(Div.2)/" />
@@ -130,7 +136,9 @@
 
   
     
-    <category term="Codeforces" />
+    <category term="Competitive Programming" />
+    
+    <category term="codeforce" />
     
   
 
