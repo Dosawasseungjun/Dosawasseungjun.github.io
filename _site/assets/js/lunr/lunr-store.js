@@ -329,6 +329,18 @@ var store = [{
         "url": "/posts/aho-corasick/",
         "teaser": null
       },{
+        "title": "근황 토크 및 앞으로의 블로그 운영계획",
+        "excerpt":"블로그를 다시 시작해볼게요 개요 음.. 엄청나게 오랜만에 글을 쓴다. 블로그에 열심히 쓴 양질의 글만 올리려다보니 귀찮아지고 그 귀찮음은 결국 블로그 유기로 이어졌다… 일단 새로운 마음으로 블로그를 다시 시작하기 위해 theme을 바꿨다. (예쁜 것 같아 맘에 든다 - Chirpy theme이다.) 이제는 내 일상이든, 백준 브론즈문제든 겪었던 사소한 버그를 마구잡이로 기록해볼까한다. 사실...","categories": ["Other Things","Just Chatting"],
+        "tags": ["잡담"],
+        "url": "/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/",
+        "teaser": null
+      },{
+        "title": "2026-02-22 문제풀이",
+        "excerpt":"35293 멘헤라 풀이 먼저 4.5를 두번 더하면 9도가 되니까 4.5를 사용하는건 한 번 또는 0번이다. 그리고 소수점에 5나 0 이외의 수가 있다면 만들 수 없다. 이제 모든 수를 다 만들 수 있다고 생각하고 문제를 보면 최단거리 bfs문제와 비슷해진다. 9, 7, -2를 가지고 그래프 탐색을 진행하면 된다. 그러니까 대충 9의 배수인...","categories": ["Problem Solving","BOJ"],
+        "tags": ["백준","그래프"],
+        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],

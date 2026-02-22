@@ -35,8 +35,8 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="코드포스 - 익숙해지는 중" />
 <meta property="og:locale" content="ko" />
-<meta name="description" content="codeforce round #805(div 3), #806(div 4) 업솔빙" />
-<meta property="og:description" content="codeforce round #805(div 3), #806(div 4) 업솔빙" />
+<meta name="description" content="codeforce round #805(div 3), #806(div 4) 업솔빙 Codeforces Round #805, #806 개요 +97점, -10점 했다. 그래도 긍정적인 부분은 이제 코포 유형이 뭔지 감이 잡히고 있다. 코포는 코포로 공부하는게 맞는것같다. 그래도 버추얼은 귀찮아서 안하지만 ㅋㅋㅋ div 4는 다 풀어야하는데 정말 슬프다.. 빨리 더 수련을 해야겠다. div 3, div 4 둘다 4솔했고 틀린 문제만 업솔빙 해보려고 한다. 805 E. Split into Two Sets 이때 당시 멀티셋에 빠져있던터라 멀티셋 썼는데 왜틀렸는지 당시에는 진짜 몰랐다. 끝나고 푼 사람들을 보니 싸이클이 있는지 확인해서 푼 사람들이 많았다. 에디토리얼은 맵을 이용했다. 맵을 이용한 풀이는 나랑 같았지만 여기서 추가적으로 결과적으론 사이클을 판별해야했다. 두 그룹으로 나눈다는게(Split into Two Sets) 그림으로 그려보면 고등학교 때 함수 개념 배울 때 사용하는 모양이 나오니까 Bipartite Graph(이분그래프)를 떠올리는 건 자연스럽다. 같은 숫자가 주어지면 NO map에 넣을 때 크기가 2가 넘어가면 NO 홀수 사이클이 판별되면 NO 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 cin &gt;&gt; n; for(int i=0;i&lt;n;i++){ int num; cin &gt;&gt; num; while (!(num&amp;1)) num &gt;&gt;= 1; m1.insert(num); //m1은 multiset이다. } multiset&lt;int&gt; :: iterator iter; for(int i=0;i&lt;n;i++){ int num; cin &gt;&gt; num; iter = m1.find(num); while (iter==m1.end()&amp;&amp;num!=1){ num &gt;&gt;=1; iter = m1.find(num); } if(iter!=m1.end()) m1.erase(iter); } if(m1.empty()) cout&lt;&lt;&quot;YES\n&quot;; else cout &lt;&lt; &quot;NO\n&quot;; m1.clear(); } 805 F. Equate Multisets 코포에 많이 나오는듯한 느낌의 문제였다. 관찰은 해봤지만 내가 생각한 방법에대한 시간복잡도 땜에 쫄아서 그런지 아무 생각이 안났다. 핵심은 »1 과 «1 밖에 안쓰니까 비트연산으로 접근해도 된다는 것이다. 그러면 같은 숫자가 될 수 있는 것은 비트연산에서 마지막 0들을 뗀 값일 것이다. 예를 들면, 3 = 11, 24 = 11000 이러면 3번 연산 필요하다는 것을 0세번 떼면서 알 수 있다. 그래서 첫번재 배열은 0들을 다 뗀 값을 넣어주고 두번쨰 배열을 입력받을 때 하나하나 쉬프트 연산 해주면서 있는 지없는지 확인한다. 805 G. Passable Paths 귀찮아서 생략! 806 D. Double string &lt; algorithm &gt;에 있는 find함수가 그냥 무지성으로 왼쪽에서부터 검사하는지 몰랐다. 그냥 이럴줄 알았으면 멀티셋으로 끝내버리는건데…하..substr으로 문자열 잘 나눠서 푸는건 잘했지만….. 많이 배웠다.. 멀티셋으로 하면 문제점이 크기 순으로 정렬하니까 idx를 관리 할때 힘들다. 그래서 algorithm을 건드렸지만 잘모르고 건드리면 안된다는 걸 확실히 배웠다. F. Yet Another Probelm About Pairs Satisfying an Indquality 이건 문제 이름이 왜케 긴건지 ㅋㅋㅋ 해석이 잘 안된다. 이분탐색의 직관은 잡을 수 있었는데 못풀었다. ㅎㅎ 이분탐색 문제들은 다 넘 어려웡 ㅠㅠ arr[i]&gt;i를 이용해서 arr[i] &lt; i ,arr[j] &lt; j 를 다 해결하는 것이 인상깊었다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 vector&lt;int&gt; arr; int main(){ fast_io; int test; cin &gt;&gt; test; while (test--) { int n; cin &gt;&gt; n; arr = vector&lt;int&gt; (n+1); for(int i=1;i&lt;=n;i++) cin &gt;&gt; arr[i]; vector&lt;int&gt; v; ll res =0; for(int i =1;i&lt;=n;i++){ if(arr[i]&gt;=i) continue; //i, j 둘다 거름 res += (ll)(lower_bound(v.begin(), v.end(), arr[i])-v.begin()); //arr[j]보다 작은 i의 개수 세기 v.push_back(i); } cout &lt;&lt; res &lt;&lt; &#39;\n&#39;; } } G. Good Key, Bad key F같은 유형에서 도망가서 사실 G를 더 많이 봤다. 솔직히 그리디라는 걸 눈치채지 못했다. Bad key가 이름만 들어도 좀 쓰면 안좋을 것 같은 기분이긴 했는데 ㅋㅋㅋ 나의 감각에 어느정도 기대도 될 것 같기도 했다. 결론은 Good Key를 앞에서 몰아서 쓰는게 이득이라는 것이다. Bad key를 사용해야 하는 개수는 정해져 있고 good key를 앞에서 몰아서 쓰자는 것이다. 1 2 3 4 5 6 7 8 9 10 11 12 13 ll res=0, sum=0; //sum은 goodkey를 앞에서 쓰는 것이다. for(int i=0;i&lt;=n;i++){ ll now = sum; for(int j=i+1;j&lt;=min(n, 32+i);j++){ //bad키를 쓰는 모든 경우를 check ll copy = arr[j]; //bad key를 32번 넘게 쓰면 10^9을 0으로 만들고 더 줄이는 꼴이라 의미가 없음 copy &gt;&gt;= j-i; // i=0 -&gt; bad키를 n번씀, i=n -&gt; bad키를 안씀 now += copy; } res = max(res, now); if(i==n) continue; sum += arr[i+1]-k; } cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;" />
+<meta property="og:description" content="codeforce round #805(div 3), #806(div 4) 업솔빙 Codeforces Round #805, #806 개요 +97점, -10점 했다. 그래도 긍정적인 부분은 이제 코포 유형이 뭔지 감이 잡히고 있다. 코포는 코포로 공부하는게 맞는것같다. 그래도 버추얼은 귀찮아서 안하지만 ㅋㅋㅋ div 4는 다 풀어야하는데 정말 슬프다.. 빨리 더 수련을 해야겠다. div 3, div 4 둘다 4솔했고 틀린 문제만 업솔빙 해보려고 한다. 805 E. Split into Two Sets 이때 당시 멀티셋에 빠져있던터라 멀티셋 썼는데 왜틀렸는지 당시에는 진짜 몰랐다. 끝나고 푼 사람들을 보니 싸이클이 있는지 확인해서 푼 사람들이 많았다. 에디토리얼은 맵을 이용했다. 맵을 이용한 풀이는 나랑 같았지만 여기서 추가적으로 결과적으론 사이클을 판별해야했다. 두 그룹으로 나눈다는게(Split into Two Sets) 그림으로 그려보면 고등학교 때 함수 개념 배울 때 사용하는 모양이 나오니까 Bipartite Graph(이분그래프)를 떠올리는 건 자연스럽다. 같은 숫자가 주어지면 NO map에 넣을 때 크기가 2가 넘어가면 NO 홀수 사이클이 판별되면 NO 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 cin &gt;&gt; n; for(int i=0;i&lt;n;i++){ int num; cin &gt;&gt; num; while (!(num&amp;1)) num &gt;&gt;= 1; m1.insert(num); //m1은 multiset이다. } multiset&lt;int&gt; :: iterator iter; for(int i=0;i&lt;n;i++){ int num; cin &gt;&gt; num; iter = m1.find(num); while (iter==m1.end()&amp;&amp;num!=1){ num &gt;&gt;=1; iter = m1.find(num); } if(iter!=m1.end()) m1.erase(iter); } if(m1.empty()) cout&lt;&lt;&quot;YES\n&quot;; else cout &lt;&lt; &quot;NO\n&quot;; m1.clear(); } 805 F. Equate Multisets 코포에 많이 나오는듯한 느낌의 문제였다. 관찰은 해봤지만 내가 생각한 방법에대한 시간복잡도 땜에 쫄아서 그런지 아무 생각이 안났다. 핵심은 »1 과 «1 밖에 안쓰니까 비트연산으로 접근해도 된다는 것이다. 그러면 같은 숫자가 될 수 있는 것은 비트연산에서 마지막 0들을 뗀 값일 것이다. 예를 들면, 3 = 11, 24 = 11000 이러면 3번 연산 필요하다는 것을 0세번 떼면서 알 수 있다. 그래서 첫번재 배열은 0들을 다 뗀 값을 넣어주고 두번쨰 배열을 입력받을 때 하나하나 쉬프트 연산 해주면서 있는 지없는지 확인한다. 805 G. Passable Paths 귀찮아서 생략! 806 D. Double string &lt; algorithm &gt;에 있는 find함수가 그냥 무지성으로 왼쪽에서부터 검사하는지 몰랐다. 그냥 이럴줄 알았으면 멀티셋으로 끝내버리는건데…하..substr으로 문자열 잘 나눠서 푸는건 잘했지만….. 많이 배웠다.. 멀티셋으로 하면 문제점이 크기 순으로 정렬하니까 idx를 관리 할때 힘들다. 그래서 algorithm을 건드렸지만 잘모르고 건드리면 안된다는 걸 확실히 배웠다. F. Yet Another Probelm About Pairs Satisfying an Indquality 이건 문제 이름이 왜케 긴건지 ㅋㅋㅋ 해석이 잘 안된다. 이분탐색의 직관은 잡을 수 있었는데 못풀었다. ㅎㅎ 이분탐색 문제들은 다 넘 어려웡 ㅠㅠ arr[i]&gt;i를 이용해서 arr[i] &lt; i ,arr[j] &lt; j 를 다 해결하는 것이 인상깊었다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 vector&lt;int&gt; arr; int main(){ fast_io; int test; cin &gt;&gt; test; while (test--) { int n; cin &gt;&gt; n; arr = vector&lt;int&gt; (n+1); for(int i=1;i&lt;=n;i++) cin &gt;&gt; arr[i]; vector&lt;int&gt; v; ll res =0; for(int i =1;i&lt;=n;i++){ if(arr[i]&gt;=i) continue; //i, j 둘다 거름 res += (ll)(lower_bound(v.begin(), v.end(), arr[i])-v.begin()); //arr[j]보다 작은 i의 개수 세기 v.push_back(i); } cout &lt;&lt; res &lt;&lt; &#39;\n&#39;; } } G. Good Key, Bad key F같은 유형에서 도망가서 사실 G를 더 많이 봤다. 솔직히 그리디라는 걸 눈치채지 못했다. Bad key가 이름만 들어도 좀 쓰면 안좋을 것 같은 기분이긴 했는데 ㅋㅋㅋ 나의 감각에 어느정도 기대도 될 것 같기도 했다. 결론은 Good Key를 앞에서 몰아서 쓰는게 이득이라는 것이다. Bad key를 사용해야 하는 개수는 정해져 있고 good key를 앞에서 몰아서 쓰자는 것이다. 1 2 3 4 5 6 7 8 9 10 11 12 13 ll res=0, sum=0; //sum은 goodkey를 앞에서 쓰는 것이다. for(int i=0;i&lt;=n;i++){ ll now = sum; for(int j=i+1;j&lt;=min(n, 32+i);j++){ //bad키를 쓰는 모든 경우를 check ll copy = arr[j]; //bad key를 32번 넘게 쓰면 10^9을 0으로 만들고 더 줄이는 꼴이라 의미가 없음 copy &gt;&gt;= j-i; // i=0 -&gt; bad키를 n번씀, i=n -&gt; bad키를 안씀 now += copy; } res = max(res, now); if(i==n) continue; sum += arr[i+1]-k; } cout &lt;&lt; res &lt;&lt; &#39;\n&#39;;" />
 <link rel="canonical" href="http://localhost:4000/posts/Codeforces-805-806/" />
 <meta property="og:url" content="http://localhost:4000/posts/Codeforces-805-806/" />
 <meta property="og:site_name" content="도사였다 블로그" />
@@ -46,7 +46,7 @@
 <meta property="twitter:title" content="코드포스 - 익숙해지는 중" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-07-15T00:00:00+09:00","datePublished":"2022-07-15T00:00:00+09:00","description":"codeforce round #805(div 3), #806(div 4) 업솔빙","headline":"코드포스 - 익숙해지는 중","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/Codeforces-805-806/"},"url":"http://localhost:4000/posts/Codeforces-805-806/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-07-15T00:00:00+09:00","datePublished":"2022-07-15T00:00:00+09:00","description":"codeforce round #805(div 3), #806(div 4) 업솔빙 Codeforces Round #805, #806 개요 +97점, -10점 했다. 그래도 긍정적인 부분은 이제 코포 유형이 뭔지 감이 잡히고 있다. 코포는 코포로 공부하는게 맞는것같다. 그래도 버추얼은 귀찮아서 안하지만 ㅋㅋㅋ div 4는 다 풀어야하는데 정말 슬프다.. 빨리 더 수련을 해야겠다. div 3, div 4 둘다 4솔했고 틀린 문제만 업솔빙 해보려고 한다. 805 E. Split into Two Sets 이때 당시 멀티셋에 빠져있던터라 멀티셋 썼는데 왜틀렸는지 당시에는 진짜 몰랐다. 끝나고 푼 사람들을 보니 싸이클이 있는지 확인해서 푼 사람들이 많았다. 에디토리얼은 맵을 이용했다. 맵을 이용한 풀이는 나랑 같았지만 여기서 추가적으로 결과적으론 사이클을 판별해야했다. 두 그룹으로 나눈다는게(Split into Two Sets) 그림으로 그려보면 고등학교 때 함수 개념 배울 때 사용하는 모양이 나오니까 Bipartite Graph(이분그래프)를 떠올리는 건 자연스럽다. 같은 숫자가 주어지면 NO map에 넣을 때 크기가 2가 넘어가면 NO 홀수 사이클이 판별되면 NO 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 cin &gt;&gt; n; for(int i=0;i&lt;n;i++){ int num; cin &gt;&gt; num; while (!(num&amp;1)) num &gt;&gt;= 1; m1.insert(num); //m1은 multiset이다. } multiset&lt;int&gt; :: iterator iter; for(int i=0;i&lt;n;i++){ int num; cin &gt;&gt; num; iter = m1.find(num); while (iter==m1.end()&amp;&amp;num!=1){ num &gt;&gt;=1; iter = m1.find(num); } if(iter!=m1.end()) m1.erase(iter); } if(m1.empty()) cout&lt;&lt;&quot;YES\\n&quot;; else cout &lt;&lt; &quot;NO\\n&quot;; m1.clear(); } 805 F. Equate Multisets 코포에 많이 나오는듯한 느낌의 문제였다. 관찰은 해봤지만 내가 생각한 방법에대한 시간복잡도 땜에 쫄아서 그런지 아무 생각이 안났다. 핵심은 »1 과 «1 밖에 안쓰니까 비트연산으로 접근해도 된다는 것이다. 그러면 같은 숫자가 될 수 있는 것은 비트연산에서 마지막 0들을 뗀 값일 것이다. 예를 들면, 3 = 11, 24 = 11000 이러면 3번 연산 필요하다는 것을 0세번 떼면서 알 수 있다. 그래서 첫번재 배열은 0들을 다 뗀 값을 넣어주고 두번쨰 배열을 입력받을 때 하나하나 쉬프트 연산 해주면서 있는 지없는지 확인한다. 805 G. Passable Paths 귀찮아서 생략! 806 D. Double string &lt; algorithm &gt;에 있는 find함수가 그냥 무지성으로 왼쪽에서부터 검사하는지 몰랐다. 그냥 이럴줄 알았으면 멀티셋으로 끝내버리는건데…하..substr으로 문자열 잘 나눠서 푸는건 잘했지만….. 많이 배웠다.. 멀티셋으로 하면 문제점이 크기 순으로 정렬하니까 idx를 관리 할때 힘들다. 그래서 algorithm을 건드렸지만 잘모르고 건드리면 안된다는 걸 확실히 배웠다. F. Yet Another Probelm About Pairs Satisfying an Indquality 이건 문제 이름이 왜케 긴건지 ㅋㅋㅋ 해석이 잘 안된다. 이분탐색의 직관은 잡을 수 있었는데 못풀었다. ㅎㅎ 이분탐색 문제들은 다 넘 어려웡 ㅠㅠ arr[i]&gt;i를 이용해서 arr[i] &lt; i ,arr[j] &lt; j 를 다 해결하는 것이 인상깊었다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 vector&lt;int&gt; arr; int main(){ fast_io; int test; cin &gt;&gt; test; while (test--) { int n; cin &gt;&gt; n; arr = vector&lt;int&gt; (n+1); for(int i=1;i&lt;=n;i++) cin &gt;&gt; arr[i]; vector&lt;int&gt; v; ll res =0; for(int i =1;i&lt;=n;i++){ if(arr[i]&gt;=i) continue; //i, j 둘다 거름 res += (ll)(lower_bound(v.begin(), v.end(), arr[i])-v.begin()); //arr[j]보다 작은 i의 개수 세기 v.push_back(i); } cout &lt;&lt; res &lt;&lt; &#39;\\n&#39;; } } G. Good Key, Bad key F같은 유형에서 도망가서 사실 G를 더 많이 봤다. 솔직히 그리디라는 걸 눈치채지 못했다. Bad key가 이름만 들어도 좀 쓰면 안좋을 것 같은 기분이긴 했는데 ㅋㅋㅋ 나의 감각에 어느정도 기대도 될 것 같기도 했다. 결론은 Good Key를 앞에서 몰아서 쓰는게 이득이라는 것이다. Bad key를 사용해야 하는 개수는 정해져 있고 good key를 앞에서 몰아서 쓰자는 것이다. 1 2 3 4 5 6 7 8 9 10 11 12 13 ll res=0, sum=0; //sum은 goodkey를 앞에서 쓰는 것이다. for(int i=0;i&lt;=n;i++){ ll now = sum; for(int j=i+1;j&lt;=min(n, 32+i);j++){ //bad키를 쓰는 모든 경우를 check ll copy = arr[j]; //bad key를 32번 넘게 쓰면 10^9을 0으로 만들고 더 줄이는 꼴이라 의미가 없음 copy &gt;&gt;= j-i; // i=0 -&gt; bad키를 n번씀, i=n -&gt; bad키를 안씀 now += copy; } res = max(res, now); if(i==n) continue; sum += arr[i+1]-k; } cout &lt;&lt; res &lt;&lt; &#39;\\n&#39;;","headline":"코드포스 - 익숙해지는 중","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/Codeforces-805-806/"},"url":"http://localhost:4000/posts/Codeforces-805-806/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -329,10 +329,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Problem Solving</span>
-              <span class="badge bg-secondary rounded-pill">32</span>
+              <span class="badge bg-secondary rounded-pill">33</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-02-22 문제풀이
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/aho-corasick/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -947,10 +953,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Other Things</span>
-              <span class="badge bg-secondary rounded-pill">4</span>
+              <span class="badge bg-secondary rounded-pill">5</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    근황 토크 및 앞으로의 블로그 운영계획
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/It-takes-two-%EA%B2%8C%EC%9E%84%EB%A6%AC%EB%B7%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -1093,6 +1105,42 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/1.-rust-%EA%B8%B0%EB%B3%B8-%EB%AC%B8%EB%B2%95/" style="font-size: 0.85rem; padding-left: 2rem;">
                     rust 문법 공부
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <!-- 카테고리 이름 (폴더처럼) -->
+            <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>Just Chatting</span>
+              <span class="badge bg-secondary rounded-pill">1</span>
+            </a>
+            <!-- 해당 카테고리의 글 목록 -->
+            <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    근황 토크 및 앞으로의 블로그 운영계획
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <!-- 카테고리 이름 (폴더처럼) -->
+            <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>BOJ</span>
+              <span class="badge bg-secondary rounded-pill">1</span>
+            </a>
+            <!-- 해당 카테고리의 글 목록 -->
+            <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-02-22 문제풀이
                   </a>
                 </li>
               
@@ -1856,6 +1904,20 @@ Bad key를 사용해야 하는 개수는 정해져 있고 good key를 앞에서 
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/">2026-02-22 문제풀이</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/">근황 토크 및 앞으로의 블로그 운영계획</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/aho-corasick/">문자열 - 아호 코라식(Aho-Corasick)</a>
         </li>
       
@@ -1871,20 +1933,6 @@ Bad key를 사용해야 하는 개수는 정해져 있고 good key를 앞에서 
         
         <li class="text-truncate lh-lg">
           <a href="/posts/2060-%EC%97%BC%EC%86%8C%EC%A4%84%EC%84%9C%EA%B8%B0-%ED%92%80%EC%9D%B4/">염소줄서기 문제 풀이</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%EB%B6%84%ED%95%A0%EC%A0%95%EB%B3%B5%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%B5%9C%EC%A0%81%ED%99%94(Divide-&-Conquer-Optimization)/">D&C Optimization</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/Codeforces-Round-936(Div.2)/">코드포스 - 다시 맘 잡기</a>
         </li>
       
     </ul>
@@ -2334,220 +2382,6 @@ Bad key를 사용해야 하는 개수는 정해져 있고 good key를 앞에서 
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2717,6 +2551,61 @@ Bad key를 사용해야 하는 개수는 정해져 있고 good key를 앞에서 
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2880,6 +2769,172 @@ Bad key를 사용해야 하는 개수는 정해져 있고 good key를 앞에서 
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -4412,220 +4467,6 @@ Bad key를 사용해야 하는 개수는 정해져 있고 good key를 앞에서 
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -4795,6 +4636,61 @@ Bad key를 사용해야 하는 개수는 정해져 있고 good key를 앞에서 
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -4958,6 +4854,172 @@ Bad key를 사용해야 하는 개수는 정해져 있고 good key를 앞에서 
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     

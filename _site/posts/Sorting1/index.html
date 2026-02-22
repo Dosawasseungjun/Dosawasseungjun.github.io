@@ -35,8 +35,8 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="정렬1" />
 <meta property="og:locale" content="ko" />
-<meta name="description" content="매우매우 많은 정렬이 있지만 그중 가장 안 어려운 3가지를 공부해보았다." />
-<meta property="og:description" content="매우매우 많은 정렬이 있지만 그중 가장 안 어려운 3가지를 공부해보았다." />
+<meta name="description" content="매우매우 많은 정렬이 있지만 그중 가장 안 어려운 3가지를 공부해보았다. 버블정렬 / 선택정렬 / 삽입정렬 모두 시간복잡도는 O(n^2)이다. 단순히 생각하면 for문을 두번 쓰기 때문이다. # Swap 구현하기 1 2 3 4 5 6 7 void swap(int *ptr1, int *ptr2) { int temp; temp = *ptr1; *ptr1 = *ptr2; *ptr2 = temp; } 버블정렬 / 선택정렬 / 삽입정렬 모두 배열에서 자리를 바꾸는 행위를 해야한다. Swap함수는 int형 변수의 주소를 2개 받아 그 주소에 변수를 바꿔서 넣는 것으로 구현했다. 문제 상황은 n개의 수를 입력받아서 arr[]배열에 넣어둔 후 부터 시작이다. n개의 수는 중복되지 않는다 자세한 내용은 백준 2750번 문제를 참고하자 # 버블정렬 구현하기 1 2 3 4 5 6 7 8 9 10 for(int i=0;i&lt;n;i++) { for(int j=0;j&lt;n-1-i;j++) { if(arr[j]&gt;arr[j+1]) { swap(arr+j, arr+(j+1)); } } } 버블정렬은 {1번,2번} {2번,3번} … 이런식으로 비교해 나가며 큰수를 밀어내는 방식이다 그러면 마지막 수는 제일 큰수가 가게 되고 다음 반복할때는 마지막 배열-1 까지 for문을 실행하게 된다. # 선택정렬 구현하기 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 int min; int *ptr1; for(int i=0;i&lt;n;i++) { min = arr[i]; ptr1 = &amp;arr[i]; for(int j=i;j&lt;n;j++) { if(arr[j]&lt;min) { min = arr[j]; ptr1 = &amp;arr[j]; } } swap(arr+i, ptr1); } 선택정렬은 처음부터 끝까지 최소값 찾고 그 최소값을 제일 앞에 두는 방식이다 그러면 다음에 반복할 때는 두번째 부터 최소값을 찾기 시작한다. # 삽입정렬 구현하기 1 2 3 4 5 6 7 8 9 10 11 for(int i=1; i&lt;n;i++) { for(int j=i;j&gt;0;j--) { if(arr[j]&lt;arr[j-1]) { swap(arr +j, arr+(j-1)); } else break; } } 삽입정렬은 자기 왼쪽에 자기보다 큰수가 있다면 자리를 바꾸는 방식이다. 2번 자리 부터 시작해서 왼쪽의 수들을 정렬하는 식으로 구현했다." />
+<meta property="og:description" content="매우매우 많은 정렬이 있지만 그중 가장 안 어려운 3가지를 공부해보았다. 버블정렬 / 선택정렬 / 삽입정렬 모두 시간복잡도는 O(n^2)이다. 단순히 생각하면 for문을 두번 쓰기 때문이다. # Swap 구현하기 1 2 3 4 5 6 7 void swap(int *ptr1, int *ptr2) { int temp; temp = *ptr1; *ptr1 = *ptr2; *ptr2 = temp; } 버블정렬 / 선택정렬 / 삽입정렬 모두 배열에서 자리를 바꾸는 행위를 해야한다. Swap함수는 int형 변수의 주소를 2개 받아 그 주소에 변수를 바꿔서 넣는 것으로 구현했다. 문제 상황은 n개의 수를 입력받아서 arr[]배열에 넣어둔 후 부터 시작이다. n개의 수는 중복되지 않는다 자세한 내용은 백준 2750번 문제를 참고하자 # 버블정렬 구현하기 1 2 3 4 5 6 7 8 9 10 for(int i=0;i&lt;n;i++) { for(int j=0;j&lt;n-1-i;j++) { if(arr[j]&gt;arr[j+1]) { swap(arr+j, arr+(j+1)); } } } 버블정렬은 {1번,2번} {2번,3번} … 이런식으로 비교해 나가며 큰수를 밀어내는 방식이다 그러면 마지막 수는 제일 큰수가 가게 되고 다음 반복할때는 마지막 배열-1 까지 for문을 실행하게 된다. # 선택정렬 구현하기 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 int min; int *ptr1; for(int i=0;i&lt;n;i++) { min = arr[i]; ptr1 = &amp;arr[i]; for(int j=i;j&lt;n;j++) { if(arr[j]&lt;min) { min = arr[j]; ptr1 = &amp;arr[j]; } } swap(arr+i, ptr1); } 선택정렬은 처음부터 끝까지 최소값 찾고 그 최소값을 제일 앞에 두는 방식이다 그러면 다음에 반복할 때는 두번째 부터 최소값을 찾기 시작한다. # 삽입정렬 구현하기 1 2 3 4 5 6 7 8 9 10 11 for(int i=1; i&lt;n;i++) { for(int j=i;j&gt;0;j--) { if(arr[j]&lt;arr[j-1]) { swap(arr +j, arr+(j-1)); } else break; } } 삽입정렬은 자기 왼쪽에 자기보다 큰수가 있다면 자리를 바꾸는 방식이다. 2번 자리 부터 시작해서 왼쪽의 수들을 정렬하는 식으로 구현했다." />
 <link rel="canonical" href="http://localhost:4000/posts/Sorting1/" />
 <meta property="og:url" content="http://localhost:4000/posts/Sorting1/" />
 <meta property="og:site_name" content="도사였다 블로그" />
@@ -46,7 +46,7 @@
 <meta property="twitter:title" content="정렬1" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-22T00:00:00+09:00","datePublished":"2022-02-22T00:00:00+09:00","description":"매우매우 많은 정렬이 있지만 그중 가장 안 어려운 3가지를 공부해보았다.","headline":"정렬1","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/Sorting1/"},"url":"http://localhost:4000/posts/Sorting1/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-02-22T00:00:00+09:00","datePublished":"2022-02-22T00:00:00+09:00","description":"매우매우 많은 정렬이 있지만 그중 가장 안 어려운 3가지를 공부해보았다. 버블정렬 / 선택정렬 / 삽입정렬 모두 시간복잡도는 O(n^2)이다. 단순히 생각하면 for문을 두번 쓰기 때문이다. # Swap 구현하기 1 2 3 4 5 6 7 void swap(int *ptr1, int *ptr2) { int temp; temp = *ptr1; *ptr1 = *ptr2; *ptr2 = temp; } 버블정렬 / 선택정렬 / 삽입정렬 모두 배열에서 자리를 바꾸는 행위를 해야한다. Swap함수는 int형 변수의 주소를 2개 받아 그 주소에 변수를 바꿔서 넣는 것으로 구현했다. 문제 상황은 n개의 수를 입력받아서 arr[]배열에 넣어둔 후 부터 시작이다. n개의 수는 중복되지 않는다 자세한 내용은 백준 2750번 문제를 참고하자 # 버블정렬 구현하기 1 2 3 4 5 6 7 8 9 10 for(int i=0;i&lt;n;i++) { for(int j=0;j&lt;n-1-i;j++) { if(arr[j]&gt;arr[j+1]) { swap(arr+j, arr+(j+1)); } } } 버블정렬은 {1번,2번} {2번,3번} … 이런식으로 비교해 나가며 큰수를 밀어내는 방식이다 그러면 마지막 수는 제일 큰수가 가게 되고 다음 반복할때는 마지막 배열-1 까지 for문을 실행하게 된다. # 선택정렬 구현하기 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 int min; int *ptr1; for(int i=0;i&lt;n;i++) { min = arr[i]; ptr1 = &amp;arr[i]; for(int j=i;j&lt;n;j++) { if(arr[j]&lt;min) { min = arr[j]; ptr1 = &amp;arr[j]; } } swap(arr+i, ptr1); } 선택정렬은 처음부터 끝까지 최소값 찾고 그 최소값을 제일 앞에 두는 방식이다 그러면 다음에 반복할 때는 두번째 부터 최소값을 찾기 시작한다. # 삽입정렬 구현하기 1 2 3 4 5 6 7 8 9 10 11 for(int i=1; i&lt;n;i++) { for(int j=i;j&gt;0;j--) { if(arr[j]&lt;arr[j-1]) { swap(arr +j, arr+(j-1)); } else break; } } 삽입정렬은 자기 왼쪽에 자기보다 큰수가 있다면 자리를 바꾸는 방식이다. 2번 자리 부터 시작해서 왼쪽의 수들을 정렬하는 식으로 구현했다.","headline":"정렬1","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/Sorting1/"},"url":"http://localhost:4000/posts/Sorting1/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -322,10 +322,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Problem Solving</span>
-              <span class="badge bg-secondary rounded-pill">32</span>
+              <span class="badge bg-secondary rounded-pill">33</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-02-22 문제풀이
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/aho-corasick/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -940,10 +946,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Other Things</span>
-              <span class="badge bg-secondary rounded-pill">4</span>
+              <span class="badge bg-secondary rounded-pill">5</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    근황 토크 및 앞으로의 블로그 운영계획
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/It-takes-two-%EA%B2%8C%EC%9E%84%EB%A6%AC%EB%B7%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -1086,6 +1098,42 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/1.-rust-%EA%B8%B0%EB%B3%B8-%EB%AC%B8%EB%B2%95/" style="font-size: 0.85rem; padding-left: 2rem;">
                     rust 문법 공부
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <!-- 카테고리 이름 (폴더처럼) -->
+            <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>Just Chatting</span>
+              <span class="badge bg-secondary rounded-pill">1</span>
+            </a>
+            <!-- 해당 카테고리의 글 목록 -->
+            <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    근황 토크 및 앞으로의 블로그 운영계획
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <!-- 카테고리 이름 (폴더처럼) -->
+            <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>BOJ</span>
+              <span class="badge bg-secondary rounded-pill">1</span>
+            </a>
+            <!-- 해당 카테고리의 글 목록 -->
+            <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-02-22 문제풀이
                   </a>
                 </li>
               
@@ -1690,6 +1738,20 @@
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/">2026-02-22 문제풀이</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/">근황 토크 및 앞으로의 블로그 운영계획</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/aho-corasick/">문자열 - 아호 코라식(Aho-Corasick)</a>
         </li>
       
@@ -1705,20 +1767,6 @@
         
         <li class="text-truncate lh-lg">
           <a href="/posts/2060-%EC%97%BC%EC%86%8C%EC%A4%84%EC%84%9C%EA%B8%B0-%ED%92%80%EC%9D%B4/">염소줄서기 문제 풀이</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%EB%B6%84%ED%95%A0%EC%A0%95%EB%B3%B5%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%B5%9C%EC%A0%81%ED%99%94(Divide-&-Conquer-Optimization)/">D&C Optimization</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/Codeforces-Round-936(Div.2)/">코드포스 - 다시 맘 잡기</a>
         </li>
       
     </ul>
@@ -2168,220 +2216,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2551,6 +2385,61 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2714,6 +2603,172 @@
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -3800,6 +3855,18 @@
 
   
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
 
@@ -4416,220 +4483,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -4799,6 +4652,61 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -4962,6 +4870,172 @@
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     

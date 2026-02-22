@@ -35,8 +35,8 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="SUAPC 연습" />
 <meta property="og:locale" content="ko" />
-<meta name="description" content="2월 11일 문제풀이" />
-<meta property="og:description" content="2월 11일 문제풀이" />
+<meta name="description" content="2월 11일 문제풀이 💡 목적 : **SUAPC 연습** 💡 문제집 : **SUAPC 2022 Winter** 2023 겨울 SUPAC 나가려고 연습했떤 문제 해설을 적어보았따. 이제는 노션을 이용하여 markdown을 만드려고 하기 때문에 형태가 조금은 변할 수 있다. 노션에서 markdown언어로 변환하는 프로그램을 만들면 좋겠다고 생각했는데 그냥 노션 그자체에 있을 줄은 몰랐다…. 어쨋든 그래서 2023 겨울 대회는 5솔인가? 4솔인가 하고 학교 2등상, 전체 16등인가? 15등인가 했다….ㅋㅋㅋ 사실 내가 잘했어야 했는데 m번에서 엄청 말려서 망했다. 그리고 게임dp 연습했던거라 충분히 풀수 있었는데 그것마저 실패한게 너무 아쉬웠따. A. 튜터-튜티 관계의 수 dfs로 연결되어 있는 정점들을 모두 곱하면 답이다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second const int MAX = 2e5+1; const int MOD = 1e9+7; int n, m; vector&lt;int&gt; adj[MAX]; ll dp[MAX][2]; bool visited[MAX]; int dfs(ll here){ visited[here] = true; int ret = 1; for(ll next : adj[here]){ if(!visited[next]){ ret += dfs(next); } } return ret; } int main(){ fast_io cin &gt;&gt; n &gt;&gt; m; for(int i=0;i&lt;m;i++){ int u, v; cin &gt;&gt; u &gt;&gt; v; adj[u].push_back(v); adj[v].push_back(u); } ll res = 1; for(int i=1;i&lt;=n;i++){ if(!visited[i]){ res *= dfs(i); res %= MOD; } } cout &lt;&lt; res; } C. 카카오뷰 큐레이팅 효용성 분석 단순 구현 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int n; cin &gt;&gt; n; vector&lt;int&gt; a(n), b(n); for(int i=0;i&lt;n;i++) cin &gt;&gt; a[i]; for(int i=0;i&lt;n;i++) cin &gt;&gt; b[i]; ll sum= 0, res = 0; for(int i=0;i&lt;n;i++){ sum += a[i]; if(!b[i]) res += a[i]; } cout &lt;&lt; sum &lt;&lt; &#39;\n&#39;; cout &lt;&lt; res &lt;&lt; &#39;\n&#39;; } D. Y Y를 만드려면 각 정점에서 뻗어나가서 끝까지 가는거의 길이들을 알아둬야한다. 1 E. 도로 정보 상태를 27(T가 나온횟수%3)+9(G가 나온횟수%3)+3*(F가 나온횟수%3)+(P가나온횟수%3)으로 나타내면 i에서의 상태와 j에서의 상태가 같다면 i+1~부터 j까지가 흥미로운 구간이다 라고 생각할 수 있다. 따라서 dp[81]에 (81이 모든 경우의 수임) 상태가 나오면 그 상태가 이전에 나온 만큼 정답에 더해주고 +1을 해준다. 1~n까지 보면 정답 처음꺼는 dp[0] = 1에서 시작한다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second const int MAX = 1e5+1; int dp[81], state[MAX], T, G, F, P; int main(){ fast_io int n; cin &gt;&gt; n; string s; cin &gt;&gt; s; dp[0] = 1; ll res = 0; for(int i=0;i&lt;s.size();i++){ T += (s[i]==&#39;T&#39;); G += (s[i]==&#39;G&#39;); F += (s[i]==&#39;F&#39;); P += (s[i]==&#39;P&#39;); int k = 27*(T%3)+9*(G%3)+3*(F%3)+(P%3); res += dp[k]; dp[k]++; } cout &lt;&lt; res; } J. 일이 너무 많아.. 11, 111 등을 약수로 하는 수를 포함배제 원리를 이용하여 구한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 import sys import math input = sys.stdin.readline n = int(input()) def solve(X) : p = [] k = 11 while k &lt;= X: p.append(k) k *= 10 k += 1 ret = 0 sz = len(p) for i in range(1, 1&lt;&lt;sz): L = 1 cnt = -1 for j in range (sz): if(i&amp;(1&lt;&lt;j)) : cnt *= -1 L = math.lcm(L, p[j]) if(L&gt;n) : L = X+1 break ret += cnt*(X//L) return ret print(solve(n)) K. 올바른 괄호 누적합을 이용하는데 ps[i] : (를 1, )를 -1이라고 했을 때 누적합 pn[i] : 처음부터 i까지 최솟값 sn[i] : 끝에서부터 i까지 최솟값 일단 ps[n]은 무조건 1또는 -1이다. 1이면 (를 빼야하고 , -1이면 )를 빼야한다. 근데 i자리에 있는 괄호를 빼고 싶으면 i의 앞은 0보다 커야하고, i의 뒤는 (를 빼면 1보다, )를 빼면 -1보다 커야한다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io string s; cin &gt;&gt; s; int n = s.size(); vector&lt;int&gt; a(n+1), ps(n+1); for(int i=1;i&lt;=n;i++){ a[i] = (s[i-1]==&#39;(&#39;) ? 1 : -1; ps[i] = ps[i-1]+a[i]; } int res = 0; vector&lt;int&gt; pn(n+1), sn(n+1); pn[1] = ps[1]; for(int i=2;i&lt;=n;i++){ pn[i] = min(pn[i-1], ps[i]); } sn[n] = ps[n]; for(int i=n-1;i&gt;0;i--){ sn[i] = min(sn[i+1], ps[i]); } for(int i=1;i&lt;=n;i++){ if(ps[n]==1&amp;&amp;a[i]==1&amp;&amp;pn[i-1]&gt;=0&amp;&amp;sn[i]==1) res++; if(ps[n]==-1&amp;&amp;a[i]==-1&amp;&amp;pn[i-1]&gt;=0&amp;&amp;sn[i]==-1) res++; } cout &lt;&lt; res; } L. 팰린드롬 게임 1의 자리는 무조건 팰린드롬 수 따라서 어떤 수가 있더라도 10의 배수를 만들 수 있다. A의 차례에 10의 배수가 아닌 수가 있으면 무조건 10의 배수로 만들 수 있다. 10의 배수라면 다음 턴에 무조건 10의 배수가 아닌 수로밖에 못만든다. (팰린드롬 수는 마지막이 0일 수 없어서) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ ll n; cin &gt;&gt; n; if(!n||!(n%10)) cout &lt;&lt; 1 &lt;&lt; &#39;\n&#39;; else cout &lt;&lt; 0 &lt;&lt; &#39;\n&#39;; } }" />
+<meta property="og:description" content="2월 11일 문제풀이 💡 목적 : **SUAPC 연습** 💡 문제집 : **SUAPC 2022 Winter** 2023 겨울 SUPAC 나가려고 연습했떤 문제 해설을 적어보았따. 이제는 노션을 이용하여 markdown을 만드려고 하기 때문에 형태가 조금은 변할 수 있다. 노션에서 markdown언어로 변환하는 프로그램을 만들면 좋겠다고 생각했는데 그냥 노션 그자체에 있을 줄은 몰랐다…. 어쨋든 그래서 2023 겨울 대회는 5솔인가? 4솔인가 하고 학교 2등상, 전체 16등인가? 15등인가 했다….ㅋㅋㅋ 사실 내가 잘했어야 했는데 m번에서 엄청 말려서 망했다. 그리고 게임dp 연습했던거라 충분히 풀수 있었는데 그것마저 실패한게 너무 아쉬웠따. A. 튜터-튜티 관계의 수 dfs로 연결되어 있는 정점들을 모두 곱하면 답이다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second const int MAX = 2e5+1; const int MOD = 1e9+7; int n, m; vector&lt;int&gt; adj[MAX]; ll dp[MAX][2]; bool visited[MAX]; int dfs(ll here){ visited[here] = true; int ret = 1; for(ll next : adj[here]){ if(!visited[next]){ ret += dfs(next); } } return ret; } int main(){ fast_io cin &gt;&gt; n &gt;&gt; m; for(int i=0;i&lt;m;i++){ int u, v; cin &gt;&gt; u &gt;&gt; v; adj[u].push_back(v); adj[v].push_back(u); } ll res = 1; for(int i=1;i&lt;=n;i++){ if(!visited[i]){ res *= dfs(i); res %= MOD; } } cout &lt;&lt; res; } C. 카카오뷰 큐레이팅 효용성 분석 단순 구현 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int n; cin &gt;&gt; n; vector&lt;int&gt; a(n), b(n); for(int i=0;i&lt;n;i++) cin &gt;&gt; a[i]; for(int i=0;i&lt;n;i++) cin &gt;&gt; b[i]; ll sum= 0, res = 0; for(int i=0;i&lt;n;i++){ sum += a[i]; if(!b[i]) res += a[i]; } cout &lt;&lt; sum &lt;&lt; &#39;\n&#39;; cout &lt;&lt; res &lt;&lt; &#39;\n&#39;; } D. Y Y를 만드려면 각 정점에서 뻗어나가서 끝까지 가는거의 길이들을 알아둬야한다. 1 E. 도로 정보 상태를 27(T가 나온횟수%3)+9(G가 나온횟수%3)+3*(F가 나온횟수%3)+(P가나온횟수%3)으로 나타내면 i에서의 상태와 j에서의 상태가 같다면 i+1~부터 j까지가 흥미로운 구간이다 라고 생각할 수 있다. 따라서 dp[81]에 (81이 모든 경우의 수임) 상태가 나오면 그 상태가 이전에 나온 만큼 정답에 더해주고 +1을 해준다. 1~n까지 보면 정답 처음꺼는 dp[0] = 1에서 시작한다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second const int MAX = 1e5+1; int dp[81], state[MAX], T, G, F, P; int main(){ fast_io int n; cin &gt;&gt; n; string s; cin &gt;&gt; s; dp[0] = 1; ll res = 0; for(int i=0;i&lt;s.size();i++){ T += (s[i]==&#39;T&#39;); G += (s[i]==&#39;G&#39;); F += (s[i]==&#39;F&#39;); P += (s[i]==&#39;P&#39;); int k = 27*(T%3)+9*(G%3)+3*(F%3)+(P%3); res += dp[k]; dp[k]++; } cout &lt;&lt; res; } J. 일이 너무 많아.. 11, 111 등을 약수로 하는 수를 포함배제 원리를 이용하여 구한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 import sys import math input = sys.stdin.readline n = int(input()) def solve(X) : p = [] k = 11 while k &lt;= X: p.append(k) k *= 10 k += 1 ret = 0 sz = len(p) for i in range(1, 1&lt;&lt;sz): L = 1 cnt = -1 for j in range (sz): if(i&amp;(1&lt;&lt;j)) : cnt *= -1 L = math.lcm(L, p[j]) if(L&gt;n) : L = X+1 break ret += cnt*(X//L) return ret print(solve(n)) K. 올바른 괄호 누적합을 이용하는데 ps[i] : (를 1, )를 -1이라고 했을 때 누적합 pn[i] : 처음부터 i까지 최솟값 sn[i] : 끝에서부터 i까지 최솟값 일단 ps[n]은 무조건 1또는 -1이다. 1이면 (를 빼야하고 , -1이면 )를 빼야한다. 근데 i자리에 있는 괄호를 빼고 싶으면 i의 앞은 0보다 커야하고, i의 뒤는 (를 빼면 1보다, )를 빼면 -1보다 커야한다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io string s; cin &gt;&gt; s; int n = s.size(); vector&lt;int&gt; a(n+1), ps(n+1); for(int i=1;i&lt;=n;i++){ a[i] = (s[i-1]==&#39;(&#39;) ? 1 : -1; ps[i] = ps[i-1]+a[i]; } int res = 0; vector&lt;int&gt; pn(n+1), sn(n+1); pn[1] = ps[1]; for(int i=2;i&lt;=n;i++){ pn[i] = min(pn[i-1], ps[i]); } sn[n] = ps[n]; for(int i=n-1;i&gt;0;i--){ sn[i] = min(sn[i+1], ps[i]); } for(int i=1;i&lt;=n;i++){ if(ps[n]==1&amp;&amp;a[i]==1&amp;&amp;pn[i-1]&gt;=0&amp;&amp;sn[i]==1) res++; if(ps[n]==-1&amp;&amp;a[i]==-1&amp;&amp;pn[i-1]&gt;=0&amp;&amp;sn[i]==-1) res++; } cout &lt;&lt; res; } L. 팰린드롬 게임 1의 자리는 무조건 팰린드롬 수 따라서 어떤 수가 있더라도 10의 배수를 만들 수 있다. A의 차례에 10의 배수가 아닌 수가 있으면 무조건 10의 배수로 만들 수 있다. 10의 배수라면 다음 턴에 무조건 10의 배수가 아닌 수로밖에 못만든다. (팰린드롬 수는 마지막이 0일 수 없어서) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ ll n; cin &gt;&gt; n; if(!n||!(n%10)) cout &lt;&lt; 1 &lt;&lt; &#39;\n&#39;; else cout &lt;&lt; 0 &lt;&lt; &#39;\n&#39;; } }" />
 <link rel="canonical" href="http://localhost:4000/posts/%EC%98%88%EC%A0%84%EC%97%90-%ED%96%88%EB%8D%98-%EC%97%B0%EC%8A%B5/" />
 <meta property="og:url" content="http://localhost:4000/posts/%EC%98%88%EC%A0%84%EC%97%90-%ED%96%88%EB%8D%98-%EC%97%B0%EC%8A%B5/" />
 <meta property="og:site_name" content="도사였다 블로그" />
@@ -46,7 +46,7 @@
 <meta property="twitter:title" content="SUAPC 연습" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-04-15T00:00:00+09:00","datePublished":"2023-04-15T00:00:00+09:00","description":"2월 11일 문제풀이","headline":"SUAPC 연습","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/%EC%98%88%EC%A0%84%EC%97%90-%ED%96%88%EB%8D%98-%EC%97%B0%EC%8A%B5/"},"url":"http://localhost:4000/posts/%EC%98%88%EC%A0%84%EC%97%90-%ED%96%88%EB%8D%98-%EC%97%B0%EC%8A%B5/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-04-15T00:00:00+09:00","datePublished":"2023-04-15T00:00:00+09:00","description":"2월 11일 문제풀이 💡 목적 : **SUAPC 연습** 💡 문제집 : **SUAPC 2022 Winter** 2023 겨울 SUPAC 나가려고 연습했떤 문제 해설을 적어보았따. 이제는 노션을 이용하여 markdown을 만드려고 하기 때문에 형태가 조금은 변할 수 있다. 노션에서 markdown언어로 변환하는 프로그램을 만들면 좋겠다고 생각했는데 그냥 노션 그자체에 있을 줄은 몰랐다…. 어쨋든 그래서 2023 겨울 대회는 5솔인가? 4솔인가 하고 학교 2등상, 전체 16등인가? 15등인가 했다….ㅋㅋㅋ 사실 내가 잘했어야 했는데 m번에서 엄청 말려서 망했다. 그리고 게임dp 연습했던거라 충분히 풀수 있었는데 그것마저 실패한게 너무 아쉬웠따. A. 튜터-튜티 관계의 수 dfs로 연결되어 있는 정점들을 모두 곱하면 답이다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second const int MAX = 2e5+1; const int MOD = 1e9+7; int n, m; vector&lt;int&gt; adj[MAX]; ll dp[MAX][2]; bool visited[MAX]; int dfs(ll here){ visited[here] = true; int ret = 1; for(ll next : adj[here]){ if(!visited[next]){ ret += dfs(next); } } return ret; } int main(){ fast_io cin &gt;&gt; n &gt;&gt; m; for(int i=0;i&lt;m;i++){ int u, v; cin &gt;&gt; u &gt;&gt; v; adj[u].push_back(v); adj[v].push_back(u); } ll res = 1; for(int i=1;i&lt;=n;i++){ if(!visited[i]){ res *= dfs(i); res %= MOD; } } cout &lt;&lt; res; } C. 카카오뷰 큐레이팅 효용성 분석 단순 구현 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int n; cin &gt;&gt; n; vector&lt;int&gt; a(n), b(n); for(int i=0;i&lt;n;i++) cin &gt;&gt; a[i]; for(int i=0;i&lt;n;i++) cin &gt;&gt; b[i]; ll sum= 0, res = 0; for(int i=0;i&lt;n;i++){ sum += a[i]; if(!b[i]) res += a[i]; } cout &lt;&lt; sum &lt;&lt; &#39;\\n&#39;; cout &lt;&lt; res &lt;&lt; &#39;\\n&#39;; } D. Y Y를 만드려면 각 정점에서 뻗어나가서 끝까지 가는거의 길이들을 알아둬야한다. 1 E. 도로 정보 상태를 27(T가 나온횟수%3)+9(G가 나온횟수%3)+3*(F가 나온횟수%3)+(P가나온횟수%3)으로 나타내면 i에서의 상태와 j에서의 상태가 같다면 i+1~부터 j까지가 흥미로운 구간이다 라고 생각할 수 있다. 따라서 dp[81]에 (81이 모든 경우의 수임) 상태가 나오면 그 상태가 이전에 나온 만큼 정답에 더해주고 +1을 해준다. 1~n까지 보면 정답 처음꺼는 dp[0] = 1에서 시작한다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second const int MAX = 1e5+1; int dp[81], state[MAX], T, G, F, P; int main(){ fast_io int n; cin &gt;&gt; n; string s; cin &gt;&gt; s; dp[0] = 1; ll res = 0; for(int i=0;i&lt;s.size();i++){ T += (s[i]==&#39;T&#39;); G += (s[i]==&#39;G&#39;); F += (s[i]==&#39;F&#39;); P += (s[i]==&#39;P&#39;); int k = 27*(T%3)+9*(G%3)+3*(F%3)+(P%3); res += dp[k]; dp[k]++; } cout &lt;&lt; res; } J. 일이 너무 많아.. 11, 111 등을 약수로 하는 수를 포함배제 원리를 이용하여 구한다 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 import sys import math input = sys.stdin.readline n = int(input()) def solve(X) : p = [] k = 11 while k &lt;= X: p.append(k) k *= 10 k += 1 ret = 0 sz = len(p) for i in range(1, 1&lt;&lt;sz): L = 1 cnt = -1 for j in range (sz): if(i&amp;(1&lt;&lt;j)) : cnt *= -1 L = math.lcm(L, p[j]) if(L&gt;n) : L = X+1 break ret += cnt*(X//L) return ret print(solve(n)) K. 올바른 괄호 누적합을 이용하는데 ps[i] : (를 1, )를 -1이라고 했을 때 누적합 pn[i] : 처음부터 i까지 최솟값 sn[i] : 끝에서부터 i까지 최솟값 일단 ps[n]은 무조건 1또는 -1이다. 1이면 (를 빼야하고 , -1이면 )를 빼야한다. 근데 i자리에 있는 괄호를 빼고 싶으면 i의 앞은 0보다 커야하고, i의 뒤는 (를 빼면 1보다, )를 빼면 -1보다 커야한다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io string s; cin &gt;&gt; s; int n = s.size(); vector&lt;int&gt; a(n+1), ps(n+1); for(int i=1;i&lt;=n;i++){ a[i] = (s[i-1]==&#39;(&#39;) ? 1 : -1; ps[i] = ps[i-1]+a[i]; } int res = 0; vector&lt;int&gt; pn(n+1), sn(n+1); pn[1] = ps[1]; for(int i=2;i&lt;=n;i++){ pn[i] = min(pn[i-1], ps[i]); } sn[n] = ps[n]; for(int i=n-1;i&gt;0;i--){ sn[i] = min(sn[i+1], ps[i]); } for(int i=1;i&lt;=n;i++){ if(ps[n]==1&amp;&amp;a[i]==1&amp;&amp;pn[i-1]&gt;=0&amp;&amp;sn[i]==1) res++; if(ps[n]==-1&amp;&amp;a[i]==-1&amp;&amp;pn[i-1]&gt;=0&amp;&amp;sn[i]==-1) res++; } cout &lt;&lt; res; } L. 팰린드롬 게임 1의 자리는 무조건 팰린드롬 수 따라서 어떤 수가 있더라도 10의 배수를 만들 수 있다. A의 차례에 10의 배수가 아닌 수가 있으면 무조건 10의 배수로 만들 수 있다. 10의 배수라면 다음 턴에 무조건 10의 배수가 아닌 수로밖에 못만든다. (팰린드롬 수는 마지막이 0일 수 없어서) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ ll n; cin &gt;&gt; n; if(!n||!(n%10)) cout &lt;&lt; 1 &lt;&lt; &#39;\\n&#39;; else cout &lt;&lt; 0 &lt;&lt; &#39;\\n&#39;; } }","headline":"SUAPC 연습","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/%EC%98%88%EC%A0%84%EC%97%90-%ED%96%88%EB%8D%98-%EC%97%B0%EC%8A%B5/"},"url":"http://localhost:4000/posts/%EC%98%88%EC%A0%84%EC%97%90-%ED%96%88%EB%8D%98-%EC%97%B0%EC%8A%B5/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -322,10 +322,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Problem Solving</span>
-              <span class="badge bg-secondary rounded-pill">32</span>
+              <span class="badge bg-secondary rounded-pill">33</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-02-22 문제풀이
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/aho-corasick/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -940,10 +946,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Other Things</span>
-              <span class="badge bg-secondary rounded-pill">4</span>
+              <span class="badge bg-secondary rounded-pill">5</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    근황 토크 및 앞으로의 블로그 운영계획
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/It-takes-two-%EA%B2%8C%EC%9E%84%EB%A6%AC%EB%B7%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -1086,6 +1098,42 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/1.-rust-%EA%B8%B0%EB%B3%B8-%EB%AC%B8%EB%B2%95/" style="font-size: 0.85rem; padding-left: 2rem;">
                     rust 문법 공부
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <!-- 카테고리 이름 (폴더처럼) -->
+            <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>Just Chatting</span>
+              <span class="badge bg-secondary rounded-pill">1</span>
+            </a>
+            <!-- 해당 카테고리의 글 목록 -->
+            <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    근황 토크 및 앞으로의 블로그 운영계획
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <!-- 카테고리 이름 (폴더처럼) -->
+            <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>BOJ</span>
+              <span class="badge bg-secondary rounded-pill">1</span>
+            </a>
+            <!-- 해당 카테고리의 글 목록 -->
+            <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-02-22 문제풀이
                   </a>
                 </li>
               
@@ -2032,6 +2080,20 @@
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/">2026-02-22 문제풀이</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/">근황 토크 및 앞으로의 블로그 운영계획</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/aho-corasick/">문자열 - 아호 코라식(Aho-Corasick)</a>
         </li>
       
@@ -2047,20 +2109,6 @@
         
         <li class="text-truncate lh-lg">
           <a href="/posts/2060-%EC%97%BC%EC%86%8C%EC%A4%84%EC%84%9C%EA%B8%B0-%ED%92%80%EC%9D%B4/">염소줄서기 문제 풀이</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%EB%B6%84%ED%95%A0%EC%A0%95%EB%B3%B5%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%B5%9C%EC%A0%81%ED%99%94(Divide-&-Conquer-Optimization)/">D&C Optimization</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/Codeforces-Round-936(Div.2)/">코드포스 - 다시 맘 잡기</a>
         </li>
       
     </ul>
@@ -2510,220 +2558,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2893,6 +2727,61 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -3056,6 +2945,172 @@
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -4142,6 +4197,18 @@
 
   
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
 
@@ -4762,220 +4829,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -5145,6 +4998,61 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -5308,6 +5216,172 @@
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     

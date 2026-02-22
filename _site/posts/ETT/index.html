@@ -35,8 +35,8 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="ETT + Segment Tree" />
 <meta property="og:locale" content="ko" />
-<meta name="description" content="백준 14288번 회사문화4 문제풀이" />
-<meta property="og:description" content="백준 14288번 회사문화4 문제풀이" />
+<meta name="description" content="백준 14288번 회사문화4 문제풀이 [14288 회사 문화 4] https://www.acmicpc.net/problem/14288 . 오일러 투어 테크닉으로 트리를 배열처럼 만들고 세그먼트 트리를 이용하여 쿼리를 처리한다. 오일러 투어 테크닉을 배우면 대부분 세그먼트 트리랑 연계가 된다. 오일러 투어 테크닉은 트리를 배열 처럼 일직선으로 잘 펴는 테크닉이고 여기서 세그먼트 트리와 연계하기 쉽기 때문이다. 회사 문화 4는 14268 회사문화2와 14287 회사문화3 두 문제를 정확하게 합친 문제나 다름이 없다. 그렇다면 문제를 풀어보자, 문제상황 파악하기. 먼저 한명이 칭찬을 받으면 부하쪽으로 칭찬이 가든가 상사 쪽으로 간다. 이는 switch하는 bool형 변수 하나 만들어서 처리했다. 부하 쪽으로 가는것은 서브 트리에 전부 칭찬을 하면 되어서 쉽다. 상사쪽은 어떻게 해야할까? Euler Tour Technique(ETT)가 뭐길래?. 위에서 잠깐 언급했듯이 트리를 잘 펴서 배열 처럼 만드는 테크닉이다. 1 2 3 4 5 6 7 8 9 int cnt = 0; void dfs(int here, int parent){ in[here] = ++cnt; for(int next :adj[here]){ if(next ==parent) continue; dfs(next, here); } out[here] = cnt; } 다음과 같이 루트에서 부터 dfs를 돌면서 in, out 배열에 들어가는 순서를 입력한다. 예를 들면 in[1] = 1, out[1] = 7이라면 1번 정점은 첫번째로 들어가서 7번째 턴에 나왔다는 뜻이다. 즉 2번째부터 6번째가 정점 1의 subtree가 되는 것이다. 아이디어 얻기. 부하 방향으로 칭찬 릴레이가 시작되면 쉽다. 서브트리에 전부 칭찬하면 되기 때문이다. 하지만 상사 방향은 조금 까다롭다. 구간 update를 하기에 배열에서 정확한 구간을 찾기가 쉽지 않기 때문이다. 이는 점 update + 구간 쿼리를 이용하여 해결했다. 위 그림 처럼 상사 관계가 되어있다고 치면 2번이 2만큼 칭찬받으면 2를 쓴다. 그 다음 3번이 4만큼 칭찬받으면 4를 쓴다. 또 4번이 6만큼 칭찬받으면 6을 쓴다. 그리고 2번이 칭찬 받은 양을 구하려면 2번부터 2번 이후 서브트리에 기록된 모든 수를 더한다 (2+4+6)그리고 2번 전에 기록된것을 빼면된다(0). 다시한번 예를 들어서 4번이 칭찬받은 양은 (2+4+6)-(2+4)==6이 되는 것이다. 이를 이용하여 세그먼트 트리 2개를 만든다. 1번세그는 부하방향, 2번 세그는 상사방향을 처리한다. 주의할 점 구간 update를 할때 이 아이디어를 이용하기 때문에 세그먼트 트리를 딱 배열의 크기까지만 보는게 아니라 배열의 크기 +1 만큼 봐줘야한다. 실제 코드 나머지 주의 할 점은 코드에 주석으로 처리했다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 #include &lt;iostream&gt; #include &lt;vector&gt; #include &lt;algorithm&gt; #include &lt;string&gt; #include &lt;cstring&gt; #include &lt;stack&gt; #include &lt;queue&gt; #include &lt;cmath&gt; #include &lt;set&gt; #include &lt;map&gt; #include &lt;cassert&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; const int MAX = 100001; int n, m; vector&lt;int&gt; adj[MAX]; int parent[MAX], in[MAX], out[MAX]; struct segTree{ int tree[4*MAX]; void update(int x, int val, int node, int S, int E){ if(S==E){ tree[node] += val; return; } int mid = (S+E)&gt;&gt;1; if(x&lt;=mid) update(x, val, 2*node, S, mid); else update(x, val, 2*node+1, mid+1, E); tree[node] = tree[2*node] + tree[2*node+1]; } int query(int L, int R, int node, int S, int E){ if(R&lt;S||L&gt;R) return 0; if(L&lt;=S&amp;&amp;E&lt;=R) return tree[node]; int mid = (S+E)&gt;&gt;1; return query(L, R, 2*node, S, mid)+query(L, R, 2*node+1, mid+1, E); } }; int cnt = 0; void dfs(int here, int parent){ in[here] = ++cnt; for(int next :adj[here]){ if(next ==parent) continue; dfs(next, here); } out[here] = cnt; } int main(){ fast_io cin &gt;&gt; n &gt;&gt; m; for(int i=1;i&lt;=n;i++){ cin &gt;&gt; parent[i]; if(i!=1) adj[parent[i]].push_back(i); } dfs(1, 1); segTree st1, st2; bool sw = true; for(int i=0;i&lt;m;i++){ int o, emp; cin &gt;&gt; o; if(o==1){ int w; cin &gt;&gt; emp &gt;&gt; w; if(sw){ st1.update(in[emp], w, 1, 1, n+1); st1.update(out[emp]+1, -w, 1, 1, n+1); }else{ st2.update(in[emp], w, 1, 1, n+1); } }else if(o==2){ cin &gt;&gt; emp; cout &lt;&lt;st1.query(1, in[emp], 1, 1, n+1)+st2.query(1, out[emp], 1, 1, n+1)-st2.query(1, in[emp]-1, 1, 1, n+1) &lt;&lt; &#39;\n&#39;; }else{ sw ^= 1; } } }" />
+<meta property="og:description" content="백준 14288번 회사문화4 문제풀이 [14288 회사 문화 4] https://www.acmicpc.net/problem/14288 . 오일러 투어 테크닉으로 트리를 배열처럼 만들고 세그먼트 트리를 이용하여 쿼리를 처리한다. 오일러 투어 테크닉을 배우면 대부분 세그먼트 트리랑 연계가 된다. 오일러 투어 테크닉은 트리를 배열 처럼 일직선으로 잘 펴는 테크닉이고 여기서 세그먼트 트리와 연계하기 쉽기 때문이다. 회사 문화 4는 14268 회사문화2와 14287 회사문화3 두 문제를 정확하게 합친 문제나 다름이 없다. 그렇다면 문제를 풀어보자, 문제상황 파악하기. 먼저 한명이 칭찬을 받으면 부하쪽으로 칭찬이 가든가 상사 쪽으로 간다. 이는 switch하는 bool형 변수 하나 만들어서 처리했다. 부하 쪽으로 가는것은 서브 트리에 전부 칭찬을 하면 되어서 쉽다. 상사쪽은 어떻게 해야할까? Euler Tour Technique(ETT)가 뭐길래?. 위에서 잠깐 언급했듯이 트리를 잘 펴서 배열 처럼 만드는 테크닉이다. 1 2 3 4 5 6 7 8 9 int cnt = 0; void dfs(int here, int parent){ in[here] = ++cnt; for(int next :adj[here]){ if(next ==parent) continue; dfs(next, here); } out[here] = cnt; } 다음과 같이 루트에서 부터 dfs를 돌면서 in, out 배열에 들어가는 순서를 입력한다. 예를 들면 in[1] = 1, out[1] = 7이라면 1번 정점은 첫번째로 들어가서 7번째 턴에 나왔다는 뜻이다. 즉 2번째부터 6번째가 정점 1의 subtree가 되는 것이다. 아이디어 얻기. 부하 방향으로 칭찬 릴레이가 시작되면 쉽다. 서브트리에 전부 칭찬하면 되기 때문이다. 하지만 상사 방향은 조금 까다롭다. 구간 update를 하기에 배열에서 정확한 구간을 찾기가 쉽지 않기 때문이다. 이는 점 update + 구간 쿼리를 이용하여 해결했다. 위 그림 처럼 상사 관계가 되어있다고 치면 2번이 2만큼 칭찬받으면 2를 쓴다. 그 다음 3번이 4만큼 칭찬받으면 4를 쓴다. 또 4번이 6만큼 칭찬받으면 6을 쓴다. 그리고 2번이 칭찬 받은 양을 구하려면 2번부터 2번 이후 서브트리에 기록된 모든 수를 더한다 (2+4+6)그리고 2번 전에 기록된것을 빼면된다(0). 다시한번 예를 들어서 4번이 칭찬받은 양은 (2+4+6)-(2+4)==6이 되는 것이다. 이를 이용하여 세그먼트 트리 2개를 만든다. 1번세그는 부하방향, 2번 세그는 상사방향을 처리한다. 주의할 점 구간 update를 할때 이 아이디어를 이용하기 때문에 세그먼트 트리를 딱 배열의 크기까지만 보는게 아니라 배열의 크기 +1 만큼 봐줘야한다. 실제 코드 나머지 주의 할 점은 코드에 주석으로 처리했다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 #include &lt;iostream&gt; #include &lt;vector&gt; #include &lt;algorithm&gt; #include &lt;string&gt; #include &lt;cstring&gt; #include &lt;stack&gt; #include &lt;queue&gt; #include &lt;cmath&gt; #include &lt;set&gt; #include &lt;map&gt; #include &lt;cassert&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; const int MAX = 100001; int n, m; vector&lt;int&gt; adj[MAX]; int parent[MAX], in[MAX], out[MAX]; struct segTree{ int tree[4*MAX]; void update(int x, int val, int node, int S, int E){ if(S==E){ tree[node] += val; return; } int mid = (S+E)&gt;&gt;1; if(x&lt;=mid) update(x, val, 2*node, S, mid); else update(x, val, 2*node+1, mid+1, E); tree[node] = tree[2*node] + tree[2*node+1]; } int query(int L, int R, int node, int S, int E){ if(R&lt;S||L&gt;R) return 0; if(L&lt;=S&amp;&amp;E&lt;=R) return tree[node]; int mid = (S+E)&gt;&gt;1; return query(L, R, 2*node, S, mid)+query(L, R, 2*node+1, mid+1, E); } }; int cnt = 0; void dfs(int here, int parent){ in[here] = ++cnt; for(int next :adj[here]){ if(next ==parent) continue; dfs(next, here); } out[here] = cnt; } int main(){ fast_io cin &gt;&gt; n &gt;&gt; m; for(int i=1;i&lt;=n;i++){ cin &gt;&gt; parent[i]; if(i!=1) adj[parent[i]].push_back(i); } dfs(1, 1); segTree st1, st2; bool sw = true; for(int i=0;i&lt;m;i++){ int o, emp; cin &gt;&gt; o; if(o==1){ int w; cin &gt;&gt; emp &gt;&gt; w; if(sw){ st1.update(in[emp], w, 1, 1, n+1); st1.update(out[emp]+1, -w, 1, 1, n+1); }else{ st2.update(in[emp], w, 1, 1, n+1); } }else if(o==2){ cin &gt;&gt; emp; cout &lt;&lt;st1.query(1, in[emp], 1, 1, n+1)+st2.query(1, out[emp], 1, 1, n+1)-st2.query(1, in[emp]-1, 1, 1, n+1) &lt;&lt; &#39;\n&#39;; }else{ sw ^= 1; } } }" />
 <link rel="canonical" href="http://localhost:4000/posts/ETT/" />
 <meta property="og:url" content="http://localhost:4000/posts/ETT/" />
 <meta property="og:site_name" content="도사였다 블로그" />
@@ -46,7 +46,7 @@
 <meta property="twitter:title" content="ETT + Segment Tree" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-09-18T00:00:00+09:00","datePublished":"2022-09-18T00:00:00+09:00","description":"백준 14288번 회사문화4 문제풀이","headline":"ETT + Segment Tree","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/ETT/"},"url":"http://localhost:4000/posts/ETT/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-09-18T00:00:00+09:00","datePublished":"2022-09-18T00:00:00+09:00","description":"백준 14288번 회사문화4 문제풀이 [14288 회사 문화 4] https://www.acmicpc.net/problem/14288 . 오일러 투어 테크닉으로 트리를 배열처럼 만들고 세그먼트 트리를 이용하여 쿼리를 처리한다. 오일러 투어 테크닉을 배우면 대부분 세그먼트 트리랑 연계가 된다. 오일러 투어 테크닉은 트리를 배열 처럼 일직선으로 잘 펴는 테크닉이고 여기서 세그먼트 트리와 연계하기 쉽기 때문이다. 회사 문화 4는 14268 회사문화2와 14287 회사문화3 두 문제를 정확하게 합친 문제나 다름이 없다. 그렇다면 문제를 풀어보자, 문제상황 파악하기. 먼저 한명이 칭찬을 받으면 부하쪽으로 칭찬이 가든가 상사 쪽으로 간다. 이는 switch하는 bool형 변수 하나 만들어서 처리했다. 부하 쪽으로 가는것은 서브 트리에 전부 칭찬을 하면 되어서 쉽다. 상사쪽은 어떻게 해야할까? Euler Tour Technique(ETT)가 뭐길래?. 위에서 잠깐 언급했듯이 트리를 잘 펴서 배열 처럼 만드는 테크닉이다. 1 2 3 4 5 6 7 8 9 int cnt = 0; void dfs(int here, int parent){ in[here] = ++cnt; for(int next :adj[here]){ if(next ==parent) continue; dfs(next, here); } out[here] = cnt; } 다음과 같이 루트에서 부터 dfs를 돌면서 in, out 배열에 들어가는 순서를 입력한다. 예를 들면 in[1] = 1, out[1] = 7이라면 1번 정점은 첫번째로 들어가서 7번째 턴에 나왔다는 뜻이다. 즉 2번째부터 6번째가 정점 1의 subtree가 되는 것이다. 아이디어 얻기. 부하 방향으로 칭찬 릴레이가 시작되면 쉽다. 서브트리에 전부 칭찬하면 되기 때문이다. 하지만 상사 방향은 조금 까다롭다. 구간 update를 하기에 배열에서 정확한 구간을 찾기가 쉽지 않기 때문이다. 이는 점 update + 구간 쿼리를 이용하여 해결했다. 위 그림 처럼 상사 관계가 되어있다고 치면 2번이 2만큼 칭찬받으면 2를 쓴다. 그 다음 3번이 4만큼 칭찬받으면 4를 쓴다. 또 4번이 6만큼 칭찬받으면 6을 쓴다. 그리고 2번이 칭찬 받은 양을 구하려면 2번부터 2번 이후 서브트리에 기록된 모든 수를 더한다 (2+4+6)그리고 2번 전에 기록된것을 빼면된다(0). 다시한번 예를 들어서 4번이 칭찬받은 양은 (2+4+6)-(2+4)==6이 되는 것이다. 이를 이용하여 세그먼트 트리 2개를 만든다. 1번세그는 부하방향, 2번 세그는 상사방향을 처리한다. 주의할 점 구간 update를 할때 이 아이디어를 이용하기 때문에 세그먼트 트리를 딱 배열의 크기까지만 보는게 아니라 배열의 크기 +1 만큼 봐줘야한다. 실제 코드 나머지 주의 할 점은 코드에 주석으로 처리했다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 #include &lt;iostream&gt; #include &lt;vector&gt; #include &lt;algorithm&gt; #include &lt;string&gt; #include &lt;cstring&gt; #include &lt;stack&gt; #include &lt;queue&gt; #include &lt;cmath&gt; #include &lt;set&gt; #include &lt;map&gt; #include &lt;cassert&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; const int MAX = 100001; int n, m; vector&lt;int&gt; adj[MAX]; int parent[MAX], in[MAX], out[MAX]; struct segTree{ int tree[4*MAX]; void update(int x, int val, int node, int S, int E){ if(S==E){ tree[node] += val; return; } int mid = (S+E)&gt;&gt;1; if(x&lt;=mid) update(x, val, 2*node, S, mid); else update(x, val, 2*node+1, mid+1, E); tree[node] = tree[2*node] + tree[2*node+1]; } int query(int L, int R, int node, int S, int E){ if(R&lt;S||L&gt;R) return 0; if(L&lt;=S&amp;&amp;E&lt;=R) return tree[node]; int mid = (S+E)&gt;&gt;1; return query(L, R, 2*node, S, mid)+query(L, R, 2*node+1, mid+1, E); } }; int cnt = 0; void dfs(int here, int parent){ in[here] = ++cnt; for(int next :adj[here]){ if(next ==parent) continue; dfs(next, here); } out[here] = cnt; } int main(){ fast_io cin &gt;&gt; n &gt;&gt; m; for(int i=1;i&lt;=n;i++){ cin &gt;&gt; parent[i]; if(i!=1) adj[parent[i]].push_back(i); } dfs(1, 1); segTree st1, st2; bool sw = true; for(int i=0;i&lt;m;i++){ int o, emp; cin &gt;&gt; o; if(o==1){ int w; cin &gt;&gt; emp &gt;&gt; w; if(sw){ st1.update(in[emp], w, 1, 1, n+1); st1.update(out[emp]+1, -w, 1, 1, n+1); }else{ st2.update(in[emp], w, 1, 1, n+1); } }else if(o==2){ cin &gt;&gt; emp; cout &lt;&lt;st1.query(1, in[emp], 1, 1, n+1)+st2.query(1, out[emp], 1, 1, n+1)-st2.query(1, in[emp]-1, 1, 1, n+1) &lt;&lt; &#39;\\n&#39;; }else{ sw ^= 1; } } }","headline":"ETT + Segment Tree","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/ETT/"},"url":"http://localhost:4000/posts/ETT/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -329,10 +329,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Problem Solving</span>
-              <span class="badge bg-secondary rounded-pill">32</span>
+              <span class="badge bg-secondary rounded-pill">33</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-02-22 문제풀이
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/aho-corasick/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -947,10 +953,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Other Things</span>
-              <span class="badge bg-secondary rounded-pill">4</span>
+              <span class="badge bg-secondary rounded-pill">5</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    근황 토크 및 앞으로의 블로그 운영계획
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/It-takes-two-%EA%B2%8C%EC%9E%84%EB%A6%AC%EB%B7%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -1093,6 +1105,42 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/1.-rust-%EA%B8%B0%EB%B3%B8-%EB%AC%B8%EB%B2%95/" style="font-size: 0.85rem; padding-left: 2rem;">
                     rust 문법 공부
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <!-- 카테고리 이름 (폴더처럼) -->
+            <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>Just Chatting</span>
+              <span class="badge bg-secondary rounded-pill">1</span>
+            </a>
+            <!-- 해당 카테고리의 글 목록 -->
+            <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    근황 토크 및 앞으로의 블로그 운영계획
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <!-- 카테고리 이름 (폴더처럼) -->
+            <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>BOJ</span>
+              <span class="badge bg-secondary rounded-pill">1</span>
+            </a>
+            <!-- 해당 카테고리의 글 목록 -->
+            <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-02-22 문제풀이
                   </a>
                 </li>
               
@@ -1966,6 +2014,20 @@
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/">2026-02-22 문제풀이</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/">근황 토크 및 앞으로의 블로그 운영계획</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/aho-corasick/">문자열 - 아호 코라식(Aho-Corasick)</a>
         </li>
       
@@ -1981,20 +2043,6 @@
         
         <li class="text-truncate lh-lg">
           <a href="/posts/2060-%EC%97%BC%EC%86%8C%EC%A4%84%EC%84%9C%EA%B8%B0-%ED%92%80%EC%9D%B4/">염소줄서기 문제 풀이</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%EB%B6%84%ED%95%A0%EC%A0%95%EB%B3%B5%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%B5%9C%EC%A0%81%ED%99%94(Divide-&-Conquer-Optimization)/">D&C Optimization</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/Codeforces-Round-936(Div.2)/">코드포스 - 다시 맘 잡기</a>
         </li>
       
     </ul>
@@ -2444,220 +2492,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2827,6 +2661,61 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2990,6 +2879,172 @@
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -4082,6 +4137,18 @@
 
   
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
 
@@ -4702,220 +4769,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -5085,6 +4938,61 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -5248,6 +5156,172 @@
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     

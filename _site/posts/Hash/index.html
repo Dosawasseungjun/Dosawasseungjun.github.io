@@ -35,8 +35,8 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="Hashing" />
 <meta property="og:locale" content="ko" />
-<meta name="description" content="백준 21162번 뒤집기 K 문제풀이" />
-<meta property="og:description" content="백준 21162번 뒤집기 K 문제풀이" />
+<meta name="description" content="백준 21162번 뒤집기 K 문제풀이 [21162 뒤집기 K] https://www.acmicpc.net/problem/21162 . 해시를 이용해 접두어가 같은 부분을 빠르게 찾아내자! 신촌 ICPC 알고리즘 캠프를 이번 방학에 신청했다. 강사님이 필수과제로 내준 문제이고 솔직히 풀이를 안들었으면 못풀었을 것같다. jhnah917님이 만드신 문제이고 풀이도 거의 비슷하게 따라 풀었다. 좋은 문제같아서 배운 내용을 정리할겸 포스팅해보려고 한다. 문제상황 파악하기. 뒤집어서 생기는 배열은 총 n-1개가 생긴다.(0~1사이, 1~2사이 …. n-2~n-1사이) 그렇다면 직접 배열을 만들면 최대 200000*200000의 공간이 필요해서 메모리가 부족할 것이다. 배열을 하나하나 만들지 않고 배열을 표현해야한다. 여기서는 cyclic shift 형태를 이용하여 거꾸로 된 배열을 2개 붙여서 이를 해결했다. 그리고 나서는 2개 이어붙여서 생긴 그 배열을 이용하여 거기서 제일 사전순으로 작은걸 찾아야한다. 해시 구현 코드는 대부분 jhnah917님이 구현하신 것을 참고했다. 누적합느낌으로 해시를 만든다. 그리고 사이의 해시값을 구할 때는 그 전의 것부터 빼야하니까 1부터 구현하는게 편하다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 const int MOD = 1000000007; template&lt;ll P, ll M&gt; struct Hashing{ vector&lt;ll&gt; H, B; void build(const vector&lt;ll&gt; &amp;S){ H.resize(S.size()+1); B.resize(S.size()+1); B[0] = 1; for(int i=1;i&lt;=S.size();i++){ H[i] = (H[i-1]*P+S[i])%M; //누적합 느낌으로 } for(int i=1;i&lt;=S.size();i++){ B[i] = (B[i-1]*P)%M; } } ll get(int s, int e){ ll res= (H[e]-H[s-1]*B[e-s+1])%M; return res &gt;= 0 ? res : res+M; } }; 아이디어 얻기. 거꾸로 된 배열을 붙여서 만들 배열을 보면 1~n이 시작점인 부분만 보면된다. 그러면 어느 시작점이 사전순으로 젤 작은지를 판단해야하고 문제는 K번째를 구하는 것이므로 정렬을 해야한다. 정렬하는데에는 NlogN만큼 걸리니까 이 문제를 시간안에 해결하려면 사전순으로 더 작은지 판단하는 과정을 logN만에 해야한다. 여기서 이분탐색의 아이디어를 떠올릴 수 있다. 그리고 이분 탐색 과정에서 prefix를 비교하는데 이도 오래걸리면 안된다. 따라서 해시를 이용하여 미리 배열의 해시 값들을 저장해두고 해시 값이 달라지는 시작점을 찾아서 비교를 해야한다. 주의할 점 해시를 할때 너무 작은 M으로 나누면 안된다. 해시 충돌이 일어나기 때문이다.(해시충돌 확률은 1/M) 나는 적당히 큰 소수 P를 616327, M을 1000000007로 설정했다. 이분 탐색과정에서 Off-by-One error를 조심하자.. 나는 저것때문에 2시간 가까이 고전했다…ㅠㅠ 이분탐색은 넘 어렵다.~~~ 실제 코드 나머지 주의 할 점은 코드에 주석으로 처리했다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 #include &lt;iostream&gt; #include &lt;vector&gt; #include &lt;algorithm&gt; #include &lt;string&gt; #include &lt;cstring&gt; #include &lt;stack&gt; #include &lt;queue&gt; #include &lt;cmath&gt; #include &lt;set&gt; #include &lt;map&gt; #include &lt;cassert&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; const int MOD = 1000000007; template&lt;ll P, ll M&gt; struct Hashing{ vector&lt;ll&gt; H, B; void build(const vector&lt;ll&gt; &amp;S){ H.resize(S.size()+1); B.resize(S.size()+1); B[0] = 1; for(int i=1;i&lt;=S.size();i++){ H[i] = (H[i-1]*P+S[i])%M; //누적합 느낌으로 } for(int i=1;i&lt;=S.size();i++){ B[i] = (B[i-1]*P)%M; } } ll get(int s, int e){ ll res= (H[e]-H[s-1]*B[e-s+1])%M; return res &gt;= 0 ? res : res+M; } }; Hashing&lt;616327, MOD&gt; ht; int n, k; vector&lt;ll&gt; arr; bool compare(int n1, int n2){ //접두어가 처음으로 다른 부분 이분탐색으로 찾기 int l = -1 , r = n-1; while (l+1&lt;r) { int mid = (l+r)&gt;&gt;1; int v1 = ht.get(n1, n1+mid); int v2 = ht.get(n2, n2+mid); if(v1==v2) l = mid; else r = mid; } if(l==n-1) return false; //모두다 같음 return arr[n1+r] &lt; arr[n2+r]; //처음으로 다른부분 비교 } int main(){ fast_io; cin &gt;&gt; n &gt;&gt; k; arr = vector&lt;ll&gt; (n); for(int i=0;i&lt;n;i++) cin &gt;&gt; arr[i]; reverse(arr.begin(), arr.end()); for(int i=0;i&lt;n;i++) arr.push_back(arr[i]); //거꾸로 된거 2개 이어붙임 ht.build(arr); vector&lt;int&gt; idxs(n-1); for(int i=0;i&lt;n-1;i++) idxs[i]= i+1; // i번째 부터 n-1개 // compare(2, 6); stable_sort(idxs.begin(), idxs.end(), compare); for(int i=0;i&lt;n;i++){ cout &lt;&lt; arr[idxs[k-1]+i] &lt;&lt; &#39; &#39; ; } }" />
+<meta property="og:description" content="백준 21162번 뒤집기 K 문제풀이 [21162 뒤집기 K] https://www.acmicpc.net/problem/21162 . 해시를 이용해 접두어가 같은 부분을 빠르게 찾아내자! 신촌 ICPC 알고리즘 캠프를 이번 방학에 신청했다. 강사님이 필수과제로 내준 문제이고 솔직히 풀이를 안들었으면 못풀었을 것같다. jhnah917님이 만드신 문제이고 풀이도 거의 비슷하게 따라 풀었다. 좋은 문제같아서 배운 내용을 정리할겸 포스팅해보려고 한다. 문제상황 파악하기. 뒤집어서 생기는 배열은 총 n-1개가 생긴다.(0~1사이, 1~2사이 …. n-2~n-1사이) 그렇다면 직접 배열을 만들면 최대 200000*200000의 공간이 필요해서 메모리가 부족할 것이다. 배열을 하나하나 만들지 않고 배열을 표현해야한다. 여기서는 cyclic shift 형태를 이용하여 거꾸로 된 배열을 2개 붙여서 이를 해결했다. 그리고 나서는 2개 이어붙여서 생긴 그 배열을 이용하여 거기서 제일 사전순으로 작은걸 찾아야한다. 해시 구현 코드는 대부분 jhnah917님이 구현하신 것을 참고했다. 누적합느낌으로 해시를 만든다. 그리고 사이의 해시값을 구할 때는 그 전의 것부터 빼야하니까 1부터 구현하는게 편하다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 const int MOD = 1000000007; template&lt;ll P, ll M&gt; struct Hashing{ vector&lt;ll&gt; H, B; void build(const vector&lt;ll&gt; &amp;S){ H.resize(S.size()+1); B.resize(S.size()+1); B[0] = 1; for(int i=1;i&lt;=S.size();i++){ H[i] = (H[i-1]*P+S[i])%M; //누적합 느낌으로 } for(int i=1;i&lt;=S.size();i++){ B[i] = (B[i-1]*P)%M; } } ll get(int s, int e){ ll res= (H[e]-H[s-1]*B[e-s+1])%M; return res &gt;= 0 ? res : res+M; } }; 아이디어 얻기. 거꾸로 된 배열을 붙여서 만들 배열을 보면 1~n이 시작점인 부분만 보면된다. 그러면 어느 시작점이 사전순으로 젤 작은지를 판단해야하고 문제는 K번째를 구하는 것이므로 정렬을 해야한다. 정렬하는데에는 NlogN만큼 걸리니까 이 문제를 시간안에 해결하려면 사전순으로 더 작은지 판단하는 과정을 logN만에 해야한다. 여기서 이분탐색의 아이디어를 떠올릴 수 있다. 그리고 이분 탐색 과정에서 prefix를 비교하는데 이도 오래걸리면 안된다. 따라서 해시를 이용하여 미리 배열의 해시 값들을 저장해두고 해시 값이 달라지는 시작점을 찾아서 비교를 해야한다. 주의할 점 해시를 할때 너무 작은 M으로 나누면 안된다. 해시 충돌이 일어나기 때문이다.(해시충돌 확률은 1/M) 나는 적당히 큰 소수 P를 616327, M을 1000000007로 설정했다. 이분 탐색과정에서 Off-by-One error를 조심하자.. 나는 저것때문에 2시간 가까이 고전했다…ㅠㅠ 이분탐색은 넘 어렵다.~~~ 실제 코드 나머지 주의 할 점은 코드에 주석으로 처리했다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 #include &lt;iostream&gt; #include &lt;vector&gt; #include &lt;algorithm&gt; #include &lt;string&gt; #include &lt;cstring&gt; #include &lt;stack&gt; #include &lt;queue&gt; #include &lt;cmath&gt; #include &lt;set&gt; #include &lt;map&gt; #include &lt;cassert&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; const int MOD = 1000000007; template&lt;ll P, ll M&gt; struct Hashing{ vector&lt;ll&gt; H, B; void build(const vector&lt;ll&gt; &amp;S){ H.resize(S.size()+1); B.resize(S.size()+1); B[0] = 1; for(int i=1;i&lt;=S.size();i++){ H[i] = (H[i-1]*P+S[i])%M; //누적합 느낌으로 } for(int i=1;i&lt;=S.size();i++){ B[i] = (B[i-1]*P)%M; } } ll get(int s, int e){ ll res= (H[e]-H[s-1]*B[e-s+1])%M; return res &gt;= 0 ? res : res+M; } }; Hashing&lt;616327, MOD&gt; ht; int n, k; vector&lt;ll&gt; arr; bool compare(int n1, int n2){ //접두어가 처음으로 다른 부분 이분탐색으로 찾기 int l = -1 , r = n-1; while (l+1&lt;r) { int mid = (l+r)&gt;&gt;1; int v1 = ht.get(n1, n1+mid); int v2 = ht.get(n2, n2+mid); if(v1==v2) l = mid; else r = mid; } if(l==n-1) return false; //모두다 같음 return arr[n1+r] &lt; arr[n2+r]; //처음으로 다른부분 비교 } int main(){ fast_io; cin &gt;&gt; n &gt;&gt; k; arr = vector&lt;ll&gt; (n); for(int i=0;i&lt;n;i++) cin &gt;&gt; arr[i]; reverse(arr.begin(), arr.end()); for(int i=0;i&lt;n;i++) arr.push_back(arr[i]); //거꾸로 된거 2개 이어붙임 ht.build(arr); vector&lt;int&gt; idxs(n-1); for(int i=0;i&lt;n-1;i++) idxs[i]= i+1; // i번째 부터 n-1개 // compare(2, 6); stable_sort(idxs.begin(), idxs.end(), compare); for(int i=0;i&lt;n;i++){ cout &lt;&lt; arr[idxs[k-1]+i] &lt;&lt; &#39; &#39; ; } }" />
 <link rel="canonical" href="http://localhost:4000/posts/Hash/" />
 <meta property="og:url" content="http://localhost:4000/posts/Hash/" />
 <meta property="og:site_name" content="도사였다 블로그" />
@@ -46,7 +46,7 @@
 <meta property="twitter:title" content="Hashing" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-08-07T00:00:00+09:00","datePublished":"2022-08-07T00:00:00+09:00","description":"백준 21162번 뒤집기 K 문제풀이","headline":"Hashing","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/Hash/"},"url":"http://localhost:4000/posts/Hash/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-08-07T00:00:00+09:00","datePublished":"2022-08-07T00:00:00+09:00","description":"백준 21162번 뒤집기 K 문제풀이 [21162 뒤집기 K] https://www.acmicpc.net/problem/21162 . 해시를 이용해 접두어가 같은 부분을 빠르게 찾아내자! 신촌 ICPC 알고리즘 캠프를 이번 방학에 신청했다. 강사님이 필수과제로 내준 문제이고 솔직히 풀이를 안들었으면 못풀었을 것같다. jhnah917님이 만드신 문제이고 풀이도 거의 비슷하게 따라 풀었다. 좋은 문제같아서 배운 내용을 정리할겸 포스팅해보려고 한다. 문제상황 파악하기. 뒤집어서 생기는 배열은 총 n-1개가 생긴다.(0~1사이, 1~2사이 …. n-2~n-1사이) 그렇다면 직접 배열을 만들면 최대 200000*200000의 공간이 필요해서 메모리가 부족할 것이다. 배열을 하나하나 만들지 않고 배열을 표현해야한다. 여기서는 cyclic shift 형태를 이용하여 거꾸로 된 배열을 2개 붙여서 이를 해결했다. 그리고 나서는 2개 이어붙여서 생긴 그 배열을 이용하여 거기서 제일 사전순으로 작은걸 찾아야한다. 해시 구현 코드는 대부분 jhnah917님이 구현하신 것을 참고했다. 누적합느낌으로 해시를 만든다. 그리고 사이의 해시값을 구할 때는 그 전의 것부터 빼야하니까 1부터 구현하는게 편하다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 const int MOD = 1000000007; template&lt;ll P, ll M&gt; struct Hashing{ vector&lt;ll&gt; H, B; void build(const vector&lt;ll&gt; &amp;S){ H.resize(S.size()+1); B.resize(S.size()+1); B[0] = 1; for(int i=1;i&lt;=S.size();i++){ H[i] = (H[i-1]*P+S[i])%M; //누적합 느낌으로 } for(int i=1;i&lt;=S.size();i++){ B[i] = (B[i-1]*P)%M; } } ll get(int s, int e){ ll res= (H[e]-H[s-1]*B[e-s+1])%M; return res &gt;= 0 ? res : res+M; } }; 아이디어 얻기. 거꾸로 된 배열을 붙여서 만들 배열을 보면 1~n이 시작점인 부분만 보면된다. 그러면 어느 시작점이 사전순으로 젤 작은지를 판단해야하고 문제는 K번째를 구하는 것이므로 정렬을 해야한다. 정렬하는데에는 NlogN만큼 걸리니까 이 문제를 시간안에 해결하려면 사전순으로 더 작은지 판단하는 과정을 logN만에 해야한다. 여기서 이분탐색의 아이디어를 떠올릴 수 있다. 그리고 이분 탐색 과정에서 prefix를 비교하는데 이도 오래걸리면 안된다. 따라서 해시를 이용하여 미리 배열의 해시 값들을 저장해두고 해시 값이 달라지는 시작점을 찾아서 비교를 해야한다. 주의할 점 해시를 할때 너무 작은 M으로 나누면 안된다. 해시 충돌이 일어나기 때문이다.(해시충돌 확률은 1/M) 나는 적당히 큰 소수 P를 616327, M을 1000000007로 설정했다. 이분 탐색과정에서 Off-by-One error를 조심하자.. 나는 저것때문에 2시간 가까이 고전했다…ㅠㅠ 이분탐색은 넘 어렵다.~~~ 실제 코드 나머지 주의 할 점은 코드에 주석으로 처리했다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 #include &lt;iostream&gt; #include &lt;vector&gt; #include &lt;algorithm&gt; #include &lt;string&gt; #include &lt;cstring&gt; #include &lt;stack&gt; #include &lt;queue&gt; #include &lt;cmath&gt; #include &lt;set&gt; #include &lt;map&gt; #include &lt;cassert&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; const int MOD = 1000000007; template&lt;ll P, ll M&gt; struct Hashing{ vector&lt;ll&gt; H, B; void build(const vector&lt;ll&gt; &amp;S){ H.resize(S.size()+1); B.resize(S.size()+1); B[0] = 1; for(int i=1;i&lt;=S.size();i++){ H[i] = (H[i-1]*P+S[i])%M; //누적합 느낌으로 } for(int i=1;i&lt;=S.size();i++){ B[i] = (B[i-1]*P)%M; } } ll get(int s, int e){ ll res= (H[e]-H[s-1]*B[e-s+1])%M; return res &gt;= 0 ? res : res+M; } }; Hashing&lt;616327, MOD&gt; ht; int n, k; vector&lt;ll&gt; arr; bool compare(int n1, int n2){ //접두어가 처음으로 다른 부분 이분탐색으로 찾기 int l = -1 , r = n-1; while (l+1&lt;r) { int mid = (l+r)&gt;&gt;1; int v1 = ht.get(n1, n1+mid); int v2 = ht.get(n2, n2+mid); if(v1==v2) l = mid; else r = mid; } if(l==n-1) return false; //모두다 같음 return arr[n1+r] &lt; arr[n2+r]; //처음으로 다른부분 비교 } int main(){ fast_io; cin &gt;&gt; n &gt;&gt; k; arr = vector&lt;ll&gt; (n); for(int i=0;i&lt;n;i++) cin &gt;&gt; arr[i]; reverse(arr.begin(), arr.end()); for(int i=0;i&lt;n;i++) arr.push_back(arr[i]); //거꾸로 된거 2개 이어붙임 ht.build(arr); vector&lt;int&gt; idxs(n-1); for(int i=0;i&lt;n-1;i++) idxs[i]= i+1; // i번째 부터 n-1개 // compare(2, 6); stable_sort(idxs.begin(), idxs.end(), compare); for(int i=0;i&lt;n;i++){ cout &lt;&lt; arr[idxs[k-1]+i] &lt;&lt; &#39; &#39; ; } }","headline":"Hashing","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/Hash/"},"url":"http://localhost:4000/posts/Hash/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -329,10 +329,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Problem Solving</span>
-              <span class="badge bg-secondary rounded-pill">32</span>
+              <span class="badge bg-secondary rounded-pill">33</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-02-22 문제풀이
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/aho-corasick/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -947,10 +953,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Other Things</span>
-              <span class="badge bg-secondary rounded-pill">4</span>
+              <span class="badge bg-secondary rounded-pill">5</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    근황 토크 및 앞으로의 블로그 운영계획
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/It-takes-two-%EA%B2%8C%EC%9E%84%EB%A6%AC%EB%B7%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -1093,6 +1105,42 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/1.-rust-%EA%B8%B0%EB%B3%B8-%EB%AC%B8%EB%B2%95/" style="font-size: 0.85rem; padding-left: 2rem;">
                     rust 문법 공부
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <!-- 카테고리 이름 (폴더처럼) -->
+            <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>Just Chatting</span>
+              <span class="badge bg-secondary rounded-pill">1</span>
+            </a>
+            <!-- 해당 카테고리의 글 목록 -->
+            <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    근황 토크 및 앞으로의 블로그 운영계획
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <!-- 카테고리 이름 (폴더처럼) -->
+            <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>BOJ</span>
+              <span class="badge bg-secondary rounded-pill">1</span>
+            </a>
+            <!-- 해당 카테고리의 글 목록 -->
+            <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-02-22 문제풀이
                   </a>
                 </li>
               
@@ -1884,6 +1932,20 @@ jhnah917님이 만드신 문제이고 풀이도 거의 비슷하게 따라 풀�
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/">2026-02-22 문제풀이</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/">근황 토크 및 앞으로의 블로그 운영계획</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/aho-corasick/">문자열 - 아호 코라식(Aho-Corasick)</a>
         </li>
       
@@ -1899,20 +1961,6 @@ jhnah917님이 만드신 문제이고 풀이도 거의 비슷하게 따라 풀�
         
         <li class="text-truncate lh-lg">
           <a href="/posts/2060-%EC%97%BC%EC%86%8C%EC%A4%84%EC%84%9C%EA%B8%B0-%ED%92%80%EC%9D%B4/">염소줄서기 문제 풀이</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%EB%B6%84%ED%95%A0%EC%A0%95%EB%B3%B5%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%B5%9C%EC%A0%81%ED%99%94(Divide-&-Conquer-Optimization)/">D&C Optimization</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/Codeforces-Round-936(Div.2)/">코드포스 - 다시 맘 잡기</a>
         </li>
       
     </ul>
@@ -2362,220 +2410,6 @@ jhnah917님이 만드신 문제이고 풀이도 거의 비슷하게 따라 풀�
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -2745,6 +2579,61 @@ jhnah917님이 만드신 문제이고 풀이도 거의 비슷하게 따라 풀�
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -2908,6 +2797,172 @@ jhnah917님이 만드신 문제이고 풀이도 거의 비슷하게 따라 풀�
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -4000,6 +4055,18 @@ jhnah917님이 만드신 문제이고 풀이도 거의 비슷하게 따라 풀�
 
   
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
 
@@ -4620,220 +4687,6 @@ jhnah917님이 만드신 문제이고 풀이도 거의 비슷하게 따라 풀�
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -5003,6 +4856,61 @@ jhnah917님이 만드신 문제이고 풀이도 거의 비슷하게 따라 풀�
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -5166,6 +5074,172 @@ jhnah917님이 만드신 문제이고 풀이도 거의 비슷하게 따라 풀�
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     

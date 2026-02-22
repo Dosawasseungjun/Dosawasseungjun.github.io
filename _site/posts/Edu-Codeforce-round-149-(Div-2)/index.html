@@ -35,8 +35,8 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="코드포스 - 연습중2" />
 <meta property="og:locale" content="ko" />
-<meta name="description" content="2023-05-25-Edu Codeforce round 149 (Div.2)" />
-<meta property="og:description" content="2023-05-25-Edu Codeforce round 149 (Div.2)" />
+<meta name="description" content="2023-05-25-Edu Codeforce round 149 (Div.2) 개요 디비전 2는 솔직히 4문제는 풀어야 본전이다. 나도 옛날엔 인정하지 않았지만 A == 브론즈, B== 실버하위, C == 실버 상위, D == 골드 수준의 문제들이 출제 되기 때문이다. (물론 편차가 있긴하지만) 예전에는 내가 C, D를 자주 못풀었기 때문에 D가 무슨 골드냐 플레는 되겠지..했는데 솔직히 풀이를 보면 골드가 맞다. ㅋㅋ 내가 아직 골드는 확정적으로 푸는 실력이 안되는 것이다. 그래도 오늘은 4문제를 겨우겨우 어찌저찌 풀었으니 다행이다. E까지 업솔빙을 해보겠다. A. Grasshopper on a Line (0:05) 해가 무조건 있다고 알려줬다. 그러니 k로 나누어 떨어지지 않으면 1을 출력하고 x로 바로 이동한다. k로 나누어 떨어지면 2를 출력하고 i, x-i로 분할하여 생각한다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ int x, k; cin &gt;&gt; x &gt;&gt; k; if(x%k){ cout &lt;&lt; 1 &lt;&lt; &#39;\n&#39;; cout &lt;&lt; x &lt;&lt; &#39;\n&#39;; }else{ cout &lt;&lt; 2 &lt;&lt; &#39;\n&#39;; for(int i=1;i&lt;=x;i++){ if(i%k&amp;&amp;(x-i)%k){ cout &lt;&lt; i &lt;&lt; &#39; &#39; &lt;&lt; x-i &lt;&lt; &#39;\n&#39;; break; } } } } } B. Comparion String (0:10) 꺾은 괄호가 들어가는 문자열에서 숫자를 적절히 배열하여 올바른 식을 만들 때 , 사용할 수 있는 숫자의 최소개수를 구하는 것이다. 연속되는 « $\dots$와 »$\dots$의 개수를 세고 거기에 수를 넣는다고 생각하면 연속되는 괄호의 개수 +1이 정답이다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ int n; cin &gt;&gt; n; string s; cin &gt;&gt; s; int res = 0; char pre = 0; int now = 0; for(int i=0;i&lt;s.size();i++){ if(s[i]==pre){ now++; }else{ now = 1; pre = s[i]; } res = max(res, now); } cout &lt;&lt; res+1 &lt;&lt; &#39;\n&#39;; } } C. Best Binary String (0:39) 조금 오래 걸리긴 했다. 그 이유는 reverse의 뜻을 toggle과 혼동했기 때문이다. 0을 1로 바꾸고 1을 0으로 바꾸라는 줄 알았는데 알고보니 substring을 그냥 뒤집는 거였따. 문제를 똑바로 읽기로 다짐한지 2주도 안되었는데 바로 착각해버렸다. 솔직히 영어를 못하는 문제도 조금은 있는 것 같다. 결국 이 문제는 물음표 자리에 바로 이전 것이 들어가면 된다. 문제를 따라가느라 deque을 이용했다. (하지만 필요없을 듯하다, 그래도 연속되는 ?가 있을 수 있으니 자료구조를 이용하긴 해야할듯) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ string s; cin &gt;&gt; s; deque&lt;char&gt; dq; dq.push_back(&#39;0&#39;); string res; for(int i=0;i&lt;s.size();i++){ if(s[i]==&#39;0&#39;){ dq.push_back(&#39;0&#39;); }else if(s[i]==&#39;1&#39;){ if(dq.front()==&#39;0&#39;){ while(dq.front()!=&#39;0&#39;) { res += dq.front(); dq.pop_front(); } }else{ if(dq.back()==&#39;0&#39;){ while(!dq.empty()){ res += dq.front(); dq.pop_front(); } } } dq.push_back(&#39;1&#39;); }else{ dq.push_back(dq.back()); } } while(!dq.empty()){ res += dq.front(); dq.pop_front(); } for(int i=1;i&lt;res.size();i++) cout &lt;&lt; res[i]; cout &lt;&lt; &#39;\n&#39;; } } 이 풀이 말고 관찰을 통해 위 사실을 알아낸뒤 D. Bracket Coloring (1:59 , +3) 솔직히 이 문제를 이렇게나 늦게 푼 것은 온전히 해석 탓이다. 정말 화가 난다. 문제를 제대로 읽지 못해 시간 끈 것이 이 대회만 해도 2개라니…. 영어 공부한다고 이런 습관이 고쳐지기는 쉽지 않을 것이다. 문제를 이해 하면 다음과 같다. 올바른 문자열은 - regular 문자열이다. reverse하여 regular 문자열이 된다면 beautiful 문자열이다. 물론 beautiful 문자열은 regular문자열을 포함한다. (하지만 따로 보는 것이 문제에선 좋다) 이제 색을 칠할 건데, 칠한 색을 쭉 나열했을 땐 beautiful 문자열이어야한다. 따라서 위 내용 중 가장 핵심은 regular랑 beautiful이랑 섞이면 절대로 beautiful이 될 수 없다는 것이다. 그래서 이 문제는 regular와 beautiful을 따로 색칠하는 문제가 된다. 따라서 될 수 있는 Color의 최대값은 2이다. 나는 그냥 beautiful을 뒤집어서 beautiful이면 되는 줄 알았는데….이따구로 이해해서 4틀을 한 내가 너무 한심하다. 하지만 그래도 시간안에 올바르게 이해해서 다시 풀었으니 봐주도록 해야겠따. (안봐줬을 때 페널티로 할 것도 없음ㅋㅋ) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ int n; cin &gt;&gt; n; string s; cin &gt;&gt; s; vector&lt;int&gt; fr, bk; for(int i=0;i&lt;n;i++){ if(s[i]==&#39;(&#39;) fr.push_back(i); else bk.push_back(i); } if(fr.size()!=bk.size()){ cout &lt;&lt; -1 &lt;&lt; &#39;\n&#39;; continue; } set&lt;int&gt; ST; vector&lt;int&gt; res(n); deque&lt;char&gt; dq; int k1 = 0, k2 = 0; for(int i=0;i&lt;n;i++){ if(dq.empty()||dq.back()==s[i]) { if(s[i]==&#39;(&#39;&amp;&amp;i&lt;fr[k1]) continue; if(s[i]==&#39;)&#39;&amp;&amp;i&lt;bk[k2]) continue; dq.push_back(s[i]); } else{ ST.insert((dq.front()==&#39;(&#39;)); while(!dq.empty()){ res[fr[k1]] = (dq.front()==&#39;(&#39;); res[bk[k2]] = (dq.front()==&#39;(&#39;); k1++; k2++; dq.pop_front(); } } } cout &lt;&lt; ST.size() &lt;&lt; &#39;\n&#39;; for(int ANS : res){ if(ST.size()==1) cout &lt;&lt; 1 &lt;&lt; &#39; &#39;; else if(ANS==0) cout &lt;&lt; 1 &lt;&lt; &#39; &#39;; else cout &lt;&lt; 2 &lt;&lt; &#39; &#39;; } cout &lt;&lt; &#39;\n&#39;; } } E. Playoff Fixing (Upsolving) 문제를 정리해보면 1번팀이 제일 세고 $2^k$번째 팀이 가장 약하다. 이 때 토너먼트는 seed를 받고 그에 따라 결정된다. (1-2번 시드끼리, 3-4번 시드끼리 ….) 토너먼트가 실력대로 결과가 나오도록 조작할 수 있을 때 그렇게 만들 수 있는 경우의 수를 구한다. 예를 들면 1 2 3 4 라면 1번 2번팀이 첫라운드에 싸우니까 절대로 실력대로 결과가 나오지 않는다. -1 -1 -1 -1 이라면 1번팀은 4군데중 아무데나 갈 수 있고 2번팀은 그 반대라인으로 가면 2개 중하나가 된다. 그리고 3, 4를 배치하는경우의 수가 2개니까 $4 \times 2 \times 2$ 가 된다. 위 내용이 문제 정리다. 그럼 어떻게 풀어야 할까? $2^k$의 팀이 경기를 하면 다음 승자조는 $2^{k-1}$팀이 된다. (그리고 그 승자조는 팀번호가 낮은 사람들이다. ) 이번 턴에 지는 사람 $2^{k-1}$의 배치는 맘대로 할 수 있다. (-1인 경우에) 그래서 지는 사람이 -1이라면 이들의 배치를 신경써야한다. 만약 이기는 사람, 지는 사람이 둘다 -1라면 둘의 배치는 바꿔도 되니까 2를 곱해준다. 불가능한 경우는 기준을 이용해 계산했을 때 떨어지면 안되는 사람이 떨어지면 0을 출력하고 종료한다. 만약에 둘다 -1이 아니고 결정이 되었으면 배치는 신경안써도 된다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second const int MOD = 998244353; int main(){ fast_io int K; cin &gt;&gt; K; vector&lt;int&gt; a(1&lt;&lt;K); for(int i=0;i&lt;(1&lt;&lt;K);i++){ cin &gt;&gt; a[i]; if(a[i]!=-1) --a[i]; } ll res = 1; for(int i=K-1;i&gt;=0;i--){ int big = (1 &lt;&lt; i); int minus_one = 0; vector&lt;int&gt; na(1 &lt;&lt; i); for(int j=0;j&lt;(1&lt;&lt;i);j++){ if(a[2*j]&gt;a[2*j+1]) swap(a[2*j], a[2*j+1]); // 앞이 이김 if(a[2*j]==-1){ if(a[2*j+1]&gt;= (1 &lt;&lt; i)){ //앞이 이기는 경우가 맞음 big--; na[j] = -1; }else if(a[2*j+1]!=-1){ //이건 뒤가 이기는 경우임 na[j] = a[2*j+1]; }else{ //배치를 맘대로 해도 됨 na[j] = -1; minus_one++; } continue; } if( a[2*j]&lt;(1&lt;&lt;i) == a[2*j+1]&lt; (1 &lt;&lt; i)){ //둘다 기준보다 작으면 안됨 cout &lt;&lt; 0; return 0; } na[j] = a[2*j]; //정상적으로 앞이 이김 big--; } for(int i=0;i&lt;minus_one;i++) res = res * 2LL % MOD; // 둘의 배치를 바꿀 수 있음 for(int i=1;i&lt;=big;i++) res = 1LL*res * i %MOD; //이긴 것들의 순서 조정 a = na; } cout &lt;&lt; res; } 재밌는 문제였따. 토너먼트 문제는 이긴 사람, 진 사람을 제대로 나누고 생각하는 것이 중요해 보인다." />
+<meta property="og:description" content="2023-05-25-Edu Codeforce round 149 (Div.2) 개요 디비전 2는 솔직히 4문제는 풀어야 본전이다. 나도 옛날엔 인정하지 않았지만 A == 브론즈, B== 실버하위, C == 실버 상위, D == 골드 수준의 문제들이 출제 되기 때문이다. (물론 편차가 있긴하지만) 예전에는 내가 C, D를 자주 못풀었기 때문에 D가 무슨 골드냐 플레는 되겠지..했는데 솔직히 풀이를 보면 골드가 맞다. ㅋㅋ 내가 아직 골드는 확정적으로 푸는 실력이 안되는 것이다. 그래도 오늘은 4문제를 겨우겨우 어찌저찌 풀었으니 다행이다. E까지 업솔빙을 해보겠다. A. Grasshopper on a Line (0:05) 해가 무조건 있다고 알려줬다. 그러니 k로 나누어 떨어지지 않으면 1을 출력하고 x로 바로 이동한다. k로 나누어 떨어지면 2를 출력하고 i, x-i로 분할하여 생각한다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ int x, k; cin &gt;&gt; x &gt;&gt; k; if(x%k){ cout &lt;&lt; 1 &lt;&lt; &#39;\n&#39;; cout &lt;&lt; x &lt;&lt; &#39;\n&#39;; }else{ cout &lt;&lt; 2 &lt;&lt; &#39;\n&#39;; for(int i=1;i&lt;=x;i++){ if(i%k&amp;&amp;(x-i)%k){ cout &lt;&lt; i &lt;&lt; &#39; &#39; &lt;&lt; x-i &lt;&lt; &#39;\n&#39;; break; } } } } } B. Comparion String (0:10) 꺾은 괄호가 들어가는 문자열에서 숫자를 적절히 배열하여 올바른 식을 만들 때 , 사용할 수 있는 숫자의 최소개수를 구하는 것이다. 연속되는 « $\dots$와 »$\dots$의 개수를 세고 거기에 수를 넣는다고 생각하면 연속되는 괄호의 개수 +1이 정답이다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ int n; cin &gt;&gt; n; string s; cin &gt;&gt; s; int res = 0; char pre = 0; int now = 0; for(int i=0;i&lt;s.size();i++){ if(s[i]==pre){ now++; }else{ now = 1; pre = s[i]; } res = max(res, now); } cout &lt;&lt; res+1 &lt;&lt; &#39;\n&#39;; } } C. Best Binary String (0:39) 조금 오래 걸리긴 했다. 그 이유는 reverse의 뜻을 toggle과 혼동했기 때문이다. 0을 1로 바꾸고 1을 0으로 바꾸라는 줄 알았는데 알고보니 substring을 그냥 뒤집는 거였따. 문제를 똑바로 읽기로 다짐한지 2주도 안되었는데 바로 착각해버렸다. 솔직히 영어를 못하는 문제도 조금은 있는 것 같다. 결국 이 문제는 물음표 자리에 바로 이전 것이 들어가면 된다. 문제를 따라가느라 deque을 이용했다. (하지만 필요없을 듯하다, 그래도 연속되는 ?가 있을 수 있으니 자료구조를 이용하긴 해야할듯) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ string s; cin &gt;&gt; s; deque&lt;char&gt; dq; dq.push_back(&#39;0&#39;); string res; for(int i=0;i&lt;s.size();i++){ if(s[i]==&#39;0&#39;){ dq.push_back(&#39;0&#39;); }else if(s[i]==&#39;1&#39;){ if(dq.front()==&#39;0&#39;){ while(dq.front()!=&#39;0&#39;) { res += dq.front(); dq.pop_front(); } }else{ if(dq.back()==&#39;0&#39;){ while(!dq.empty()){ res += dq.front(); dq.pop_front(); } } } dq.push_back(&#39;1&#39;); }else{ dq.push_back(dq.back()); } } while(!dq.empty()){ res += dq.front(); dq.pop_front(); } for(int i=1;i&lt;res.size();i++) cout &lt;&lt; res[i]; cout &lt;&lt; &#39;\n&#39;; } } 이 풀이 말고 관찰을 통해 위 사실을 알아낸뒤 D. Bracket Coloring (1:59 , +3) 솔직히 이 문제를 이렇게나 늦게 푼 것은 온전히 해석 탓이다. 정말 화가 난다. 문제를 제대로 읽지 못해 시간 끈 것이 이 대회만 해도 2개라니…. 영어 공부한다고 이런 습관이 고쳐지기는 쉽지 않을 것이다. 문제를 이해 하면 다음과 같다. 올바른 문자열은 - regular 문자열이다. reverse하여 regular 문자열이 된다면 beautiful 문자열이다. 물론 beautiful 문자열은 regular문자열을 포함한다. (하지만 따로 보는 것이 문제에선 좋다) 이제 색을 칠할 건데, 칠한 색을 쭉 나열했을 땐 beautiful 문자열이어야한다. 따라서 위 내용 중 가장 핵심은 regular랑 beautiful이랑 섞이면 절대로 beautiful이 될 수 없다는 것이다. 그래서 이 문제는 regular와 beautiful을 따로 색칠하는 문제가 된다. 따라서 될 수 있는 Color의 최대값은 2이다. 나는 그냥 beautiful을 뒤집어서 beautiful이면 되는 줄 알았는데….이따구로 이해해서 4틀을 한 내가 너무 한심하다. 하지만 그래도 시간안에 올바르게 이해해서 다시 풀었으니 봐주도록 해야겠따. (안봐줬을 때 페널티로 할 것도 없음ㅋㅋ) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ int n; cin &gt;&gt; n; string s; cin &gt;&gt; s; vector&lt;int&gt; fr, bk; for(int i=0;i&lt;n;i++){ if(s[i]==&#39;(&#39;) fr.push_back(i); else bk.push_back(i); } if(fr.size()!=bk.size()){ cout &lt;&lt; -1 &lt;&lt; &#39;\n&#39;; continue; } set&lt;int&gt; ST; vector&lt;int&gt; res(n); deque&lt;char&gt; dq; int k1 = 0, k2 = 0; for(int i=0;i&lt;n;i++){ if(dq.empty()||dq.back()==s[i]) { if(s[i]==&#39;(&#39;&amp;&amp;i&lt;fr[k1]) continue; if(s[i]==&#39;)&#39;&amp;&amp;i&lt;bk[k2]) continue; dq.push_back(s[i]); } else{ ST.insert((dq.front()==&#39;(&#39;)); while(!dq.empty()){ res[fr[k1]] = (dq.front()==&#39;(&#39;); res[bk[k2]] = (dq.front()==&#39;(&#39;); k1++; k2++; dq.pop_front(); } } } cout &lt;&lt; ST.size() &lt;&lt; &#39;\n&#39;; for(int ANS : res){ if(ST.size()==1) cout &lt;&lt; 1 &lt;&lt; &#39; &#39;; else if(ANS==0) cout &lt;&lt; 1 &lt;&lt; &#39; &#39;; else cout &lt;&lt; 2 &lt;&lt; &#39; &#39;; } cout &lt;&lt; &#39;\n&#39;; } } E. Playoff Fixing (Upsolving) 문제를 정리해보면 1번팀이 제일 세고 $2^k$번째 팀이 가장 약하다. 이 때 토너먼트는 seed를 받고 그에 따라 결정된다. (1-2번 시드끼리, 3-4번 시드끼리 ….) 토너먼트가 실력대로 결과가 나오도록 조작할 수 있을 때 그렇게 만들 수 있는 경우의 수를 구한다. 예를 들면 1 2 3 4 라면 1번 2번팀이 첫라운드에 싸우니까 절대로 실력대로 결과가 나오지 않는다. -1 -1 -1 -1 이라면 1번팀은 4군데중 아무데나 갈 수 있고 2번팀은 그 반대라인으로 가면 2개 중하나가 된다. 그리고 3, 4를 배치하는경우의 수가 2개니까 $4 \times 2 \times 2$ 가 된다. 위 내용이 문제 정리다. 그럼 어떻게 풀어야 할까? $2^k$의 팀이 경기를 하면 다음 승자조는 $2^{k-1}$팀이 된다. (그리고 그 승자조는 팀번호가 낮은 사람들이다. ) 이번 턴에 지는 사람 $2^{k-1}$의 배치는 맘대로 할 수 있다. (-1인 경우에) 그래서 지는 사람이 -1이라면 이들의 배치를 신경써야한다. 만약 이기는 사람, 지는 사람이 둘다 -1라면 둘의 배치는 바꿔도 되니까 2를 곱해준다. 불가능한 경우는 기준을 이용해 계산했을 때 떨어지면 안되는 사람이 떨어지면 0을 출력하고 종료한다. 만약에 둘다 -1이 아니고 결정이 되었으면 배치는 신경안써도 된다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second const int MOD = 998244353; int main(){ fast_io int K; cin &gt;&gt; K; vector&lt;int&gt; a(1&lt;&lt;K); for(int i=0;i&lt;(1&lt;&lt;K);i++){ cin &gt;&gt; a[i]; if(a[i]!=-1) --a[i]; } ll res = 1; for(int i=K-1;i&gt;=0;i--){ int big = (1 &lt;&lt; i); int minus_one = 0; vector&lt;int&gt; na(1 &lt;&lt; i); for(int j=0;j&lt;(1&lt;&lt;i);j++){ if(a[2*j]&gt;a[2*j+1]) swap(a[2*j], a[2*j+1]); // 앞이 이김 if(a[2*j]==-1){ if(a[2*j+1]&gt;= (1 &lt;&lt; i)){ //앞이 이기는 경우가 맞음 big--; na[j] = -1; }else if(a[2*j+1]!=-1){ //이건 뒤가 이기는 경우임 na[j] = a[2*j+1]; }else{ //배치를 맘대로 해도 됨 na[j] = -1; minus_one++; } continue; } if( a[2*j]&lt;(1&lt;&lt;i) == a[2*j+1]&lt; (1 &lt;&lt; i)){ //둘다 기준보다 작으면 안됨 cout &lt;&lt; 0; return 0; } na[j] = a[2*j]; //정상적으로 앞이 이김 big--; } for(int i=0;i&lt;minus_one;i++) res = res * 2LL % MOD; // 둘의 배치를 바꿀 수 있음 for(int i=1;i&lt;=big;i++) res = 1LL*res * i %MOD; //이긴 것들의 순서 조정 a = na; } cout &lt;&lt; res; } 재밌는 문제였따. 토너먼트 문제는 이긴 사람, 진 사람을 제대로 나누고 생각하는 것이 중요해 보인다." />
 <link rel="canonical" href="http://localhost:4000/posts/Edu-Codeforce-round-149-(Div-2)/" />
 <meta property="og:url" content="http://localhost:4000/posts/Edu-Codeforce-round-149-(Div-2)/" />
 <meta property="og:site_name" content="도사였다 블로그" />
@@ -46,7 +46,7 @@
 <meta property="twitter:title" content="코드포스 - 연습중2" />
 <meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-05-25T00:00:00+09:00","datePublished":"2023-05-25T00:00:00+09:00","description":"2023-05-25-Edu Codeforce round 149 (Div.2)","headline":"코드포스 - 연습중2","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/Edu-Codeforce-round-149-(Div-2)/"},"url":"http://localhost:4000/posts/Edu-Codeforce-round-149-(Div-2)/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-05-25T00:00:00+09:00","datePublished":"2023-05-25T00:00:00+09:00","description":"2023-05-25-Edu Codeforce round 149 (Div.2) 개요 디비전 2는 솔직히 4문제는 풀어야 본전이다. 나도 옛날엔 인정하지 않았지만 A == 브론즈, B== 실버하위, C == 실버 상위, D == 골드 수준의 문제들이 출제 되기 때문이다. (물론 편차가 있긴하지만) 예전에는 내가 C, D를 자주 못풀었기 때문에 D가 무슨 골드냐 플레는 되겠지..했는데 솔직히 풀이를 보면 골드가 맞다. ㅋㅋ 내가 아직 골드는 확정적으로 푸는 실력이 안되는 것이다. 그래도 오늘은 4문제를 겨우겨우 어찌저찌 풀었으니 다행이다. E까지 업솔빙을 해보겠다. A. Grasshopper on a Line (0:05) 해가 무조건 있다고 알려줬다. 그러니 k로 나누어 떨어지지 않으면 1을 출력하고 x로 바로 이동한다. k로 나누어 떨어지면 2를 출력하고 i, x-i로 분할하여 생각한다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ int x, k; cin &gt;&gt; x &gt;&gt; k; if(x%k){ cout &lt;&lt; 1 &lt;&lt; &#39;\\n&#39;; cout &lt;&lt; x &lt;&lt; &#39;\\n&#39;; }else{ cout &lt;&lt; 2 &lt;&lt; &#39;\\n&#39;; for(int i=1;i&lt;=x;i++){ if(i%k&amp;&amp;(x-i)%k){ cout &lt;&lt; i &lt;&lt; &#39; &#39; &lt;&lt; x-i &lt;&lt; &#39;\\n&#39;; break; } } } } } B. Comparion String (0:10) 꺾은 괄호가 들어가는 문자열에서 숫자를 적절히 배열하여 올바른 식을 만들 때 , 사용할 수 있는 숫자의 최소개수를 구하는 것이다. 연속되는 « $\\dots$와 »$\\dots$의 개수를 세고 거기에 수를 넣는다고 생각하면 연속되는 괄호의 개수 +1이 정답이다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ int n; cin &gt;&gt; n; string s; cin &gt;&gt; s; int res = 0; char pre = 0; int now = 0; for(int i=0;i&lt;s.size();i++){ if(s[i]==pre){ now++; }else{ now = 1; pre = s[i]; } res = max(res, now); } cout &lt;&lt; res+1 &lt;&lt; &#39;\\n&#39;; } } C. Best Binary String (0:39) 조금 오래 걸리긴 했다. 그 이유는 reverse의 뜻을 toggle과 혼동했기 때문이다. 0을 1로 바꾸고 1을 0으로 바꾸라는 줄 알았는데 알고보니 substring을 그냥 뒤집는 거였따. 문제를 똑바로 읽기로 다짐한지 2주도 안되었는데 바로 착각해버렸다. 솔직히 영어를 못하는 문제도 조금은 있는 것 같다. 결국 이 문제는 물음표 자리에 바로 이전 것이 들어가면 된다. 문제를 따라가느라 deque을 이용했다. (하지만 필요없을 듯하다, 그래도 연속되는 ?가 있을 수 있으니 자료구조를 이용하긴 해야할듯) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ string s; cin &gt;&gt; s; deque&lt;char&gt; dq; dq.push_back(&#39;0&#39;); string res; for(int i=0;i&lt;s.size();i++){ if(s[i]==&#39;0&#39;){ dq.push_back(&#39;0&#39;); }else if(s[i]==&#39;1&#39;){ if(dq.front()==&#39;0&#39;){ while(dq.front()!=&#39;0&#39;) { res += dq.front(); dq.pop_front(); } }else{ if(dq.back()==&#39;0&#39;){ while(!dq.empty()){ res += dq.front(); dq.pop_front(); } } } dq.push_back(&#39;1&#39;); }else{ dq.push_back(dq.back()); } } while(!dq.empty()){ res += dq.front(); dq.pop_front(); } for(int i=1;i&lt;res.size();i++) cout &lt;&lt; res[i]; cout &lt;&lt; &#39;\\n&#39;; } } 이 풀이 말고 관찰을 통해 위 사실을 알아낸뒤 D. Bracket Coloring (1:59 , +3) 솔직히 이 문제를 이렇게나 늦게 푼 것은 온전히 해석 탓이다. 정말 화가 난다. 문제를 제대로 읽지 못해 시간 끈 것이 이 대회만 해도 2개라니…. 영어 공부한다고 이런 습관이 고쳐지기는 쉽지 않을 것이다. 문제를 이해 하면 다음과 같다. 올바른 문자열은 - regular 문자열이다. reverse하여 regular 문자열이 된다면 beautiful 문자열이다. 물론 beautiful 문자열은 regular문자열을 포함한다. (하지만 따로 보는 것이 문제에선 좋다) 이제 색을 칠할 건데, 칠한 색을 쭉 나열했을 땐 beautiful 문자열이어야한다. 따라서 위 내용 중 가장 핵심은 regular랑 beautiful이랑 섞이면 절대로 beautiful이 될 수 없다는 것이다. 그래서 이 문제는 regular와 beautiful을 따로 색칠하는 문제가 된다. 따라서 될 수 있는 Color의 최대값은 2이다. 나는 그냥 beautiful을 뒤집어서 beautiful이면 되는 줄 알았는데….이따구로 이해해서 4틀을 한 내가 너무 한심하다. 하지만 그래도 시간안에 올바르게 이해해서 다시 풀었으니 봐주도록 해야겠따. (안봐줬을 때 페널티로 할 것도 없음ㅋㅋ) 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second int main(){ fast_io int tt; cin &gt;&gt; tt; while(tt--){ int n; cin &gt;&gt; n; string s; cin &gt;&gt; s; vector&lt;int&gt; fr, bk; for(int i=0;i&lt;n;i++){ if(s[i]==&#39;(&#39;) fr.push_back(i); else bk.push_back(i); } if(fr.size()!=bk.size()){ cout &lt;&lt; -1 &lt;&lt; &#39;\\n&#39;; continue; } set&lt;int&gt; ST; vector&lt;int&gt; res(n); deque&lt;char&gt; dq; int k1 = 0, k2 = 0; for(int i=0;i&lt;n;i++){ if(dq.empty()||dq.back()==s[i]) { if(s[i]==&#39;(&#39;&amp;&amp;i&lt;fr[k1]) continue; if(s[i]==&#39;)&#39;&amp;&amp;i&lt;bk[k2]) continue; dq.push_back(s[i]); } else{ ST.insert((dq.front()==&#39;(&#39;)); while(!dq.empty()){ res[fr[k1]] = (dq.front()==&#39;(&#39;); res[bk[k2]] = (dq.front()==&#39;(&#39;); k1++; k2++; dq.pop_front(); } } } cout &lt;&lt; ST.size() &lt;&lt; &#39;\\n&#39;; for(int ANS : res){ if(ST.size()==1) cout &lt;&lt; 1 &lt;&lt; &#39; &#39;; else if(ANS==0) cout &lt;&lt; 1 &lt;&lt; &#39; &#39;; else cout &lt;&lt; 2 &lt;&lt; &#39; &#39;; } cout &lt;&lt; &#39;\\n&#39;; } } E. Playoff Fixing (Upsolving) 문제를 정리해보면 1번팀이 제일 세고 $2^k$번째 팀이 가장 약하다. 이 때 토너먼트는 seed를 받고 그에 따라 결정된다. (1-2번 시드끼리, 3-4번 시드끼리 ….) 토너먼트가 실력대로 결과가 나오도록 조작할 수 있을 때 그렇게 만들 수 있는 경우의 수를 구한다. 예를 들면 1 2 3 4 라면 1번 2번팀이 첫라운드에 싸우니까 절대로 실력대로 결과가 나오지 않는다. -1 -1 -1 -1 이라면 1번팀은 4군데중 아무데나 갈 수 있고 2번팀은 그 반대라인으로 가면 2개 중하나가 된다. 그리고 3, 4를 배치하는경우의 수가 2개니까 $4 \\times 2 \\times 2$ 가 된다. 위 내용이 문제 정리다. 그럼 어떻게 풀어야 할까? $2^k$의 팀이 경기를 하면 다음 승자조는 $2^{k-1}$팀이 된다. (그리고 그 승자조는 팀번호가 낮은 사람들이다. ) 이번 턴에 지는 사람 $2^{k-1}$의 배치는 맘대로 할 수 있다. (-1인 경우에) 그래서 지는 사람이 -1이라면 이들의 배치를 신경써야한다. 만약 이기는 사람, 지는 사람이 둘다 -1라면 둘의 배치는 바꿔도 되니까 2를 곱해준다. 불가능한 경우는 기준을 이용해 계산했을 때 떨어지면 안되는 사람이 떨어지면 0을 출력하고 종료한다. 만약에 둘다 -1이 아니고 결정이 되었으면 배치는 신경안써도 된다. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; #define xx first #define yy second const int MOD = 998244353; int main(){ fast_io int K; cin &gt;&gt; K; vector&lt;int&gt; a(1&lt;&lt;K); for(int i=0;i&lt;(1&lt;&lt;K);i++){ cin &gt;&gt; a[i]; if(a[i]!=-1) --a[i]; } ll res = 1; for(int i=K-1;i&gt;=0;i--){ int big = (1 &lt;&lt; i); int minus_one = 0; vector&lt;int&gt; na(1 &lt;&lt; i); for(int j=0;j&lt;(1&lt;&lt;i);j++){ if(a[2*j]&gt;a[2*j+1]) swap(a[2*j], a[2*j+1]); // 앞이 이김 if(a[2*j]==-1){ if(a[2*j+1]&gt;= (1 &lt;&lt; i)){ //앞이 이기는 경우가 맞음 big--; na[j] = -1; }else if(a[2*j+1]!=-1){ //이건 뒤가 이기는 경우임 na[j] = a[2*j+1]; }else{ //배치를 맘대로 해도 됨 na[j] = -1; minus_one++; } continue; } if( a[2*j]&lt;(1&lt;&lt;i) == a[2*j+1]&lt; (1 &lt;&lt; i)){ //둘다 기준보다 작으면 안됨 cout &lt;&lt; 0; return 0; } na[j] = a[2*j]; //정상적으로 앞이 이김 big--; } for(int i=0;i&lt;minus_one;i++) res = res * 2LL % MOD; // 둘의 배치를 바꿀 수 있음 for(int i=1;i&lt;=big;i++) res = 1LL*res * i %MOD; //이긴 것들의 순서 조정 a = na; } cout &lt;&lt; res; } 재밌는 문제였따. 토너먼트 문제는 이긴 사람, 진 사람을 제대로 나누고 생각하는 것이 중요해 보인다.","headline":"코드포스 - 연습중2","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/Edu-Codeforce-round-149-(Div-2)/"},"url":"http://localhost:4000/posts/Edu-Codeforce-round-149-(Div-2)/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -322,10 +322,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Problem Solving</span>
-              <span class="badge bg-secondary rounded-pill">32</span>
+              <span class="badge bg-secondary rounded-pill">33</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-02-22 문제풀이
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/aho-corasick/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -940,10 +946,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Other Things</span>
-              <span class="badge bg-secondary rounded-pill">4</span>
+              <span class="badge bg-secondary rounded-pill">5</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    근황 토크 및 앞으로의 블로그 운영계획
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/It-takes-two-%EA%B2%8C%EC%9E%84%EB%A6%AC%EB%B7%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -1086,6 +1098,42 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/1.-rust-%EA%B8%B0%EB%B3%B8-%EB%AC%B8%EB%B2%95/" style="font-size: 0.85rem; padding-left: 2rem;">
                     rust 문법 공부
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <!-- 카테고리 이름 (폴더처럼) -->
+            <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>Just Chatting</span>
+              <span class="badge bg-secondary rounded-pill">1</span>
+            </a>
+            <!-- 해당 카테고리의 글 목록 -->
+            <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    근황 토크 및 앞으로의 블로그 운영계획
+                  </a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          <li class="nav-item">
+            <!-- 카테고리 이름 (폴더처럼) -->
+            <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+              <span>BOJ</span>
+              <span class="badge bg-secondary rounded-pill">1</span>
+            </a>
+            <!-- 해당 카테고리의 글 목록 -->
+            <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-02-22 문제풀이
                   </a>
                 </li>
               
@@ -2150,6 +2198,20 @@
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/">2026-02-22 문제풀이</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/">근황 토크 및 앞으로의 블로그 운영계획</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/aho-corasick/">문자열 - 아호 코라식(Aho-Corasick)</a>
         </li>
       
@@ -2165,20 +2227,6 @@
         
         <li class="text-truncate lh-lg">
           <a href="/posts/2060-%EC%97%BC%EC%86%8C%EC%A4%84%EC%84%9C%EA%B8%B0-%ED%92%80%EC%9D%B4/">염소줄서기 문제 풀이</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%EB%B6%84%ED%95%A0%EC%A0%95%EB%B3%B5%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%B5%9C%EC%A0%81%ED%99%94(Divide-&-Conquer-Optimization)/">D&C Optimization</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/Codeforces-Round-936(Div.2)/">코드포스 - 다시 맘 잡기</a>
         </li>
       
     </ul>
@@ -2628,220 +2676,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -3011,6 +2845,61 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -3174,6 +3063,172 @@
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     
@@ -4700,220 +4755,6 @@
     
     
     
-      
-        
-        
-
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
-  
-    
-    
-    
-    
   
     
     
@@ -5083,6 +4924,61 @@
     
     
     
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
       
         
         
@@ -5246,6 +5142,172 @@
     
     
     
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
     
   
     

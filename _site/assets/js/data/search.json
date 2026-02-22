@@ -1,6 +1,24 @@
 [
   
   {
+    "title": "2026-02-22 문제풀이",
+    "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/",
+    "categories": "Problem Solving, BOJ",
+    "tags": "백준, 그래프",
+    "date": "2026-02-22 00:00:00 +0900",
+    "content": "35293 멘헤라  풀이  먼저 4.5를 두번 더하면 9도가 되니까 4.5를 사용하는건 한 번 또는 0번이다. 그리고 소수점에 5나 0 이외의 수가 있다면 만들 수 없다.  이제 모든 수를 다 만들 수 있다고 생각하고 문제를 보면 최단거리 bfs문제와 비슷해진다. 9, 7, -2를 가지고 그래프 탐색을 진행하면 된다.  그러니까 대충 9의 배수인 900으로 나눈 나머지까지 탐색하고 하면 될 것이다. -900 ~ 900 까지 최단거리를 직접구하고 N에서 900을 나눈 나머지로 답을 구하면 된다.  그럼 정답은 $몫 \\times 100 + D[나머지]$ 가 된다.  코드 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; typedef tuple&lt;ll, ll, ll&gt; tlll; #define xx first #define yy second   int main(){     fast_io     string s; cin &gt;&gt; s;     if(s[s.length()-1] == '5' || s[s.length()-1] == '0'){         ll N = stoll(s.substr(0, s.length()-2));         ll res = 0;         if(s[s.length()-1] == '5'){             N -= 4;             res += 1;         }          ll Y = 900;         ll a = N / Y;         ll b = N % Y;         vector&lt;int&gt; D(Y * 2 +1, -1);         D[Y] = 0;         queue&lt;int&gt; q; q.push(Y);         while(!q.empty()){             int now = q.front();             q.pop();              if(now + 9 &lt;= 2 * Y &amp;&amp; D[now + 9] == -1){                 D[now + 9] = D[now] + 1;                 q.push(now + 9);             }             if(now + 7 &lt;= 2 * Y &amp;&amp; D[now + 7] == -1){                 D[now + 7] = D[now] + 1;                 q.push(now + 7);             }             if(now - 2 &gt;= 0 &amp;&amp; D[now - 2] == -1){                 D[now-2] = D[now] + 1;                 q.push(now - 2);             }         }         res += a * 100 + D[b + Y];         cout &lt;&lt; res &lt;&lt; '\\n';     }else{         cout &lt;&lt; -1;     } }   35286 지하철! 지하철! 몇호선? 몇호선?  풀이 게임이론이고 더이상 지하철을 부를 수 없을 때 패배한다.  1, 3이면 확실히 선공이 이긴다. 2, 4면 확실히 후공이 이긴다.  4의 경우를 생각해보면 선공이 부른 값의 +2나 -2를 해서 모든 칸을 다 불러서 끝낼 수 있기 때문이다.  5의 경우도 후공이 뭘하던 선공은 모든 칸을 다 부를 수 있게 할 수 있다. 따라서 선공이 이긴다.  느낌상 홀수면 선공 승리, 짝수면 후공 승리의 느낌은 온다.  짝수를 생각해봤을 때, 후공이 스스로 고립되는 수를 부르지만 않으면 이긴다.  홀수는 선공이 짝수처럼 맨 끝을 불러서 시작할 수 있으니깐 상황이 역전된다.  꽤 생각하기 어렵지만 찍기도 쉽다.  코드 for _ in range(int(input())) :      N = int(input())     print(\"H\" if N &amp; 1 else \"S\")"
+  },
+  
+  {
+    "title": "근황 토크 및 앞으로의 블로그 운영계획",
+    "url": "/posts/%EA%B7%BC%ED%99%A9-%EB%B0%8F-%EA%B3%84%ED%9A%8D/",
+    "categories": "Other Things, Just Chatting",
+    "tags": "잡담",
+    "date": "2026-02-20 00:00:00 +0900",
+    "content": "블로그를 다시 시작해볼게요  개요 음.. 엄청나게 오랜만에 글을 쓴다.  블로그에 열심히 쓴 양질의 글만 올리려다보니 귀찮아지고 그 귀찮음은 결국 블로그 유기로 이어졌다…   일단 새로운 마음으로 블로그를 다시 시작하기 위해 theme을 바꿨다. (예쁜 것 같아 맘에 든다 - Chirpy theme이다.)   이제는 내 일상이든, 백준 브론즈문제든 겪었던 사소한 버그를 마구잡이로 기록해볼까한다.    사실 이런 글을 누가 읽을지도 모르고 AI들만 읽을지도 모르지만 아무말이라도 쓰고 누군가 봐주는 건 소중하다고 생각한다.  근황 졸업 후 바로 취업하고 싶었지만 뭔가 잘 안됐다.   내가 잘하는게 뭔지, 하고 싶은 일은 뭔지 정확히 인지하지 못했던 점, 그리고 나의 장점을 어필을 제대로 못한게 아쉽다.  면접까지는 어떻게 여러번 갔는데 실패 후 제대로 피드백하지 않고 이젠 그 때 받았던 질문도 다 까먹어버렸다.  실패라는 감정에 휩싸여 게임만 했던게 조금은 아쉽다.  어짜피 지금은 취업하기가 더 힘든 상황이고 실패가 당연했던건데 그 땐 몰랐다.   하지만 덕분에 새로운 분야를 공부해보고 있고 앱, 웹, 게임 개발 말고도 다른 길도 좀 찾아보게되면서 시야가 넓어진 것 같아 좋다.  요즘 하는 것         SAP, ERP 개발 ERP개발이라는 분야를 처음 알게 되었다.   회사의 전사적자원관리를 하는 시스템을 개발하는 건데 컴공에서는 이런 분야는 알려주지 않아서 난 처음 알았다. SAP는 ERP 솔루션의 하나로 세계적으로 가장 많이 쓰이는 솔루션이라고 생각하면 된다.  이제 블로그로 요즘 공부하는 ABAP, Fiori 등의 개념을 정리해서 올려보려고 한다.           운동 운동을 제대로 시작했다.   뱃살이 많아졌기 때문이다. 뱃살은 30대가 되기전에 빼야 그 때 고생안한다고 하더라.  고3때부터 찌기 시작해 8년간 10kg이상 쪄왔다. 쉽게 뺄 수 있을 것 같진 않지만 계속 노력해보려고 한다.      블로그 운영 계획 블로그에는 매우 일상적인 내용도 올리고 매우 쉬운 백준 문제도 풀면 올리려고 한다.  즉 올라가는 내용은 세 종류일 것이다.    SAP, ERP 관련 CS 지식   알고리즘 문제 풀이   이런식의 잡담 글   마무리 내가 언제까지 꾸준히 할 수 있을진 모르겠지만 해보겠다.   나는 백준 1500일 연속 스트릭을 채운 꾸준함의 괴물이니까 한번 관성이 생기면 계속할 것이다.   이 글을 읽는 사람도 하고 싶은일이 다 잘 풀리기 바란다.   또 봅시다!!"
+  },
+  
+  {
     "title": "문자열 - 아호 코라식(Aho-Corasick)",
     "url": "/posts/aho-corasick/",
     "categories": "Problem Solving, Algorithm",
