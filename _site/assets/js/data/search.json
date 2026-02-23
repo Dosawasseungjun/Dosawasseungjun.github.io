@@ -1,6 +1,15 @@
 [
   
   {
+    "title": "2026-02-23 문제풀이",
+    "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/",
+    "categories": "Problem Solving, BOJ",
+    "tags": "백준, 구현",
+    "date": "2026-02-23 00:00:00 +0900",
+    "content": "개요 평일이니까 최근 올라온 문제 중 쉬워보이는 문제를 2개 골랐다. ㅎㅎ    간단한 문제도 포스팅을 하기로 했으니 열심히 해야지.  소수가 아닌 수4  풀이 서로 다른 N개의 정수가 주어지니까 그냥 1이 아닌 2개의 수를 고르기만 하면 소수가 아니게 된다.    1을 골랐다고 하더라도 곱한 값이 소수가 아니면 된다.    그러니까 그냥 제일 큰 수 곱하고 소수인지 아닌지 보면 그만이다. (overflow에 주의해 그냥 N=2일때만 검사하자.)     알고리즘            정렬한다.       맨 뒤에 2개를 곱한다.       그 수가 소수인지 확인한다. (1이 포함되어 있을 경우)           코드 N = int(input()) A = list(map(int, input().split())) A.sort() if A[-2] == 1 :      ok = False     for i in range(2, A[-1]) :          if A[-1] % i == 0 :             ok = True     if ok :          print(\"YES\")         print(2)         print(A[-2], A[-1])     else :          print(\"NO\") else :      print(\"YES\")     print(2)     print(A[-2], A[-1])   SUAPC 2025 Summer  풀이 일단 중요한건 현재 페널티 점수(A), solve 수 (S), 맞춘 문제의 틀린횟수(K)이다.    3개를 배열로 관리하면 쉽게 구현할 수 있다.  코드 N = int(input()) A = [0, 1381, 1609, 820, 1366, 911, 913, 1285, 1290, 696, 769] S = [100, 10, 10, 8, 8, 7, 7, 7, 7, 6, 6] K = [0, 10, 19, 3, 18, 8, 7, 27, 18, 6, 2] if S[N-1] != S[N] :      print(\"Solve harder problems\") else :      print(\"Think before submission\" if A[N-1] &gt; A[N] - 20 * K[N] else \"Solve harder problems\")"
+  },
+  
+  {
     "title": "2026-02-22 문제풀이",
     "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/",
     "categories": "Problem Solving, BOJ",

@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>도사였다 블로그</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-22T16:12:54+09:00</updated>
+  <updated>2026-02-23T09:33:58+09:00</updated>
   <author>
     <name>Han Seungjun</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,32 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>2026-02-23 문제풀이</title>
+    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" rel="alternate" type="text/html" title="2026-02-23 문제풀이" />
+    <published>2026-02-23T00:00:00+09:00</published>
+  
+    <updated>2026-02-23T00:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/</id>
+    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" />
+    <author>
+      <name>Han Seungjun</name>
+    </author>
+
+  
+    
+    <category term="Problem Solving" />
+    
+    <category term="BOJ" />
+    
+  
+
+  <summary>개요 평일이니까 최근 올라온 문제 중 쉬워보이는 문제를 2개 골랐다. ㅎㅎ    간단한 문제도 포스팅을 하기로 했으니 열심히 해야지.  소수가 아닌 수4  풀이 서로 다른 N개의 정수가 주어지니까 그냥 1이 아닌 2개의 수를 고르기만 하면 소수가 아니게 된다.    1을 골랐다고 하더라도 곱한 값이 소수가 아니면 된다.    그러니까 그냥 제일 큰 수 곱하고 소수인지 아닌지 보면 그만이다. (overflow에 주의해 그냥 N=2일때만 검사하자.)     알고리즘            정렬한다.       맨 뒤에 2개를 곱한다.       그 수가 소수인지 확인한다. (1이 포함되어 있을 경우)           코드 N = int(input()) A = list(map(int, input().split...</summary>
+
+  </entry>
 
   
   <entry>
@@ -117,32 +143,6 @@
   
 
   <summary>docker를 이해해보자  프로젝트를 제대로 배포해보지 않은 입장에서 docker는 뭔가 개념자체가 잘 와닿지 않았다.  그래서 직접 정리를 하며 docker, k8s, jenkins에 대해 각각 한페이지짜리 정리를 해보려한다.  개요 일단 내가 어떤 Web Service를 개발했는데, 이것이 누군가의 환경에서는 동작하지 않을 수가 있다. 이는 여러 이유가 있겠지만, 한마디로 dependencies가 달라서라고 할 수 있다.  매우 쉬운 예시로, 파이썬으로 Hello world를 출력하는 프로그램을 만들었는데 다른 컴퓨터에서 실행하려니 파이썬이 안깔려있는 상황인 것이다.     개발환경과 운영환경의 불일치가 있고   매우 가벼운 실행 패키지가 필요해졌다.   그래서 등장한 것이 Containerizat...</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>염소줄서기 문제 풀이</title>
-    <link href="http://localhost:4000/posts/2060-%EC%97%BC%EC%86%8C%EC%A4%84%EC%84%9C%EA%B8%B0-%ED%92%80%EC%9D%B4/" rel="alternate" type="text/html" title="염소줄서기 문제 풀이" />
-    <published>2024-04-20T00:00:00+09:00</published>
-  
-    <updated>2024-04-20T00:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/2060-%EC%97%BC%EC%86%8C%EC%A4%84%EC%84%9C%EA%B8%B0-%ED%92%80%EC%9D%B4/</id>
-    <content type="text/html" src="http://localhost:4000/posts/2060-%EC%97%BC%EC%86%8C%EC%A4%84%EC%84%9C%EA%B8%B0-%ED%92%80%EC%9D%B4/" />
-    <author>
-      <name>Han Seungjun</name>
-    </author>
-
-  
-    
-    <category term="Problem Solving" />
-    
-    <category term="Algorithm" />
-    
-  
-
-  <summary>2060 염소줄서기 풀이 및 코드  개요 오랜만에 다이아 문제 풀이를 써보려고 한다.  이 문제는 내가 옛날에 북마크 해뒀던 문젠데 북마크에서 거의 1년간 썩어가고 있어서 속상해서 선택했다.  문제 이해가 어렵지 않아서 선택한 것도 있다.  다이아 문제를 하루에 하나씩 풀면 엄청난 도움이 되겠지만 블로그 풀이를 안보면 하루에 하나는 무슨 일주일에 하나도 힘들것이다. 그래도 1일 1플레는 도전을 해봐야겠다.  문제 이해 염소들 번호가 있는데 밥먹는 순서는 다음과 같다. 염소번호를 이진수로 나타냈을 때    1의 개수가 적을 수록 먼저먹는다.   1의 개수가 같다면 그냥 이진수 크기가 더 작은 염소가 먼저 먹는다.   이진수로 A부터 B까지의 염소가 있을 때, k번째 밥을 먹는 염소는 몇 번 친구인가?  ...</summary>
 
   </entry>
 

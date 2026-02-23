@@ -341,6 +341,12 @@ var store = [{
         "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/",
         "teaser": null
       },{
+        "title": "2026-02-23 문제풀이",
+        "excerpt":"개요 평일이니까 최근 올라온 문제 중 쉬워보이는 문제를 2개 골랐다. ㅎㅎ 간단한 문제도 포스팅을 하기로 했으니 열심히 해야지. 소수가 아닌 수4 풀이 서로 다른 N개의 정수가 주어지니까 그냥 1이 아닌 2개의 수를 고르기만 하면 소수가 아니게 된다. 1을 골랐다고 하더라도 곱한 값이 소수가 아니면 된다. 그러니까 그냥 제일 큰 수...","categories": ["Problem Solving","BOJ"],
+        "tags": ["백준","구현"],
+        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],
