@@ -2,7 +2,7 @@
   
   {
     "title": "2026-02-23 문제풀이",
-    "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/",
+    "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B02/",
     "categories": "Problem Solving, BOJ",
     "tags": "백준, 구현",
     "date": "2026-02-23 00:00:00 +0900",
@@ -10,8 +10,17 @@
   },
   
   {
+    "title": "ABAP - Foreign Key와 CDS View의 Association",
+    "url": "/posts/CDS%EC%97%90%EC%84%9C-%EA%B4%80%EA%B3%84%EC%84%B1-%EB%82%98%ED%83%80%EB%82%B4%EA%B8%B0/",
+    "categories": "ERP, ABAP",
+    "tags": "ERP개발, SAP, ABAP, CDS",
+    "date": "2026-02-23 00:00:00 +0900",
+    "content": "키워드     ADT (Abap Development Tool): 이클립스(Eclipse) 기반의 ABAP 개발 도구   CDS (Core Data Service): 차세대 데이터 모델링 기술   Primary Key &amp; Foreign Key: 주키와 외래키   Association: CDS 뷰 간의 관계 정의 (JOIN보다 똑똑함!)   Cardinality: 관계의 수 (1:1, 1:N 등)     1. 테이블 간의 관계성 (Relationship Between Database)  관계형 데이터베이스(RDB)를 이해하기 위해 가장 쉬운 예시인 ‘직원’과 ‘부서’를 고려해보자.  직원 테이블 {     직원 ID (PK),     이름,     부서 ID,  &lt;-- 여기에 \"D01\"이라고 적혀있다면?     전화번호,     주소 }  부서 테이블 {     부서 ID (PK), &lt;-- 실제 \"D01\"에 대한 정보는 여기 있다.     부서명,     부서 전화번호 }   위 구조를 보면, 직원 테이블도 ‘부서 ID’를 가지고 있고 부서 테이블도 ‘부서 ID’를 가지고 있다. 사람 눈에는 “아, 이 직원이 이 부서 소속이구나”라고 바로 보이지만, 컴퓨터는 우리가 명시해주지 않으면 두 ID가 같은 의미인지 모른다. 따라서 우리는 “이 두 테이블은 관계가 있어!” 라고 명시해 줄 필요가 있다.  관계의 종류 (Cardinality) 직원과 부서의 관계는 상황에 따라 다르게 정의될 수 있다. CDS에서는 [min..max] 형태로 표현한다.     [1..1] (One to One): 한 직원은 무조건 하나의 부서에만 속한다.   [0..1] (Zero to One): 한 직원은 부서가 있을 수도, 없을 수도(대기발령 등) 있다.   [0..*] (Zero to Many): 한 직원이 여러 부서에 속할 수도 있다. (겸직 등)   내가 원하는 비즈니스 로직에 맞춰 이 관계를 CDS로 어떻게 표현하는지 알아보자.    2. CDS (Core Data Service) 란?  기존 SE11에서 만들던 View보다 훨씬 강력한 차세대 View다.     ADT (ABAP Development Tool): 예전 SE80 대신 사용하는 이클립스(Eclipse) 환경을 말한다. CDS는 여기서만 만들 수 있다.   DDL (Data Definition Language): CDS를 정의할 때 쓰는 언어다. SQL과 거의 비슷한데 조금 더 강력한 기능을 제공한다.      “복잡한 로직을 DB에서 미리 처리해서 가져오자!” (Code Pushdown)     3. Foreign Key vs Association  이 두 가지는 “관계를 맺는다”는 점은 같지만, 사용 목적과 방향이 다르다.  ① Foreign Key (외래키) “데이터가 진짜인지 검사하는 용도”다. (데이터 무결성)  예를 들어, 직원 테이블에 부서 ID = 'Z99'라고 입력하려고 할 때, 실제 부서 테이블에 Z99라는 부서가 없으면 저장을 막아야 한다. 이때 “직원 테이블(Foreign Key Table)”이 “부서 테이블(Check Table)”을 참조하여 유효성을 검사한다.  CDS Table Definition에서의 구현 (예시) define table zb30depment {   key client   : abap.clnt not null;   key id       : /lrn/department_id not null;      /* Foreign Key 설정 */   @AbapCatalog.foreignKey.screenCheck : true   head_id      : zb30_employee_id     with foreign key [0..1] zb30employ  // &lt;-- zb30employ 테이블을 찔러본다!       where client = zb30depment.client         and employee_id = zb30depment.head_id; }     설명: 부서 테이블의 head_id(부서장) 필드는 아무나 들어갈 수 없다. 반드시 zb30employ(직원) 테이블에 존재하는 ID여야 한다는 제약(Constraint)을 건 것이다.     ② Association (어소시에이션) “정보를 연결해서 가져오는 용도”다. (JOIN의 진화형)  기존 SQL의 JOIN과 비슷하지만, 가장 큰 차이점은 “On-Demand (필요할 때만)” 실행된다는 점이다. Association을 정의해두면, 누군가 그 정보를 요청하기 전까지는 DB를 건드리지 않는다. (성능상 이득!)  CDS View에서의 구현 (예시) define view entity ZB30_R_DEPARTMENT as select from zb30depment      // 1. 부서(Department)와 직원(Employee)의 관계 정의     // \"하나의 부서에는 여러 명의 직원(*)이 있을 수 있다.\"     association [0..*] to ZB30_R_EMPLOYEE as _Employee         on $projection.Id = _Employee.DepartmentId      // 2. 부서장(Head)과의 관계     // \"부서장은 0명 또는 1명이다.\"     association [0..1] to ZB30_R_EMPLOYEE as _Head         on $projection.HeadId = _Head.EmployeeId {     key id       as Id,     description  as Description,     head_id      as HeadId,          /* Association 공개 (Make Associations Public) */     _Employee,     _Head }   코드 해석 association [0..*] to ZB30_R_EMPLOYEE as _Employee     on $projection.Id = _Employee.DepartmentId     association to 대상뷰: “나랑 쟤랑 관계가 있어!” 라고 선언.   as _Employee: 연결된 뷰의 별명(Alias). 보통 언더바(_)로 시작하는 것이 관례다.   on $projection.Id: $projection은 지금 내가 정의하고 있는 뷰(부서)를 뜻한다. 즉, “내 ID랑…”   = _Employee.DepartmentId: “…직원 뷰의 부서 ID가 같은 애들을 연결할 거야!”     4. 요약 및 차이점                 구분       Foreign Key (외래키)       Association (관계)                       목적       데이터 유효성 검증 (Validation)       데이터 조회 및 탐색 (Navigation)                 방향       단방향 (검사하는 쪽 → 검사받는 쪽)       양방향 가능 (주로 단방향으로 정의 후 사용)                 키 필드 여부       반드시 Check Table의 Key 필드와 연결       Key 필드가 아니어도 연결 가능 (자유로움)                 비유       “이 데이터 가짜 아니야? 신분증 검사해봐!”       “이 데이터랑 관련된 다른 정보도 보고 싶어? 저쪽으로 가봐!”             결론적으로 Foreign Key는 데이터가 깨지지 않게 지켜주는 문지기이고, Association은 데이터를 쉽게 찾아갈 수 있게 해주는 지도(Map)라고 이해하면 쉽다."
+  },
+  
+  {
     "title": "2026-02-22 문제풀이",
-    "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/",
+    "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B01/",
     "categories": "Problem Solving, BOJ",
     "tags": "백준, 그래프",
     "date": "2026-02-22 00:00:00 +0900",

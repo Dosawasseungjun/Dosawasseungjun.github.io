@@ -338,13 +338,19 @@ var store = [{
         "title": "2026-02-22 문제풀이",
         "excerpt":"35293 멘헤라 풀이 먼저 4.5를 두번 더하면 9도가 되니까 4.5를 사용하는건 한 번 또는 0번이다. 그리고 소수점에 5나 0 이외의 수가 있다면 만들 수 없다. 이제 모든 수를 다 만들 수 있다고 생각하고 문제를 보면 최단거리 bfs문제와 비슷해진다. 9, 7, -2를 가지고 그래프 탐색을 진행하면 된다. 그러니까 대충 9의 배수인...","categories": ["Problem Solving","BOJ"],
         "tags": ["백준","그래프"],
-        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/",
+        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B01/",
+        "teaser": null
+      },{
+        "title": "ABAP - Foreign Key와 CDS View의 Association",
+        "excerpt":"키워드 ADT (Abap Development Tool): 이클립스(Eclipse) 기반의 ABAP 개발 도구 CDS (Core Data Service): 차세대 데이터 모델링 기술 Primary Key &amp; Foreign Key: 주키와 외래키 Association: CDS 뷰 간의 관계 정의 (JOIN보다 똑똑함!) Cardinality: 관계의 수 (1:1, 1:N 등) 1. 테이블 간의 관계성 (Relationship Between Database) 관계형 데이터베이스(RDB)를 이해하기 위해...","categories": ["ERP","ABAP"],
+        "tags": ["ERP개발","SAP","ABAP","CDS"],
+        "url": "/posts/CDS%EC%97%90%EC%84%9C-%EA%B4%80%EA%B3%84%EC%84%B1-%EB%82%98%ED%83%80%EB%82%B4%EA%B8%B0/",
         "teaser": null
       },{
         "title": "2026-02-23 문제풀이",
         "excerpt":"개요 평일이니까 최근 올라온 문제 중 쉬워보이는 문제를 2개 골랐다. ㅎㅎ 간단한 문제도 포스팅을 하기로 했으니 열심히 해야지. 소수가 아닌 수4 풀이 서로 다른 N개의 정수가 주어지니까 그냥 1이 아닌 2개의 수를 고르기만 하면 소수가 아니게 된다. 1을 골랐다고 하더라도 곱한 값이 소수가 아니면 된다. 그러니까 그냥 제일 큰 수...","categories": ["Problem Solving","BOJ"],
         "tags": ["백준","구현"],
-        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/",
+        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B02/",
         "teaser": null
       },{
         "title": "Categories",
@@ -366,7 +372,7 @@ var store = [{
         "teaser": null
       },{
         "title": "나에 대해서",
-        "excerpt":"안녕하세요  알고리즘을 좋아하는 개발자 한승준입니다.     github : 깃허브주소   instagram : 인스타그램   글에 오타가 있거나 내용상 문제가 있으면 알려주시면 감사하겠습니다.  이 블로그는 공부 목적으로 만들어졌습니다.  ","categories": [],
+        "excerpt":"안녕하세요  알고리즘을 좋아하는 개발자 한승준입니다.     github : 깃허브주소   글에 오타가 있거나 내용상 문제가 있으면 알려주시면 감사하겠습니다.  이 블로그는 공부 목적으로 만들어졌습니다.  ","categories": [],
         "tags": [],
         "url": "/about/",
         "teaser": null

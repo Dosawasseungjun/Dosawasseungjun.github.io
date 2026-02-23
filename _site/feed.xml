@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>도사였다 블로그</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-23T09:33:58+09:00</updated>
+  <updated>2026-02-23T16:00:31+09:00</updated>
   <author>
     <name>Han Seungjun</name>
     <uri>http://localhost:4000/</uri>
@@ -21,13 +21,13 @@
   
   <entry>
     <title>2026-02-23 문제풀이</title>
-    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" rel="alternate" type="text/html" title="2026-02-23 문제풀이" />
+    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B02/" rel="alternate" type="text/html" title="2026-02-23 문제풀이" />
     <published>2026-02-23T00:00:00+09:00</published>
   
     <updated>2026-02-23T00:00:00+09:00</updated>
   
-    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/</id>
-    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" />
+    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B02/</id>
+    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B02/" />
     <author>
       <name>Han Seungjun</name>
     </author>
@@ -46,14 +46,40 @@
 
   
   <entry>
+    <title>ABAP - Foreign Key와 CDS View의 Association</title>
+    <link href="http://localhost:4000/posts/CDS%EC%97%90%EC%84%9C-%EA%B4%80%EA%B3%84%EC%84%B1-%EB%82%98%ED%83%80%EB%82%B4%EA%B8%B0/" rel="alternate" type="text/html" title="ABAP - Foreign Key와 CDS View의 Association" />
+    <published>2026-02-23T00:00:00+09:00</published>
+  
+    <updated>2026-02-23T00:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/CDS%EC%97%90%EC%84%9C-%EA%B4%80%EA%B3%84%EC%84%B1-%EB%82%98%ED%83%80%EB%82%B4%EA%B8%B0/</id>
+    <content type="text/html" src="http://localhost:4000/posts/CDS%EC%97%90%EC%84%9C-%EA%B4%80%EA%B3%84%EC%84%B1-%EB%82%98%ED%83%80%EB%82%B4%EA%B8%B0/" />
+    <author>
+      <name>Han Seungjun</name>
+    </author>
+
+  
+    
+    <category term="ERP" />
+    
+    <category term="ABAP" />
+    
+  
+
+  <summary>키워드     ADT (Abap Development Tool): 이클립스(Eclipse) 기반의 ABAP 개발 도구   CDS (Core Data Service): 차세대 데이터 모델링 기술   Primary Key &amp;amp; Foreign Key: 주키와 외래키   Association: CDS 뷰 간의 관계 정의 (JOIN보다 똑똑함!)   Cardinality: 관계의 수 (1:1, 1:N 등)     1. 테이블 간의 관계성 (Relationship Between Database)  관계형 데이터베이스(RDB)를 이해하기 위해 가장 쉬운 예시인 ‘직원’과 ‘부서’를 고려해보자.  직원 테이블 {     직원 ID (PK),     이름,     부서 ID,  &amp;lt;-- 여기에 "D01"이라고...</summary>
+
+  </entry>
+
+  
+  <entry>
     <title>2026-02-22 문제풀이</title>
-    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" rel="alternate" type="text/html" title="2026-02-22 문제풀이" />
+    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B01/" rel="alternate" type="text/html" title="2026-02-22 문제풀이" />
     <published>2026-02-22T00:00:00+09:00</published>
   
     <updated>2026-02-22T00:00:00+09:00</updated>
   
-    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/</id>
-    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0/" />
+    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B01/</id>
+    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B01/" />
     <author>
       <name>Han Seungjun</name>
     </author>
@@ -119,30 +145,6 @@
   
 
   <summary>아호 코라식(Aho-Corasick)에 대해 알아보자.  개요 문자열 알고리즘은 어렵다.  트라이 부터 조금 어려워지다가 KMP의 failure function, 접미사 배열 등이 나오면서 대가리가 깨진다.  하나씩 차근차근 정리를 해보려고 한다.  지금 클래스 8을 풀다가 문자열 집합 판결이라는 문제에서 막혔는데 태그를 까보니 아호 코라식이 써 있었다. 이 문제를 계기로 아호 코라식을 정리해 보겠다.  언제 쓰지? 일단 KMP같은 경우엔 Hay(건초)에서 Needle(바늘)이 몇 개, 어디에 있는지 찾을 수 있다.  인터넷에서 ctrl + f를 누르고 어떤 패턴의 문자열을 찾는 식이다.  그니깐, 하나의 패턴만 찾을 수 있다는 것이다.  그럼 어떤 큰 문자열에 dosa, was, hi 등의 문자열이 ...</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>docker 이해해보기</title>
-    <link href="http://localhost:4000/posts/docker-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/" rel="alternate" type="text/html" title="docker 이해해보기" />
-    <published>2024-06-12T00:00:00+09:00</published>
-  
-    <updated>2024-06-12T00:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/docker-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/</id>
-    <content type="text/html" src="http://localhost:4000/posts/docker-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/" />
-    <author>
-      <name>Han Seungjun</name>
-    </author>
-
-  
-    
-    <category term="Computer Science" />
-    
-  
-
-  <summary>docker를 이해해보자  프로젝트를 제대로 배포해보지 않은 입장에서 docker는 뭔가 개념자체가 잘 와닿지 않았다.  그래서 직접 정리를 하며 docker, k8s, jenkins에 대해 각각 한페이지짜리 정리를 해보려한다.  개요 일단 내가 어떤 Web Service를 개발했는데, 이것이 누군가의 환경에서는 동작하지 않을 수가 있다. 이는 여러 이유가 있겠지만, 한마디로 dependencies가 달라서라고 할 수 있다.  매우 쉬운 예시로, 파이썬으로 Hello world를 출력하는 프로그램을 만들었는데 다른 컴퓨터에서 실행하려니 파이썬이 안깔려있는 상황인 것이다.     개발환경과 운영환경의 불일치가 있고   매우 가벼운 실행 패키지가 필요해졌다.   그래서 등장한 것이 Containerizat...</summary>
 
   </entry>
 
