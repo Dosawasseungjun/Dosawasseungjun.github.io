@@ -353,6 +353,18 @@ var store = [{
         "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B02/",
         "teaser": null
       },{
+        "title": "ABAP - CDS View에서 Text Table 활용하기",
+        "excerpt":"키워드 ADT (Abap Development Tool): 이클립스 기반의 ABAP 개발 도구 CDS (Core Data Service): 차세대 데이터 모델링 기술 Text Table: 다국어 지원을 위한 텍스트 저장 테이블 1. 개요 요즘은 CDS View를 활용하는 법을 공부하고 있다. 어제는 테이블 간의 관계(Association)에 대해 정리했는데, 오늘은 그 연장선으로 Text Table을 만들고 CDS View에서 이를...","categories": ["ERP","ABAP"],
+        "tags": ["ERP개발","SAP","ABAP","CDS","TextTable"],
+        "url": "/posts/CDS%EC%97%90%EC%84%9C-Text-Table/",
+        "teaser": null
+      },{
+        "title": "2026-02-24 문제풀이",
+        "excerpt":"선물게임 풀이 먼저 피씨는 생각하지말고 수아만 생각해보자. 모두 한번에 성공할 확률 : $(\\frac{1}{N})^M$ 한 번 실패 후 성공할 확률 : $(\\frac{1}{N})^{M-1}(\\frac{N-1}{N})\\left(\\frac{1}{N-1}\\right)= (\\frac{1}{N})^M$ 두 번 실패 후 성공할 확률 : $(\\frac{1}{N})^M$ 모두 결국에 성공할 확률은 같다. 따라서 피씨가 수아 전에 성공하지만 않으면 된다. 수아가 모두 성공하면 애초에 피씨는 아무것도 안한다. 수아가...","categories": ["Problem Solving","BOJ"],
+        "tags": ["백준","조합론"],
+        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B03/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],
