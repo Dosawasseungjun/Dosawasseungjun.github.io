@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>도사였다 블로그</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-24T17:30:30+09:00</updated>
+  <updated>2026-02-25T10:52:17+09:00</updated>
   <author>
     <name>Han Seungjun</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,32 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>2026-02-25 문제풀이</title>
+    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(4)/" rel="alternate" type="text/html" title="2026-02-25 문제풀이" />
+    <published>2026-02-25T00:00:00+09:00</published>
+  
+    <updated>2026-02-25T00:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(4)/</id>
+    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(4)/" />
+    <author>
+      <name>Han Seungjun</name>
+    </author>
+
+  
+    
+    <category term="Problem Solving" />
+    
+    <category term="BOJ" />
+    
+  
+
+  <summary>35308 PPPP  잡설 음.. 문제 이해를 똑바로 좀 하자… 오늘은 간단한 문제 하나만 풀고 쉬려다가 출력초과땜에 스트레스 좀 받았다 ㅎㅎ  풀이 사이클의 크기가 N인 순열 사이클을 만들어야한다.    $P_{1} = K$   $P_{K} = x$   $P_{x} = x_2$   뭐 이런식으로 뻗어나갈텐데 편하게 배열을 하나 만들어보니    $K=7$ 일 때, 위 처럼 편하게 구할 수 있었다.   그러니까 K, K+1, K+2 .. 2, 3, .. K-1 1 순으로 넣으면 된다.   …고 생각했다.  근데 이 생각은 완전히 틀렸다.  위 그림에서    $P_{1} = K = 7$ 은 성립한다.   $P_{2}=P_{P_{1}}=P_{K}$ 이다. 여기서 각 요소는 한번씩 사용되므로 $K=2$라는 결...</summary>
+
+  </entry>
 
   
   <entry>
@@ -119,32 +145,6 @@
   
 
   <summary>키워드     ADT (Abap Development Tool): 이클립스(Eclipse) 기반의 ABAP 개발 도구   CDS (Core Data Service): 차세대 데이터 모델링 기술   Primary Key &amp;amp; Foreign Key: 주키와 외래키   Association: CDS 뷰 간의 관계 정의 (JOIN보다 똑똑함!)   Cardinality: 관계의 수 (1:1, 1:N 등)     1. 테이블 간의 관계성 (Relationship Between Database)  관계형 데이터베이스(RDB)를 이해하기 위해 가장 쉬운 예시인 ‘직원’과 ‘부서’를 고려해보자.  직원 테이블 {     직원 ID (PK),     이름,     부서 ID,  &amp;lt;-- 여기에 "D01"이라고...</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>2026-02-22 문제풀이</title>
-    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B01/" rel="alternate" type="text/html" title="2026-02-22 문제풀이" />
-    <published>2026-02-22T00:00:00+09:00</published>
-  
-    <updated>2026-02-22T00:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B01/</id>
-    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B01/" />
-    <author>
-      <name>Han Seungjun</name>
-    </author>
-
-  
-    
-    <category term="Problem Solving" />
-    
-    <category term="BOJ" />
-    
-  
-
-  <summary>35293 멘헤라  풀이  먼저 4.5를 두번 더하면 9도가 되니까 4.5를 사용하는건 한 번 또는 0번이다. 그리고 소수점에 5나 0 이외의 수가 있다면 만들 수 없다.  이제 모든 수를 다 만들 수 있다고 생각하고 문제를 보면 최단거리 bfs문제와 비슷해진다. 9, 7, -2를 가지고 그래프 탐색을 진행하면 된다.  그러니까 대충 9의 배수인 900으로 나눈 나머지까지 탐색하고 하면 될 것이다. -900 ~ 900 까지 최단거리를 직접구하고 N에서 900을 나눈 나머지로 답을 구하면 된다.  그럼 정답은 $몫 \times 100 + D[나머지]$ 가 된다.  코드 #include &amp;lt;bits/stdc++.h&amp;gt; #define fast_io cin.tie(NULL); ios_base::sync...</summary>
 
   </entry>
 

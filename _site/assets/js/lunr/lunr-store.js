@@ -365,6 +365,12 @@ var store = [{
         "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B03/",
         "teaser": null
       },{
+        "title": "2026-02-25 문제풀이",
+        "excerpt":"35308 PPPP 잡설 음.. 문제 이해를 똑바로 좀 하자… 오늘은 간단한 문제 하나만 풀고 쉬려다가 출력초과땜에 스트레스 좀 받았다 ㅎㅎ 풀이 사이클의 크기가 N인 순열 사이클을 만들어야한다. $P_{1} = K$ $P_{K} = x$ $P_{x} = x_2$ 뭐 이런식으로 뻗어나갈텐데 편하게 배열을 하나 만들어보니 $K=7$ 일 때, 위 처럼 편하게 구할...","categories": ["Problem Solving","BOJ"],
+        "tags": ["백준","ad-hoc"],
+        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(4)/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],
