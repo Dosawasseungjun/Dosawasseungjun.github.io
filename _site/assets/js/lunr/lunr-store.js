@@ -371,6 +371,12 @@ var store = [{
         "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(4)/",
         "teaser": null
       },{
+        "title": "2026-02-26 문제풀이",
+        "excerpt":"나이트의 이동 풀이 일단 경로를 따라가봐야했다. 뭔가 규칙이 발견될 것이다. 손으로 쓰다가 규칙이 안보여서 포기하고 아래 코드를 짜서 확인해봤다. 노가다 코드 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29...","categories": ["Problem Solving","BOJ"],
+        "tags": ["백준","ad-hoc"],
+        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(5)/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],

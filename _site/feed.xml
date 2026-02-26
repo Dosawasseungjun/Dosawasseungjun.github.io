@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>도사였다 블로그</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-25T10:52:17+09:00</updated>
+  <updated>2026-02-26T14:00:39+09:00</updated>
   <author>
     <name>Han Seungjun</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,32 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>2026-02-26 문제풀이</title>
+    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(5)/" rel="alternate" type="text/html" title="2026-02-26 문제풀이" />
+    <published>2026-02-26T00:00:00+09:00</published>
+  
+    <updated>2026-02-26T00:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(5)/</id>
+    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(5)/" />
+    <author>
+      <name>Han Seungjun</name>
+    </author>
+
+  
+    
+    <category term="Problem Solving" />
+    
+    <category term="BOJ" />
+    
+  
+
+  <summary>나이트의 이동  풀이 일단 경로를 따라가봐야했다. 뭔가 규칙이 발견될 것이다. 손으로 쓰다가 규칙이 안보여서 포기하고 아래 코드를 짜서 확인해봤다. 노가다 코드 #include &amp;lt;bits/stdc++.h&amp;gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&amp;lt;int, int&amp;gt; pii; typedef pair&amp;lt;ll, ll&amp;gt; pll; typedef tuple&amp;lt;int, int, int&amp;gt; tiii; typedef tuple&amp;lt;ll, ll, ll&amp;gt; tlll; #define xx first #defin...</summary>
+
+  </entry>
 
   
   <entry>
@@ -50,7 +76,7 @@
     <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B03/" rel="alternate" type="text/html" title="2026-02-24 문제풀이" />
     <published>2026-02-24T00:00:00+09:00</published>
   
-    <updated>2026-02-24T00:00:00+09:00</updated>
+    <updated>2026-02-25T14:31:12+09:00</updated>
   
     <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B03/</id>
     <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B03/" />
@@ -119,32 +145,6 @@
   
 
   <summary>개요 평일이니까 최근 올라온 문제 중 쉬워보이는 문제를 2개 골랐다. ㅎㅎ    간단한 문제도 포스팅을 하기로 했으니 열심히 해야지.  소수가 아닌 수4  풀이 서로 다른 N개의 정수가 주어지니까 그냥 1이 아닌 2개의 수를 고르기만 하면 소수가 아니게 된다.    1을 골랐다고 하더라도 곱한 값이 소수가 아니면 된다.    그러니까 그냥 제일 큰 수 곱하고 소수인지 아닌지 보면 그만이다. (overflow에 주의해 그냥 N=2일때만 검사하자.)     알고리즘            정렬한다.       맨 뒤에 2개를 곱한다.       그 수가 소수인지 확인한다. (1이 포함되어 있을 경우)           코드 N = int(input()) A = list(map(int, input().split...</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>ABAP - Foreign Key와 CDS View의 Association</title>
-    <link href="http://localhost:4000/posts/CDS%EC%97%90%EC%84%9C-%EA%B4%80%EA%B3%84%EC%84%B1-%EB%82%98%ED%83%80%EB%82%B4%EA%B8%B0/" rel="alternate" type="text/html" title="ABAP - Foreign Key와 CDS View의 Association" />
-    <published>2026-02-23T00:00:00+09:00</published>
-  
-    <updated>2026-02-23T00:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/CDS%EC%97%90%EC%84%9C-%EA%B4%80%EA%B3%84%EC%84%B1-%EB%82%98%ED%83%80%EB%82%B4%EA%B8%B0/</id>
-    <content type="text/html" src="http://localhost:4000/posts/CDS%EC%97%90%EC%84%9C-%EA%B4%80%EA%B3%84%EC%84%B1-%EB%82%98%ED%83%80%EB%82%B4%EA%B8%B0/" />
-    <author>
-      <name>Han Seungjun</name>
-    </author>
-
-  
-    
-    <category term="ERP" />
-    
-    <category term="ABAP" />
-    
-  
-
-  <summary>키워드     ADT (Abap Development Tool): 이클립스(Eclipse) 기반의 ABAP 개발 도구   CDS (Core Data Service): 차세대 데이터 모델링 기술   Primary Key &amp;amp; Foreign Key: 주키와 외래키   Association: CDS 뷰 간의 관계 정의 (JOIN보다 똑똑함!)   Cardinality: 관계의 수 (1:1, 1:N 등)     1. 테이블 간의 관계성 (Relationship Between Database)  관계형 데이터베이스(RDB)를 이해하기 위해 가장 쉬운 예시인 ‘직원’과 ‘부서’를 고려해보자.  직원 테이블 {     직원 ID (PK),     이름,     부서 ID,  &amp;lt;-- 여기에 "D01"이라고...</summary>
 
   </entry>
 
