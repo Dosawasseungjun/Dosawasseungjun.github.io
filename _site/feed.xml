@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>도사였다 블로그</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-26T14:00:39+09:00</updated>
+  <updated>2026-02-27T13:37:42+09:00</updated>
   <author>
     <name>Han Seungjun</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,32 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>2026-02-27 문제풀이</title>
+    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(6)/" rel="alternate" type="text/html" title="2026-02-27 문제풀이" />
+    <published>2026-02-27T00:00:00+09:00</published>
+  
+    <updated>2026-02-27T00:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(6)/</id>
+    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(6)/" />
+    <author>
+      <name>Han Seungjun</name>
+    </author>
+
+  
+    
+    <category term="Problem Solving" />
+    
+    <category term="BOJ" />
+    
+  
+
+  <summary>2141 우체국  풀이 \(\sum\limits_{i=1}^{n}|x - a_{i}|\) 의 최소값은 $x$가 $a$의 중앙값일 때 성립한다.  왜 중앙값이 답인가? 크기 순서대로 정렬한다: $a_1 \le a_2 \le \dots \le a_n$. $f(x)$를 대칭적인 항끼리 묶으면 다음과 같다.   \(f(x) = (|x - a_1| + |x - a_n|) + (|x - a_2| + |x - a_{n-1}|) + \dots\) 여기서 삼각부등식의 변형($|A| + |B| \ge |A-B|$)을 사용한다.    특히 실수 직선상에서는 다음이 성립한다.: \(|x - a| + |x - b| \ge |b - a| \quad (\text{단, } a \le x \le b \text{ 일 때 등호 성립})...</summary>
+
+  </entry>
 
   
   <entry>
@@ -119,32 +145,6 @@
   
 
   <summary>키워드     ADT (Abap Development Tool): 이클립스 기반의 ABAP 개발 도구   CDS (Core Data Service): 차세대 데이터 모델링 기술   Text Table: 다국어 지원을 위한 텍스트 저장 테이블     1. 개요 요즘은 CDS View를 활용하는 법을 공부하고 있다. 어제는 테이블 간의 관계(Association)에 대해 정리했는데, 오늘은 그 연장선으로 Text Table을 만들고 CDS View에서 이를 활용해 사용자의 언어 환경에 맞는 정보를 자동으로 조회하는 방법을 정리해보려 한다.    2. Text Table이란? (Why use Text Table?)  사용자가 로그인한 언어(한글, 영어 등)에 따라 화면에 출력되는 텍스트가 달라져야 진정한 ‘...</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>2026-02-23 문제풀이</title>
-    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B02/" rel="alternate" type="text/html" title="2026-02-23 문제풀이" />
-    <published>2026-02-23T00:00:00+09:00</published>
-  
-    <updated>2026-02-23T00:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B02/</id>
-    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B02/" />
-    <author>
-      <name>Han Seungjun</name>
-    </author>
-
-  
-    
-    <category term="Problem Solving" />
-    
-    <category term="BOJ" />
-    
-  
-
-  <summary>개요 평일이니까 최근 올라온 문제 중 쉬워보이는 문제를 2개 골랐다. ㅎㅎ    간단한 문제도 포스팅을 하기로 했으니 열심히 해야지.  소수가 아닌 수4  풀이 서로 다른 N개의 정수가 주어지니까 그냥 1이 아닌 2개의 수를 고르기만 하면 소수가 아니게 된다.    1을 골랐다고 하더라도 곱한 값이 소수가 아니면 된다.    그러니까 그냥 제일 큰 수 곱하고 소수인지 아닌지 보면 그만이다. (overflow에 주의해 그냥 N=2일때만 검사하자.)     알고리즘            정렬한다.       맨 뒤에 2개를 곱한다.       그 수가 소수인지 확인한다. (1이 포함되어 있을 경우)           코드 N = int(input()) A = list(map(int, input().split...</summary>
 
   </entry>
 

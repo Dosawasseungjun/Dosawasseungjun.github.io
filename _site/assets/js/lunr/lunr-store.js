@@ -377,6 +377,12 @@ var store = [{
         "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(5)/",
         "teaser": null
       },{
+        "title": "2026-02-27 문제풀이",
+        "excerpt":"2141 우체국 풀이 \\(\\sum\\limits_{i=1}^{n}|x - a_{i}|\\) 의 최소값은 $x$가 $a$의 중앙값일 때 성립한다. 왜 중앙값이 답인가? 크기 순서대로 정렬한다: $a_1 \\le a_2 \\le \\dots \\le a_n$. $f(x)$를 대칭적인 항끼리 묶으면 다음과 같다. \\(f(x) = (|x - a_1| + |x - a_n|) + (|x - a_2| + |x - a_{n-1}|) +...","categories": ["Problem Solving","BOJ"],
+        "tags": ["백준","수학"],
+        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(6)/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],

@@ -1,6 +1,15 @@
 [
   
   {
+    "title": "2026-02-27 문제풀이",
+    "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(6)/",
+    "categories": "Problem Solving, BOJ",
+    "tags": "백준, 수학",
+    "date": "2026-02-27 00:00:00 +0900",
+    "content": "2141 우체국  풀이 \\(\\sum\\limits_{i=1}^{n}|x - a_{i}|\\) 의 최소값은 $x$가 $a$의 중앙값일 때 성립한다.  왜 중앙값이 답인가? 크기 순서대로 정렬한다: $a_1 \\le a_2 \\le \\dots \\le a_n$. $f(x)$를 대칭적인 항끼리 묶으면 다음과 같다.   \\(f(x) = (|x - a_1| + |x - a_n|) + (|x - a_2| + |x - a_{n-1}|) + \\dots\\) 여기서 삼각부등식의 변형($|A| + |B| \\ge |A-B|$)을 사용한다.    특히 실수 직선상에서는 다음이 성립한다.: \\(|x - a| + |x - b| \\ge |b - a| \\quad (\\text{단, } a \\le x \\le b \\text{ 일 때 등호 성립})\\) 즉, $x$가 $a$와 $b$ 사이에 있을 때 거리의 합이 최소가 된다.   여기까지는 사실 직관적으로도 떠오른다.  1. $n$이 홀수일 때 ($n = 2k + 1$) 항을 묶으면 가장 가운데에 하나가 남는다.   \\(f(x) = \\sum_{i=1}^{k} (|x - a_i| + |x - a_{n-i+1}|) + |x - a_{k+1}|\\)    각 괄호 안의 값들이 최소가 되려면: $a_i \\le x \\le a_{n-i+1}$ .                                   마지막 남은 항 $           x - a_{k+1}           $이 최소가 되려면: $x = a_{k+1}$                           $\\therefore$ 모든 조건을 만족하는 $x$는 정가운데 값인 $a_{k+1}$ (중앙값)  2. $n$이 짝수일 때 ($n = 2k$) 모든 항이 짝지어진다. \\(f(x) = \\sum_{i=1}^{k} (|x - a_i| + |x - a_{n-i+1}|)\\)    각 쌍이 최소가 되려면 $x$는 $a_i$와 $a_{n-i+1}$ 사이에 존재.   모든 구간의 교집합(가장 안쪽 구간)은 $a_k \\le x \\le a_{k+1}$.   $\\therefore$ 이 구간($a_k$와 $a_{k+1}$ 사이)에 있는 **어떤 $x$를 잡더라도 최솟값이 된다.  풀이 결론 이 문제도 역시 중앙값을 찾는 문제다. 전체 사람 수에서 중앙값을 찾아내면 된다.   사람 수가 중앙값을 넘어가는 구간이 답이 될 것이다. 전체 사람 수를 $S$라고 하면 $\\lfloor(S+1)/2\\rfloor$번째 사람의 위치가 답이다. 코드 import sys input = sys.stdin.readline  N = int(input()) A, S = [], 0 for i in range(N) :      x, a = map(int, input().split())     A.append([x, a])     S += a A.sort() k,r = 0, 0 for i in range(N) :      k += A[i][1]     if k &gt;= (S+1) // 2 :          r = i         break print(A[r][0])"
+  },
+  
+  {
     "title": "2026-02-26 문제풀이",
     "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(5)/",
     "categories": "Problem Solving, BOJ",
