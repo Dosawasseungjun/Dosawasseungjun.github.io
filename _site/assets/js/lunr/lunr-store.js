@@ -383,6 +383,12 @@ var store = [{
         "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(6)/",
         "teaser": null
       },{
+        "title": "2026-03-03 문제풀이",
+        "excerpt":"35298 책 정렬하기 풀이 연속된 2개를 골라서 맨 앞으로 보내는 연산을 $N^2$ 의 횟수 이내로 정렬을 수행하기만 하면 된다. target array로 만드는 과정을 생각해보면 맨 뒤를 만들면 그 앞에 배열만 생각하면 된다. 그렇다면 맨 뒤 원소를 차근차근 만들 수 있으면 좋아 보인다. 1 2 3 4 5 -&gt; 주어진 배열을...","categories": ["Problem Solving","BOJ"],
+        "tags": ["백준","ad-hoc"],
+        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(7)/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],

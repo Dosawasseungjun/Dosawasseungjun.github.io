@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>도사였다 블로그</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-27T13:37:42+09:00</updated>
+  <updated>2026-03-03T14:10:18+09:00</updated>
   <author>
     <name>Han Seungjun</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,32 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>2026-03-03 문제풀이</title>
+    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(7)/" rel="alternate" type="text/html" title="2026-03-03 문제풀이" />
+    <published>2026-03-03T00:00:00+09:00</published>
+  
+    <updated>2026-03-03T00:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(7)/</id>
+    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(7)/" />
+    <author>
+      <name>Han Seungjun</name>
+    </author>
+
+  
+    
+    <category term="Problem Solving" />
+    
+    <category term="BOJ" />
+    
+  
+
+  <summary>35298 책 정렬하기  풀이  연속된 2개를 골라서 맨 앞으로 보내는 연산을 $N^2$ 의 횟수 이내로 정렬을 수행하기만 하면 된다.  target array로 만드는 과정을 생각해보면 맨 뒤를 만들면 그 앞에 배열만 생각하면 된다. 그렇다면 맨 뒤 원소를 차근차근 만들 수 있으면 좋아 보인다.  1 2 3 4 5 -&amp;gt; 주어진 배열을 만든다고 생각해보자. 맨 앞의 2개의 원소를 원하는 곳으로 세트로 보낼 수 있는 상황이다.  예를 들어 문제에 있는1 2 4 5 3을 생각해보자.  1 2 3 4 5 -&amp;gt; 3 4 5 1 2 -&amp;gt;  5 3 4 1 2 -&amp;gt; 4 1 2 5 3 -&amp;gt; 5, 3을 완성 2 4 1 5 3 -&amp;gt; 1 2 4 5 3 -&amp;gt; 모두 완성  이렇게 원하는 것...</summary>
+
+  </entry>
 
   
   <entry>
@@ -119,32 +145,6 @@
   
 
   <summary>선물게임  풀이 먼저 피씨는 생각하지말고 수아만 생각해보자.     모두 한번에 성공할 확률 : $(\frac{1}{N})^M$   한 번 실패 후 성공할 확률 : $(\frac{1}{N})^{M-1}(\frac{N-1}{N})\left(\frac{1}{N-1}\right)= (\frac{1}{N})^M$   두 번 실패 후 성공할 확률 : $(\frac{1}{N})^M$  모두 결국에 성공할 확률은 같다.  따라서 피씨가 수아 전에 성공하지만 않으면 된다.   수아가 모두 성공하면 애초에 피씨는 아무것도 안한다. 수아가 한 번 실패했다면 피씨가 모두 성공하지 않으면 된다. -&amp;gt; 피씨가 모두 성공할 확률은 $p_{0}=\frac{1}{N-1}(\frac{1}{N})^{M-1}$ 이다.  -&amp;gt;...</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>ABAP - CDS View에서 Text Table 활용하기</title>
-    <link href="http://localhost:4000/posts/CDS%EC%97%90%EC%84%9C-Text-Table/" rel="alternate" type="text/html" title="ABAP - CDS View에서 Text Table 활용하기" />
-    <published>2026-02-24T00:00:00+09:00</published>
-  
-    <updated>2026-02-24T00:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/CDS%EC%97%90%EC%84%9C-Text-Table/</id>
-    <content type="text/html" src="http://localhost:4000/posts/CDS%EC%97%90%EC%84%9C-Text-Table/" />
-    <author>
-      <name>Han Seungjun</name>
-    </author>
-
-  
-    
-    <category term="ERP" />
-    
-    <category term="ABAP" />
-    
-  
-
-  <summary>키워드     ADT (Abap Development Tool): 이클립스 기반의 ABAP 개발 도구   CDS (Core Data Service): 차세대 데이터 모델링 기술   Text Table: 다국어 지원을 위한 텍스트 저장 테이블     1. 개요 요즘은 CDS View를 활용하는 법을 공부하고 있다. 어제는 테이블 간의 관계(Association)에 대해 정리했는데, 오늘은 그 연장선으로 Text Table을 만들고 CDS View에서 이를 활용해 사용자의 언어 환경에 맞는 정보를 자동으로 조회하는 방법을 정리해보려 한다.    2. Text Table이란? (Why use Text Table?)  사용자가 로그인한 언어(한글, 영어 등)에 따라 화면에 출력되는 텍스트가 달라져야 진정한 ‘...</summary>
 
   </entry>
 
