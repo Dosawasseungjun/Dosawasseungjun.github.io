@@ -401,6 +401,12 @@ var store = [{
         "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(8)/",
         "teaser": null
       },{
+        "title": "ABAPGit을 이용해 내 파일 백업하기",
+        "excerpt":"개요 Git은 강력한 버전 관리 도구인 만큼 파일을 백업하는 데도 매우 유용하다. SAP GUI에 저장되어 있는 나의 모든 소중한 패키지들을 나의 GitHub에 안전하게 올리는 방법을 단계별로 알아보자. 🛠 Prerequisites (사전 준비) 1. ABAPGit 설치 먼저 시스템에 ABAPGit이 설치되어 있어야 한다. 🔗 참고 링크: ABAPGit 설치 가이드 나의 경우, 다행히 서버에...","categories": ["ERP","ABAP"],
+        "tags": ["SAP","ABAP","Git","ABAPGit","Backup"],
+        "url": "/posts/ABAPGit/",
+        "teaser": null
+      },{
         "title": "2026-03-11 문제풀이",
         "excerpt":"하얀 전파 풀이 색칠할 수 있는 최대한의 자리를 찾고 다 색칠하기 위한 시간을 구하는 문제다. 일단 주목해야할 부분은 L, R, U, D중에 0인 부분이다. 0이면 최대한 변에 붙여서 색칠할 수 있는 부분을 늘리는 게 직관적으로 중요하다. 둘 다 0이면 변의 길이가 1이 되는거고 둘 다 0이 아니면 1초에 $(L+R)$만큼, $(U+D)$만큼...","categories": ["Problem Solving","BOJ"],
         "tags": ["백준","ad-hoc"],
