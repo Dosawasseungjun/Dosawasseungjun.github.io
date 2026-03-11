@@ -389,6 +389,24 @@ var store = [{
         "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(7)/",
         "teaser": null
       },{
+        "title": "심심해서 쓰는 진짜 잡담",
+        "excerpt":"요즘 관심있는 것들과 잡담 러닝 2026년 3월 7일에 오랜만에 만난 친구와 대화를 하면서 야외 러닝을 했다. 여름엔 더워서 겨울엔 추워서 밖에서 안 뛰었는데 군대 이후로 처음 뛰는 것 같다. 지금 날씨가 좀 좋아져서 그런지 너무 상쾌하고 운동 많이 됐다 ㅋㅋ. 만난 친구는 이제 호주로 떠난다하여 같이 러닝을 못하겠지만 동네 친구를...","categories": ["Other Things","Just Chatting"],
+        "tags": ["잡담"],
+        "url": "/posts/%EB%9F%AC%EB%8B%9D/",
+        "teaser": null
+      },{
+        "title": "2026-03-08 문제풀이",
+        "excerpt":"오늘은 주말에 푼 두 문제를 정리했다. 7682 틱택토 풀이 노가다를 하면 되는데 꽤나 경우가 많다. 일단 선공이 이기는 경우와 후공이 이기는 경우를 잘 생각해야하는데 후공이 이길 경우 판에 놓여진 돌의 개수가 똑같다. 선공이 이길 경우 판에 놓여진 돌의 개수는 선공(X)이 하나 더 많다. 그리고 모든 경우 돌의 개수 차이는 1개...","categories": ["Problem Solving","BOJ"],
+        "tags": ["백준","ad-hoc"],
+        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(8)/",
+        "teaser": null
+      },{
+        "title": "2026-03-11 문제풀이",
+        "excerpt":"하얀 전파 풀이 색칠할 수 있는 최대한의 자리를 찾고 다 색칠하기 위한 시간을 구하는 문제다. 일단 주목해야할 부분은 L, R, U, D중에 0인 부분이다. 0이면 최대한 변에 붙여서 색칠할 수 있는 부분을 늘리는 게 직관적으로 중요하다. 둘 다 0이면 변의 길이가 1이 되는거고 둘 다 0이 아니면 1초에 $(L+R)$만큼, $(U+D)$만큼...","categories": ["Problem Solving","BOJ"],
+        "tags": ["백준","ad-hoc"],
+        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],
