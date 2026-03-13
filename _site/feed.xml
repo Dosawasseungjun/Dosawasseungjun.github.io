@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>도사였다 블로그</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-03-13T16:38:46+09:00</updated>
+  <updated>2026-03-13T17:55:14+09:00</updated>
   <author>
     <name>Han Seungjun</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,32 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Standard Table(BOM, Info Record, Production Order 편)</title>
+    <link href="http://localhost:4000/posts/Standard-Table2/" rel="alternate" type="text/html" title="Standard Table(BOM, Info Record, Production Order 편)" />
+    <published>2026-03-13T01:00:00+09:00</published>
+  
+    <updated>2026-03-13T01:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/Standard-Table2/</id>
+    <content type="text/html" src="http://localhost:4000/posts/Standard-Table2/" />
+    <author>
+      <name>Han Seungjun</name>
+    </author>
+
+  
+    
+    <category term="ERP" />
+    
+    <category term="SAP" />
+    
+  
+
+  <summary>개요 이전 포스팅에서 마스터 데이터의 핵심인 자재(Material)와 거래처(Vendor) 테이블을 살펴보았다. 이번에는 이 마스터 데이터를 활용하여 제품을 구성하는 BOM(자재 명세서), 구매 단가와 조건을 관리하는 Info Record(구매 정보 레코드), 그리고 실제 생산을 지시하는 Production Order(생산 오더) 관련 핵심 테이블을 정리한다.  BOM (Bill of Materials)  BOM이란? BOM은 ‘자재 명세서’ 또는 ‘자재 소요량 계획’으로 불리며, 특정 완제품이나 반제품을 만들기 위해 어떤 자재가 얼만큼 필요한지 정의한 레시피(Recipe)와 같다.  1. STKO (BOM Header) 역할 BOM의 헤더 데이터를 저장한다. 특정 완제품의 BOM 생성 상태, 기준 수...</summary>
+
+  </entry>
 
   
   <entry>
@@ -119,32 +145,6 @@
   
 
   <summary>오늘은 주말에 푼 두 문제를 정리했다.  7682 틱택토  풀이  노가다를 하면 되는데 꽤나 경우가 많다.   일단 선공이 이기는 경우와 후공이 이기는 경우를 잘 생각해야하는데    후공이 이길 경우 판에 놓여진 돌의 개수가 똑같다.   선공이 이길 경우 판에 놓여진 돌의 개수는 선공(X)이 하나 더 많다.   그리고 모든 경우 돌의 개수 차이는 1개 이하로 난다. (물론 선공이 더 많은 쪽으로)  돌의 개수가 1개 이하로 난다면,    두 줄을 쌩으로 일자로 만들 수는 없다.(6개의 돌을 쓰는 셈이니까) 따라서 3개 이상의 줄은 절대 안나온다.   승리 패턴이 하나 보인다면 나머지 사람은 승리할 수 없다.   이런 상황들을 정리하면 아래와 같다.     보드가 선공 5, 후공 4이면 일단 성공한다고 ...</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>심심해서 쓰는 진짜 잡담</title>
-    <link href="http://localhost:4000/posts/%EB%9F%AC%EB%8B%9D/" rel="alternate" type="text/html" title="심심해서 쓰는 진짜 잡담" />
-    <published>2026-03-08T00:00:00+09:00</published>
-  
-    <updated>2026-03-08T00:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/%EB%9F%AC%EB%8B%9D/</id>
-    <content type="text/html" src="http://localhost:4000/posts/%EB%9F%AC%EB%8B%9D/" />
-    <author>
-      <name>Han Seungjun</name>
-    </author>
-
-  
-    
-    <category term="Other Things" />
-    
-    <category term="Just Chatting" />
-    
-  
-
-  <summary>요즘 관심있는 것들과 잡담  러닝 2026년 3월 7일에 오랜만에 만난 친구와 대화를 하면서 야외 러닝을 했다.    여름엔 더워서 겨울엔 추워서 밖에서 안 뛰었는데 군대 이후로 처음 뛰는 것 같다.    지금 날씨가 좀 좋아져서 그런지 너무 상쾌하고 운동 많이 됐다 ㅋㅋ.     만난 친구는 이제 호주로 떠난다하여 같이 러닝을 못하겠지만 동네 친구를 좀 꼬셔서 주말에 6~7키로 정도 뛰면 좋을 것 같다.    구리 쪽에서 같이 뛸 사람 연락 바란다.  셔츠 다이어트가 성공적으로 되고 있진 않지만 살을 빼려는 생각이라도 해서 그런지 예쁜 옷을 입고 싶다.      난 특히, 셔츠가 너무 좋다.    근데 셔츠 코디는 사실 몸이 정말 중요한 것 같아서 다이어트가 먼저인 것 같긴하다ㅠㅠ    공대생이라 그...</summary>
 
   </entry>
 

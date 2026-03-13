@@ -419,6 +419,12 @@ var store = [{
         "url": "/posts/Standard-Table1/",
         "teaser": null
       },{
+        "title": "Standard Table(BOM, Info Record, Production Order 편)",
+        "excerpt":"개요 이전 포스팅에서 마스터 데이터의 핵심인 자재(Material)와 거래처(Vendor) 테이블을 살펴보았다. 이번에는 이 마스터 데이터를 활용하여 제품을 구성하는 BOM(자재 명세서), 구매 단가와 조건을 관리하는 Info Record(구매 정보 레코드), 그리고 실제 생산을 지시하는 Production Order(생산 오더) 관련 핵심 테이블을 정리한다. BOM (Bill of Materials) BOM이란? BOM은 ‘자재 명세서’ 또는 ‘자재 소요량 계획’으로...","categories": ["ERP","SAP"],
+        "tags": ["SAP","ABAP","DB","TABLE","BOM","PP","MM"],
+        "url": "/posts/Standard-Table2/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],
