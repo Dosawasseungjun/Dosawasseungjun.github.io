@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>도사였다 블로그</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-03-11T13:40:28+09:00</updated>
+  <updated>2026-03-13T16:38:46+09:00</updated>
   <author>
     <name>Han Seungjun</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,32 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Standard Table(자재, 거래처 편)</title>
+    <link href="http://localhost:4000/posts/Standard-Table1/" rel="alternate" type="text/html" title="Standard Table(자재, 거래처 편)" />
+    <published>2026-03-13T00:00:00+09:00</published>
+  
+    <updated>2026-03-13T00:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/Standard-Table1/</id>
+    <content type="text/html" src="http://localhost:4000/posts/Standard-Table1/" />
+    <author>
+      <name>Han Seungjun</name>
+    </author>
+
+  
+    
+    <category term="ERP" />
+    
+    <category term="SAP" />
+    
+  
+
+  <summary>개요 ERP에는 Standard가 있고 개발자들은 CBO(Customer Bolt-On)를 개발하여 표준 시스템에 없는 추가 기능을 구현한다. 따라서 Standard에 있는 내용을 제대로 이해하는 것이 필요하다.  Material Create(자재코드)  자재 자재(Material)는 말 그대로 “무엇을 만들기 위한 기본적인 재료”를 의미한다.  1. MARA(General Material Data) 역할 SAP 시스템 전체(Client Level)에서 공통으로 쓰는 자재의 뼈대 정보를 담고 있다. 필드                 Field       Description       example                       MATNR (KEY)       자재 번호       FURN-0...</summary>
+
+  </entry>
 
   
   <entry>
@@ -119,32 +145,6 @@
   
 
   <summary>요즘 관심있는 것들과 잡담  러닝 2026년 3월 7일에 오랜만에 만난 친구와 대화를 하면서 야외 러닝을 했다.    여름엔 더워서 겨울엔 추워서 밖에서 안 뛰었는데 군대 이후로 처음 뛰는 것 같다.    지금 날씨가 좀 좋아져서 그런지 너무 상쾌하고 운동 많이 됐다 ㅋㅋ.     만난 친구는 이제 호주로 떠난다하여 같이 러닝을 못하겠지만 동네 친구를 좀 꼬셔서 주말에 6~7키로 정도 뛰면 좋을 것 같다.    구리 쪽에서 같이 뛸 사람 연락 바란다.  셔츠 다이어트가 성공적으로 되고 있진 않지만 살을 빼려는 생각이라도 해서 그런지 예쁜 옷을 입고 싶다.      난 특히, 셔츠가 너무 좋다.    근데 셔츠 코디는 사실 몸이 정말 중요한 것 같아서 다이어트가 먼저인 것 같긴하다ㅠㅠ    공대생이라 그...</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>2026-03-03 문제풀이</title>
-    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(7)/" rel="alternate" type="text/html" title="2026-03-03 문제풀이" />
-    <published>2026-03-03T00:00:00+09:00</published>
-  
-    <updated>2026-03-03T00:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(7)/</id>
-    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(7)/" />
-    <author>
-      <name>Han Seungjun</name>
-    </author>
-
-  
-    
-    <category term="Problem Solving" />
-    
-    <category term="BOJ" />
-    
-  
-
-  <summary>35298 책 정렬하기  풀이  연속된 2개를 골라서 맨 앞으로 보내는 연산을 $N^2$ 의 횟수 이내로 정렬을 수행하기만 하면 된다.  target array로 만드는 과정을 생각해보면 맨 뒤를 만들면 그 앞에 배열만 생각하면 된다. 그렇다면 맨 뒤 원소를 차근차근 만들 수 있으면 좋아 보인다.  1 2 3 4 5 -&amp;gt; 주어진 배열을 만든다고 생각해보자. 맨 앞의 2개의 원소를 원하는 곳으로 세트로 보낼 수 있는 상황이다.  예를 들어 문제에 있는1 2 4 5 3을 생각해보자.  1 2 3 4 5 -&amp;gt; 3 4 5 1 2 -&amp;gt;  5 3 4 1 2 -&amp;gt; 4 1 2 5 3 -&amp;gt; 5, 3을 완성 2 4 1 5 3 -&amp;gt; 1 2 4 5 3 -&amp;gt; 모두 완성  이렇게 원하는 것...</summary>
 
   </entry>
 

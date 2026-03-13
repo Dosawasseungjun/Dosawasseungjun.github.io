@@ -413,6 +413,12 @@ var store = [{
         "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/",
         "teaser": null
       },{
+        "title": "Standard Table(자재, 거래처 편)",
+        "excerpt":"개요 ERP에는 Standard가 있고 개발자들은 CBO(Customer Bolt-On)를 개발하여 표준 시스템에 없는 추가 기능을 구현한다. 따라서 Standard에 있는 내용을 제대로 이해하는 것이 필요하다. Material Create(자재코드) 자재 자재(Material)는 말 그대로 “무엇을 만들기 위한 기본적인 재료”를 의미한다. 1. MARA(General Material Data) 역할 SAP 시스템 전체(Client Level)에서 공통으로 쓰는 자재의 뼈대 정보를 담고 있다....","categories": ["ERP","SAP"],
+        "tags": ["SAP","ABAP","DB","TABLE"],
+        "url": "/posts/Standard-Table1/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],
