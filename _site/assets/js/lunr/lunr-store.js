@@ -425,6 +425,12 @@ var store = [{
         "url": "/posts/Standard-Table2/",
         "teaser": null
       },{
+        "title": "2026-03-15 문제풀이",
+        "excerpt":"머릿말 주말에 푼 문제를 정리할건데 토요일은 롯데월드 놀라갔다와서 풀이가 없다. 대기 하면서 브론즈 문제 폰으로 하나 풀었다. 일요일에 푼 문제를 정리해보겠다. 35309 잘 정의된 들여쓰기 풀이 예제의 들여쓰기를 생각해보자. 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 1번...","categories": ["Problem Solving","BOJ"],
+        "tags": ["백준","구현"],
+        "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(10)/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],

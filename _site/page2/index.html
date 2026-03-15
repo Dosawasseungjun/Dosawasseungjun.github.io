@@ -293,10 +293,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Problem Solving</span>
-              <span class="badge bg-secondary rounded-pill">41</span>
+              <span class="badge bg-secondary rounded-pill">42</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(10)/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-03-15 문제풀이
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -1157,10 +1163,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>BOJ</span>
-              <span class="badge bg-secondary rounded-pill">9</span>
+              <span class="badge bg-secondary rounded-pill">10</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(10)/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-03-15 문제풀이
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -1572,6 +1584,62 @@
 
 
 <div id="post-list" class="flex-grow-1 px-xl-1">
+  
+    <article class="card-wrapper card">
+      <a href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(4)/" class="post-preview row g-0 flex-md-row-reverse">
+        
+
+        
+
+        <div class="col-md-12">
+          <div class="card-body d-flex flex-column">
+            <h1 class="card-title my-2 mt-md-0">2026-02-25 문제풀이</h1>
+
+            <div class="card-text content mt-0 mb-3">
+              <p>35308 PPPP  잡설 음.. 문제 이해를 똑바로 좀 하자… 오늘은 간단한 문제 하나만 풀고 쉬려다가 출력초과땜에 스트레스 좀 받았다 ㅎㅎ  풀이 사이클의 크기가 N인 순열 사이클을 만들어야한다.    $P_{1} = K$   $P_{K} = x$   $P_{x} = x_2$   뭐 이런식으로 뻗어나갈텐데 편하게 배열을 하나 만들어보니    $K=...</p>
+            </div>
+
+            <div class="post-meta flex-grow-1 d-flex align-items-end">
+              <div class="me-auto">
+                <!-- posted date -->
+                <i class="far fa-calendar fa-fw me-1"></i>
+                <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1771945200"
+  data-df="ll"
+  
+>
+  Feb 25, 2026
+</time>
+
+
+                <!-- categories -->
+                
+                  <i class="far fa-folder-open fa-fw me-1"></i>
+                  <span class="categories">
+                    
+                      Problem Solving,
+                      BOJ
+                  </span>
+                
+              </div>
+
+              
+            </div>
+            <!-- .post-meta -->
+          </div>
+          <!-- .card-body -->
+        </div>
+      </a>
+    </article>
   
     <article class="card-wrapper card">
       <a href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B03/" class="post-preview row g-0 flex-md-row-reverse">
@@ -2076,62 +2144,6 @@
       </a>
     </article>
   
-    <article class="card-wrapper card">
-      <a href="/posts/%EB%B6%84%ED%95%A0%EC%A0%95%EB%B3%B5%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%B5%9C%EC%A0%81%ED%99%94(Divide-&-Conquer-Optimization)/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">D&C Optimization</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>분할정복을 이용한 다이나믹 프로그래밍 최적화  목적과 조건  목적     $O(KN^2)$ 의 알고리즘을 $O(KNlogN)$으로 시간복잡도를 줄이기 위함   조건  1. DP 점화식 $dp[i][j] = min_{k&lt;i}(dp[i-1][k] + C[k][j])$ 2. C의 조건 $C[i][j]$ 는 Monge array이거나 최적해의 단조성이 ...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1712502000"
-  data-df="ll"
-  
->
-  Apr  8, 2024
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Problem Solving,
-                      Algorithm
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
 </div>
 <!-- #post-list -->
 
@@ -2334,6 +2346,13 @@
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(10)/">2026-03-15 문제풀이</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/Standard-Table2/">Standard Table(BOM, Info Record, Production Order 편)</a>
         </li>
       
@@ -2356,13 +2375,6 @@
         
         <li class="text-truncate lh-lg">
           <a href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/">2026-03-11 문제풀이</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%EB%9F%AC%EB%8B%9D/">심심해서 쓰는 진짜 잡담</a>
         </li>
       
     </ul>

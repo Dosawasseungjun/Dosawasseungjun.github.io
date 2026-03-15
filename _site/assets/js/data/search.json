@@ -1,6 +1,15 @@
 [
   
   {
+    "title": "2026-03-15 문제풀이",
+    "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(10)/",
+    "categories": "Problem Solving, BOJ",
+    "tags": "백준, 구현",
+    "date": "2026-03-15 00:00:00 +0900",
+    "content": "머릿말  주말에 푼 문제를 정리할건데 토요일은 롯데월드 놀라갔다와서 풀이가 없다. 대기 하면서 브론즈 문제 폰으로 하나 풀었다. 일요일에 푼 문제를 정리해보겠다.  35309 잘 정의된 들여쓰기  풀이 예제의 들여쓰기를 생각해보자. 1번 예제 : a \tb \t\tc  모두 같은 칸만큼 들여쓰기한 줄이 없으니까 1 1 1이 된다.  2번 예제 :  a b c 여기까지 하면 1 2 3은 만들 수 있지만 여기서 갑자기 3을 만들 수는 없다.  a \tb \t\tc \td e \tf 1 1 1 2 2 1  중요한 조건은    직전 줄보다 최대 한 칸 많이 들여쓰기 할 수 있다.   직전 줄 보다 적은 칸만큼 들여쓰기 할 수도 있다. 직전 줄이 중요하니까 스위핑을 해야겠다는 생각이 든다.   알고리즘 b[i] : i의 숫자가 쓰여있는 들여쓰기의 집합 c[i] : i번째 들여쓰기에 쓰여있는 숫자  이렇게 역의 관계를 가진 두 배열을 만들어 두고  1이 들어오면 크게 들여쓰기 한다. 크게 들여쓰기하면 무조건 1이다. 왜냐면 중간에 작은 애가 있어도 1이고 없어도 1이기 때문이다. 나머지 숫자가 들어오면 지금 들여쓰기보다 작은 들여쓰기에  바로 이전의 숫자가 있는지 확인한다. 이 과정을 위 두 배열로 할 수 있다.  내가 틀렸던 이유 테스트케이스로 나누어져 있어서 매번 배열을 10만씩 초기화해주면 당연히 시간초과인데 이를 놓치고 있었다. 어짜피 n보다 큰 수는 만들 수가 없다. 한 칸씩 이동해야하기 때문이다.  따라서 b, c의 크기를 n으로 만들어도 상관없다.  코드 #include &lt;bits/stdc++.h&gt; #define fast_io cin.tie(NULL); ios_base::sync_with_stdio(false); using namespace std; typedef long long ll; typedef pair&lt;int, int&gt; pii; typedef pair&lt;ll, ll&gt; pll; typedef tuple&lt;int, int, int&gt; tiii; typedef tuple&lt;ll, ll, ll&gt; tlll; #define xx first #define yy second  void solv(){     int n; cin &gt;&gt; n;     vector&lt;int&gt; a(n);     for(int i=0;i&lt;n;i++) cin &gt;&gt; a[i];     vector&lt;set&lt;int&gt;&gt; b(n+1);     vector&lt;int&gt; c(n+1);     if(a[0] == 1){         b[1].insert(0);         c[0] = 1;     }else{         cout &lt;&lt; \"NO\\n\";         return ;     }     int k = 0;     bool ok = true;     for(int i=1;i&lt;n;i++){         if(a[i] == 1){ // 직전 칸보다 크게 들여쓰기함             k += 1;             if(c[k]) b[c[k]].erase(k);             b[1].insert(k);             c[k] = 1;             continue;         }         if(a[i]-1 &lt;= n &amp;&amp; !b[a[i]-1].empty()){             auto it = b[a[i] - 1].upper_bound(k);             if(it == b[a[i]-1].begin())                 ok = false;             else{                 it--;                 int kk = *it;                 b[a[i]-1].erase(kk);                 b[a[i]].insert(kk);                 c[kk] = a[i];                 k = kk;             }                      }else{             ok = false;         }         if(!ok) break;     }      cout &lt;&lt; (ok ? \"YES\\n\" : \"NO\\n\"); }  int main(){     fast_io     int tt; cin &gt;&gt; tt;     while(tt--) solv(); }"
+  },
+  
+  {
     "title": "Standard Table(BOM, Info Record, Production Order 편)",
     "url": "/posts/Standard-Table2/",
     "categories": "ERP, SAP",

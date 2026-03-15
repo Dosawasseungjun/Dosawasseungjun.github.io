@@ -35,8 +35,8 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="2026-03-11 문제풀이" />
 <meta property="og:locale" content="ko" />
-<meta name="description" content="하얀 전파" />
-<meta property="og:description" content="하얀 전파" />
+<meta name="description" content="하얀 전파 풀이 색칠할 수 있는 최대한의 자리를 찾고 다 색칠하기 위한 시간을 구하는 문제다. 일단 주목해야할 부분은 L, R, U, D중에 0인 부분이다. 0이면 최대한 변에 붙여서 색칠할 수 있는 부분을 늘리는 게 직관적으로 중요하다. 둘 다 0이면 변의 길이가 1이 되는거고 둘 다 0이 아니면 1초에 $(L+R)$만큼, $(U+D)$만큼 색칠 할 수 있다. 이를 이용하면 둘 다 0이면(L, R세트와 U, D세트) 변의 길이가 1이다. 나머지 경우는 변의 길이는 각각 m, n이 된다. 이를 이용해서 쉽게 W를 구할 수 있다. 이제 시간인데 아까 잠깐 언급했듯이 $(L+R)$만큼, $(U+D)$만큼 색칠 할 수 있기 때문에 정답은 \(\lceil\frac{(m-1)}{(L+R)}\rceil+\lceil\frac{(n-1)}{(U+D)}\rceil\) 위와 같은 식이 된다. 코드 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 import sys input = sys.stdin.readline for i in range(int(input())) : n, m, L, R, U, D = map(int, input().split()) w, h = 1, 1 tl, tr, tu, td = 0, 0, 0, 0 if L == 0 : if R : w = m d = m-1 tr = (d+R-1) // R elif R == 0 : w = m d = m - 1 tl = (d+L-1)//L else : w = m tl = tr = (m+L+R-2) // (L+R) if U == 0 : if D : h = n td = (n+D-2) // D elif D == 0 : h = n tu = (n+U-2) // U else : h = n td = tu = (n-2+U+D) // (U+D) W = w * h T = max(tl+tu, tl+td, tr+tu, tr+td) print(W, T)" />
+<meta property="og:description" content="하얀 전파 풀이 색칠할 수 있는 최대한의 자리를 찾고 다 색칠하기 위한 시간을 구하는 문제다. 일단 주목해야할 부분은 L, R, U, D중에 0인 부분이다. 0이면 최대한 변에 붙여서 색칠할 수 있는 부분을 늘리는 게 직관적으로 중요하다. 둘 다 0이면 변의 길이가 1이 되는거고 둘 다 0이 아니면 1초에 $(L+R)$만큼, $(U+D)$만큼 색칠 할 수 있다. 이를 이용하면 둘 다 0이면(L, R세트와 U, D세트) 변의 길이가 1이다. 나머지 경우는 변의 길이는 각각 m, n이 된다. 이를 이용해서 쉽게 W를 구할 수 있다. 이제 시간인데 아까 잠깐 언급했듯이 $(L+R)$만큼, $(U+D)$만큼 색칠 할 수 있기 때문에 정답은 \(\lceil\frac{(m-1)}{(L+R)}\rceil+\lceil\frac{(n-1)}{(U+D)}\rceil\) 위와 같은 식이 된다. 코드 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 import sys input = sys.stdin.readline for i in range(int(input())) : n, m, L, R, U, D = map(int, input().split()) w, h = 1, 1 tl, tr, tu, td = 0, 0, 0, 0 if L == 0 : if R : w = m d = m-1 tr = (d+R-1) // R elif R == 0 : w = m d = m - 1 tl = (d+L-1)//L else : w = m tl = tr = (m+L+R-2) // (L+R) if U == 0 : if D : h = n td = (n+D-2) // D elif D == 0 : h = n tu = (n+U-2) // U else : h = n td = tu = (n-2+U+D) // (U+D) W = w * h T = max(tl+tu, tl+td, tr+tu, tr+td) print(W, T)" />
 <link rel="canonical" href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/" />
 <meta property="og:url" content="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/" />
 <meta property="og:site_name" content="도사였다 블로그" />
@@ -47,7 +47,7 @@
 <meta name="twitter:site" content="@twitter_username" />
 <meta name="google-site-verification" content="hnNWIcxGRe-Mkmp1QyupTbPSEpuftLLOvRjk9KGqnPk" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-03-11T00:00:00+09:00","datePublished":"2026-03-11T00:00:00+09:00","description":"하얀 전파","headline":"2026-03-11 문제풀이","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/"},"url":"http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-03-11T00:00:00+09:00","datePublished":"2026-03-11T00:00:00+09:00","description":"하얀 전파 풀이 색칠할 수 있는 최대한의 자리를 찾고 다 색칠하기 위한 시간을 구하는 문제다. 일단 주목해야할 부분은 L, R, U, D중에 0인 부분이다. 0이면 최대한 변에 붙여서 색칠할 수 있는 부분을 늘리는 게 직관적으로 중요하다. 둘 다 0이면 변의 길이가 1이 되는거고 둘 다 0이 아니면 1초에 $(L+R)$만큼, $(U+D)$만큼 색칠 할 수 있다. 이를 이용하면 둘 다 0이면(L, R세트와 U, D세트) 변의 길이가 1이다. 나머지 경우는 변의 길이는 각각 m, n이 된다. 이를 이용해서 쉽게 W를 구할 수 있다. 이제 시간인데 아까 잠깐 언급했듯이 $(L+R)$만큼, $(U+D)$만큼 색칠 할 수 있기 때문에 정답은 \\(\\lceil\\frac{(m-1)}{(L+R)}\\rceil+\\lceil\\frac{(n-1)}{(U+D)}\\rceil\\) 위와 같은 식이 된다. 코드 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 import sys input = sys.stdin.readline for i in range(int(input())) : n, m, L, R, U, D = map(int, input().split()) w, h = 1, 1 tl, tr, tu, td = 0, 0, 0, 0 if L == 0 : if R : w = m d = m-1 tr = (d+R-1) // R elif R == 0 : w = m d = m - 1 tl = (d+L-1)//L else : w = m tl = tr = (m+L+R-2) // (L+R) if U == 0 : if D : h = n td = (n+D-2) // D elif D == 0 : h = n tu = (n+U-2) // U else : h = n td = tu = (n-2+U+D) // (U+D) W = w * h T = max(tl+tu, tl+td, tr+tu, tr+td) print(W, T)","headline":"2026-03-11 문제풀이","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/"},"url":"http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -330,10 +330,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>Problem Solving</span>
-              <span class="badge bg-secondary rounded-pill">41</span>
+              <span class="badge bg-secondary rounded-pill">42</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(10)/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-03-15 문제풀이
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -1194,10 +1200,16 @@
             <!-- 카테고리 이름 (폴더처럼) -->
             <a class="nav-link category-trigger" href="#" style="padding-left: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
               <span>BOJ</span>
-              <span class="badge bg-secondary rounded-pill">9</span>
+              <span class="badge bg-secondary rounded-pill">10</span>
             </a>
             <!-- 해당 카테고리의 글 목록 -->
             <ul class="nav flex-column sub-menu" style="display: none; padding-left: 1rem; background: rgba(0,0,0,0.1);">
+              
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(10)/" style="font-size: 0.85rem; padding-left: 2rem;">
+                    2026-03-15 문제풀이
+                  </a>
+                </li>
               
                 <li class="nav-item">
                   <a class="nav-link" href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/" style="font-size: 0.85rem; padding-left: 2rem;">
@@ -1976,6 +1988,13 @@
         
         
         <li class="text-truncate lh-lg">
+          <a href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(10)/">2026-03-15 문제풀이</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
           <a href="/posts/Standard-Table2/">Standard Table(BOM, Info Record, Production Order 편)</a>
         </li>
       
@@ -1998,13 +2017,6 @@
         
         <li class="text-truncate lh-lg">
           <a href="/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/">2026-03-11 문제풀이</a>
-        </li>
-      
-        
-        
-        
-        <li class="text-truncate lh-lg">
-          <a href="/posts/%EB%9F%AC%EB%8B%9D/">심심해서 쓰는 진짜 잡담</a>
         </li>
       
     </ul>
@@ -4539,6 +4551,18 @@
 
   
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 
 
 
