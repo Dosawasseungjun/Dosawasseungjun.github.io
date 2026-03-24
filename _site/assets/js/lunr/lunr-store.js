@@ -431,6 +431,12 @@ var store = [{
         "url": "/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(10)/",
         "teaser": null
       },{
+        "title": "우울하다",
+        "excerpt":"우울하다… 스트릭 2026년 3월 21일 실수로 스트릭이 끊겼다. 한승준은 완전히 멘탈이 나가버렸습니다. 19일엔 문제를 해결한줄 알았지만 “틀렸습니다.” 하나만 찍혀있고 스트릭 프리즈 아이템이 사용되었다. 20일엔 그냥 아무 생각도 없이 지나가버렸다.(미친것 같다) 어떻게 1490일동안 하던 행동을 까먹어버릴 수 있는지 신기하면서 너무 허무했다. 실수를 한 이유 프로젝트의 시작 일주일 전부터 erp개발 프로젝트가 시작되면서...","categories": ["Other Things","Just Chatting"],
+        "tags": ["잡담"],
+        "url": "/posts/%EC%9A%B0%EC%9A%B8/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],
