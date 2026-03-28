@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>도사였다 블로그</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-03-22T12:02:36+09:00</updated>
+  <updated>2026-03-28T14:45:12+09:00</updated>
   <author>
     <name>Han Seungjun</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,32 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>FI 모듈 기본 개념</title>
+    <link href="http://localhost:4000/posts/FI-%EB%AA%A8%EB%93%88-%EA%B0%9C%EB%85%90/" rel="alternate" type="text/html" title="FI 모듈 기본 개념" />
+    <published>2026-03-28T01:00:00+09:00</published>
+  
+    <updated>2026-03-28T01:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/FI-%EB%AA%A8%EB%93%88-%EA%B0%9C%EB%85%90/</id>
+    <content type="text/html" src="http://localhost:4000/posts/FI-%EB%AA%A8%EB%93%88-%EA%B0%9C%EB%85%90/" />
+    <author>
+      <name>Han Seungjun</name>
+    </author>
+
+  
+    
+    <category term="ERP" />
+    
+    <category term="SAP" />
+    
+  
+
+  <summary>FI 모듈(Financial Accounting 재무회계)  FI 모듈이 하는 일     “회사에서 일어나는 모든 돈의 흐름을 기록하고 관리하는 시스템”   회사의 가계부를 잘 작성하는 것이 FI 모듈의 핵심 업무다.     여러 회사(법인)의 돈을 동시에 관리한다.   모든 거래를 전표(Document)라는 단위로 기록한다.   채권, 채무를 체계적으로 추적한다.   💡 전표(Document)란?  "언제, 어떤 계정으로, 얼마가 들어오고 나갔는지"를 기록한 회계 증빙 단위  예시) 2026.03.24 / 이룸가구 / 거래처 A에 가구 납품 / 매출 500만원 발생   회사 코드 (Company Code)                 회사코드       회사명       특징              ...</summary>
+
+  </entry>
 
   
   <entry>
@@ -119,32 +145,6 @@
   
 
   <summary>개요 ERP에는 Standard가 있고 개발자들은 CBO(Customer Bolt-On)를 개발하여 표준 시스템에 없는 추가 기능을 구현한다. 따라서 Standard에 있는 내용을 제대로 이해하는 것이 필요하다.  Material Create(자재코드)  자재 자재(Material)는 말 그대로 “무엇을 만들기 위한 기본적인 재료”를 의미한다.  1. MARA(General Material Data) 역할 SAP 시스템 전체(Client Level)에서 공통으로 쓰는 자재의 뼈대 정보를 담고 있다. 필드                 Field       Description       example                       MATNR (KEY)       자재 번호       FURN-0...</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>2026-03-11 문제풀이</title>
-    <link href="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/" rel="alternate" type="text/html" title="2026-03-11 문제풀이" />
-    <published>2026-03-11T00:00:00+09:00</published>
-  
-    <updated>2026-03-11T00:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/</id>
-    <content type="text/html" src="http://localhost:4000/posts/%EB%AC%B8%EC%A0%9C%EC%9D%BC%EA%B8%B0(9)/" />
-    <author>
-      <name>Han Seungjun</name>
-    </author>
-
-  
-    
-    <category term="Problem Solving" />
-    
-    <category term="BOJ" />
-    
-  
-
-  <summary>하얀 전파  풀이  색칠할 수 있는 최대한의 자리를 찾고 다 색칠하기 위한 시간을 구하는 문제다.  일단 주목해야할 부분은 L, R, U, D중에 0인 부분이다. 0이면 최대한 변에 붙여서 색칠할 수 있는 부분을 늘리는 게 직관적으로 중요하다.  둘 다 0이면 변의 길이가 1이 되는거고 둘 다 0이 아니면 1초에 $(L+R)$만큼, $(U+D)$만큼 색칠 할 수 있다.  이를 이용하면    둘 다 0이면(L, R세트와 U, D세트) 변의 길이가 1이다.   나머지 경우는 변의 길이는 각각 m, n이 된다.   이를 이용해서 쉽게 W를 구할 수 있다.  이제 시간인데 아까 잠깐 언급했듯이 $(L+R)$만큼, $(U+D)$만큼 색칠 할 수 있기 때문에 정답은   \(\lceil\frac{(m-1)}{(L+...</summary>
 
   </entry>
 

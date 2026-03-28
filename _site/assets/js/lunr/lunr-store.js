@@ -437,6 +437,12 @@ var store = [{
         "url": "/posts/%EC%9A%B0%EC%9A%B8/",
         "teaser": null
       },{
+        "title": "FI 모듈 기본 개념",
+        "excerpt":"FI 모듈(Financial Accounting 재무회계) FI 모듈이 하는 일 “회사에서 일어나는 모든 돈의 흐름을 기록하고 관리하는 시스템” 회사의 가계부를 잘 작성하는 것이 FI 모듈의 핵심 업무다. 여러 회사(법인)의 돈을 동시에 관리한다. 모든 거래를 전표(Document)라는 단위로 기록한다. 채권, 채무를 체계적으로 추적한다. 1 2 3 4 5 💡 전표(Document)란? \"언제, 어떤 계정으로, 얼마가...","categories": ["ERP","SAP"],
+        "tags": ["SAP","ABAP","FI"],
+        "url": "/posts/FI-%EB%AA%A8%EB%93%88-%EA%B0%9C%EB%85%90/",
+        "teaser": null
+      },{
         "title": "Categories",
         "excerpt":" ","categories": [],
         "tags": [],
